@@ -11,10 +11,14 @@
  *   </template>
  */
 
+import { computed } from 'vue'
 import ImageViewer from './ImageViewer.vue'
-import { useImageViewer } from '../composables/useImageViewer'
+import { useImageViewer, type ViewerImage } from '../composables/useImageViewer'
 
 const { isOpen, images, initialIndex, _setOpen } = useImageViewer()
+
+// Unwrap readonly for internal component usage
+const imagesList = computed(() => [...images.value] as ViewerImage[])
 
 function handleClose() {
   _setOpen(false)
@@ -23,7 +27,7 @@ function handleClose() {
 
 <template>
   <ImageViewer
-    :images="images"
+    :images="imagesList"
     :initial-index="initialIndex"
     :open="isOpen"
     @close="handleClose"
