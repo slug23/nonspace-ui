@@ -10,7 +10,7 @@
  * - Touch/pinch zoom support
  * - Gallery mode with multiple images
  * - Smooth animations
- * - Download buutton
+ * - Download button
  * - Optional variant fetching for higher quality images
  * 
  * Usage:
