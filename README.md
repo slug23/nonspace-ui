@@ -4,7 +4,12 @@ Shared Vue 3 UI components for [nonspace](https://github.com/yourusername/nonspa
 
 ## Components
 
-### ImageViewer
+- **ImageViewer** - Full-featured image lightbox with zoom, pan, keyboard navigation
+- **AvatarUpload** - Profile avatar upload with drag & drop, preview, and progress
+
+---
+
+## ImageViewer
 
 A full-featured image lightbox with:
 - Fullscreen overlay with blur backdrop
@@ -129,7 +134,7 @@ interface ViewerImage {
 }
 ```
 
-## Keyboard Shortcuts
+## Keyboard Shortcuts (ImageViewer)
 
 | Key | Action |
 |-----|--------|
@@ -138,6 +143,128 @@ interface ViewerImage {
 | `+` / `=` | Zoom in |
 | `-` | Zoom out |
 | `0` | Reset zoom |
+
+---
+
+## AvatarUpload
+
+A complete avatar upload component with:
+- Circular/rounded/square avatar display
+- Click or drag & drop to upload
+- Live preview before upload
+- Upload progress ring
+- Automatic use of "avatar" processing profile
+- v-model support for the avatar URL
+
+### Setup (once, at app initialization)
+
+```ts
+import { configureAvatarUpload } from 'nonspace-ui'
+
+// Configure with your API details
+configureAvatarUpload({
+  uploadUrl: 'https://api.yoursite.com/v1/upload',
+  apiKey: 'your-api-key',        // or use headers for auth
+  projectId: 'your-project-id',
+  profile: 'avatar',             // uses the avatar processing profile
+})
+```
+
+### Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { AvatarUpload } from 'nonspace-ui'
+
+const avatarUrl = ref<string | null>(null)
+
+function onAvatarUpdated(result) {
+  console.log('Avatar uploaded:', result)
+  // result contains: { id, url, variants }
+}
+</script>
+
+<template>
+  <AvatarUpload
+    v-model="avatarUrl"
+    :size="120"
+    placeholder="JD"
+    shape="circle"
+    @upload-success="onAvatarUpdated"
+  />
+</template>
+```
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `modelValue` | `string \| null` | - | Current avatar URL |
+| `size` | `number` | `120` | Size in pixels |
+| `editable` | `boolean` | `true` | Allow upload |
+| `placeholder` | `string` | - | Text when no avatar (e.g., initials) |
+| `shape` | `'circle' \| 'rounded' \| 'square'` | `'circle'` | Avatar shape |
+| `showProgress` | `boolean` | `true` | Show progress ring during upload |
+| `config` | `Partial<AvatarUploadConfig>` | - | Override upload config |
+
+### Events
+
+| Event | Payload | Description |
+|-------|---------|-------------|
+| `update:modelValue` | `string` | Emitted with new URL after upload |
+| `upload-start` | `File` | Upload has started |
+| `upload-progress` | `number` | Progress (0-100) |
+| `upload-success` | `AvatarUploadResult` | Upload completed successfully |
+| `upload-error` | `{ message, code? }` | Upload failed |
+| `file-selected` | `File` | File was selected |
+
+### Using with Composable
+
+For more control, use the composable directly:
+
+```ts
+import { useAvatarUpload } from 'nonspace-ui'
+
+const {
+  uploading,
+  progress,
+  error,
+  previewUrl,
+  selectFile,
+  upload,
+  clearSelection,
+} = useAvatarUpload({
+  uploadUrl: '/api/v1/upload',
+  profile: 'avatar',
+})
+
+// Handle file input
+function handleFile(file: File) {
+  selectFile(file)
+  upload().then(result => {
+    if (result) {
+      console.log('Uploaded:', result.url)
+    }
+  })
+}
+```
+
+### AvatarUploadConfig
+
+```ts
+interface AvatarUploadConfig {
+  uploadUrl: string                    // API endpoint
+  apiKey?: string                      // Bearer token
+  headers?: Record<string, string>     // Custom headers
+  projectId?: string                   // Project to upload to
+  profile?: string                     // Processing profile (default: 'avatar')
+  maxFileSize?: number                 // Max size in bytes (default: 10MB)
+  acceptedTypes?: string[]             // Accepted MIME types
+}
+```
+
+---
 
 ## Development
 
