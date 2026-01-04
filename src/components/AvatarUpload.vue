@@ -267,7 +267,7 @@ onUnmounted(() => {
         ref="fileInput"
         type="file"
         accept="image/jpeg,image/png,image/webp,image/heic,image/heif"
-        class="hidden"
+        style="display: none;"
         @change="handleFileSelect"
       />
       

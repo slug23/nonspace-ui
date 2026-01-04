@@ -7,6 +7,8 @@ export interface AvatarVariant {
 }
 
 export interface AvatarVariants {
+  /** ~1000px WebP for cropping/editing (browser-compatible) */
+  source?: AvatarVariant
   sm?: AvatarVariant
   md?: AvatarVariant
   lg?: AvatarVariant
@@ -44,6 +46,35 @@ export interface Avatar {
   fallback: AvatarFallback
   created_at: string
   updated_at: string
+}
+
+/**
+ * Normalize avatar from API response (handles both camelCase and snake_case)
+ */
+function normalizeAvatar(raw: any): Avatar {
+  return {
+    id: raw.id,
+    name: raw.name,
+    is_primary: raw.is_primary ?? raw.isPrimary ?? false,
+    source: raw.source || 'upload',
+    original_url: raw.original_url ?? raw.originalUrl ?? '',
+    variants: raw.variants || {},
+    format: raw.format || 'static',
+    animated_url: raw.animated_url ?? raw.animatedUrl,
+    crop: raw.crop,
+    blurhash: raw.blurhash,
+    dominant_color: raw.dominant_color ?? raw.dominantColor,
+    alt_text: raw.alt_text ?? raw.altText,
+    moderation_status: raw.moderation_status ?? raw.moderationStatus ?? 'approved',
+    fallback: raw.fallback ? {
+      type: raw.fallback.type || 'default',
+      initials: raw.fallback.initials,
+      background_color: raw.fallback.background_color ?? raw.fallback.backgroundColor,
+      url: raw.fallback.url,
+    } : { type: 'default' },
+    created_at: raw.created_at ?? raw.createdAt ?? '',
+    updated_at: raw.updated_at ?? raw.updatedAt ?? '',
+  }
 }
 
 export interface AvatarManagerConfig {
@@ -124,7 +155,8 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
       }
 
       const data = await response.json()
-      avatars.value = data.avatars || []
+      const rawAvatars = data.avatars || []
+      avatars.value = rawAvatars.map(normalizeAvatar)
     } catch (e: any) {
       error.value = e.message || 'Failed to fetch avatars'
     } finally {
@@ -141,7 +173,6 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
     name?: string
     is_primary?: boolean
     variants?: AvatarVariants
-    crop?: AvatarCrop
     blurhash?: string
     dominant_color?: string
     alt_text?: string
@@ -164,7 +195,6 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
           source: 'upload',
           format: 'static',
           variants: data.variants,
-          crop: data.crop,
           blurhash: data.blurhash,
           dominant_color: data.dominant_color,
           alt_text: data.alt_text,
@@ -177,7 +207,8 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
         throw new Error(await response.text())
       }
 
-      const avatar = await response.json()
+      const rawAvatar = await response.json()
+      const avatar = normalizeAvatar(rawAvatar)
       
       // Refresh list
       await fetchAvatars()
@@ -268,7 +299,8 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
         throw new Error(await response.text())
       }
 
-      const updatedAvatar = await response.json()
+      const rawUpdatedAvatar = await response.json()
+      const updatedAvatar = normalizeAvatar(rawUpdatedAvatar)
 
       // Update local state
       avatars.value = avatars.value.map(a => 
@@ -352,13 +384,17 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
       uploadProgress.value = 100
 
       // Create the avatar record
+      // Handle both camelCase and snake_case from different APIs
+      const avatarUrl = uploadResult.url || uploadResult.signedUrl || uploadResult.signed_url || ''
+      console.log('Upload result:', uploadResult)
+      console.log('Avatar URL for create:', avatarUrl)
+      
       const avatar = await createAvatar({
-        original_url: uploadResult.url || uploadResult.signed_url,
-        file_id: uploadResult.id,
+        original_url: avatarUrl,
+        file_id: uploadResult.id || uploadResult.fileId,
         name: options?.name,
         is_primary: options?.is_primary,
         variants: uploadResult.variants,
-        crop: options?.crop,
         fallback_initials: options?.fallback_initials,
       })
 
@@ -373,10 +409,16 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
 
   /**
    * Get the best URL for an avatar at a given size
+   * @param size - 'sm' | 'md' | 'lg' for display, 'source' for cropping/editing, 'original' for raw file
    */
-  function getAvatarUrl(avatar: Avatar, size: 'sm' | 'md' | 'lg' | 'original' = 'md'): string {
+  function getAvatarUrl(avatar: Avatar, size: 'sm' | 'md' | 'lg' | 'source' | 'original' = 'md'): string {
     if (size === 'original') {
       return avatar.original_url
+    }
+    
+    if (size === 'source') {
+      // For cropping: prefer source, then original
+      return avatar.variants.source?.url || avatar.original_url
     }
     
     const variant = avatar.variants[size]
