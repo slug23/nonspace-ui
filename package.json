@@ -30,7 +30,8 @@
   "scripts": {
     "build": "vue-tsc --declaration --emitDeclarationOnly --outDir dist && vite build",
     "dev": "vite build --watch",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "vue": "^3.3.0"
@@ -45,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/nonspace-ui.git"
+    "url": "https://github.com/slug23/nonspace-ui.git"
   },
   "keywords": [
     "vue",
@@ -56,4 +57,6 @@
   ],
   "license": "MIT"
 }
+
+
 
