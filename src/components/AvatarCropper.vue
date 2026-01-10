@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<{
 }>(), {
   shape: 'circle',
   cropSize: 280,
-  outputSize: 0,
+  outputSize: 512,
   showZoomSlider: true,
   showReset: true,
   confirmLabel: 'Apply',
@@ -46,6 +46,7 @@ const {
   sourceUrl,
   cropRegion,
   imageTransform,
+  config: cropperConfig,
   loadFile,
   loadUrl,
   setZoom,
@@ -104,37 +105,29 @@ const normalizedZoom = computed({
   }
 })
 
-// Mask shape for SVG
-const maskShape = computed(() => {
-  const size = props.cropSize
-  const half = size / 2
-  
-  if (props.shape === 'circle') {
-    return `M0,0 h${size} v${size} h-${size} Z M${half},${half} m-${half},0 a${half},${half} 0 1,0 ${size},0 a${half},${half} 0 1,0 -${size},0 Z`
-  } else if (props.shape === 'rounded') {
-    const r = 24 // rounded corner radius
-    return `M0,0 h${size} v${size} h-${size} Z M${r},0 h${size - 2*r} a${r},${r} 0 0,1 ${r},${r} v${size - 2*r} a${r},${r} 0 0,1 -${r},${r} h-${size - 2*r} a${r},${r} 0 0,1 -${r},-${r} v-${size - 2*r} a${r},${r} 0 0,1 ${r},-${r} Z`
+// Shape class for crop overlay
+const shapeClass = computed(() => {
+  switch (props.shape) {
+    case 'circle': return 'rounded-full'
+    case 'rounded': return 'rounded-3xl'
+    default: return ''
   }
-  // Square - no mask needed, just border
-  return ''
 })
 
-// Pointer event handlers - use the container ref for capture
+// Pointer event handlers
 function handlePointerDown(e: PointerEvent) {
-  if (loading.value || !cropAreaRef.value) return
+  if (loading.value) return
   
-  e.preventDefault()
   isDragging.value = true
   lastPointer.value = { x: e.clientX, y: e.clientY }
   
-  // Capture on the container element, not e.target
-  cropAreaRef.value.setPointerCapture(e.pointerId)
+  const target = e.target as HTMLElement
+  target.setPointerCapture(e.pointerId)
 }
 
 function handlePointerMove(e: PointerEvent) {
   if (!isDragging.value) return
   
-  e.preventDefault()
   const deltaX = e.clientX - lastPointer.value.x
   const deltaY = e.clientY - lastPointer.value.y
   
@@ -144,12 +137,9 @@ function handlePointerMove(e: PointerEvent) {
 }
 
 function handlePointerUp(e: PointerEvent) {
-  if (!cropAreaRef.value) return
-  
   isDragging.value = false
-  if (cropAreaRef.value.hasPointerCapture(e.pointerId)) {
-    cropAreaRef.value.releasePointerCapture(e.pointerId)
-  }
+  const target = e.target as HTMLElement
+  target.releasePointerCapture(e.pointerId)
 }
 
 // Wheel zoom
@@ -169,7 +159,6 @@ let lastTouchDistance = 0
 
 function handleTouchStart(e: TouchEvent) {
   if (e.touches.length === 2) {
-    e.preventDefault()
     lastTouchDistance = getTouchDistance(e.touches)
   }
 }
@@ -237,7 +226,8 @@ onUnmounted(() => {
       <!-- Loading state -->
       <div
         v-if="loading"
-        class="flex items-center justify-center bg-dark-800 rounded-lg"
+        class="flex items-center justify-center bg-dark-800"
+        :class="shapeClass"
         :style="{ width: `${cropSize}px`, height: `${cropSize}px` }"
       >
         <div class="w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
@@ -246,7 +236,8 @@ onUnmounted(() => {
       <!-- Error state -->
       <div
         v-else-if="error"
-        class="flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400 rounded-lg"
+        class="flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400"
+        :class="shapeClass"
         :style="{ width: `${cropSize}px`, height: `${cropSize}px` }"
       >
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,94 +250,76 @@ onUnmounted(() => {
       <div
         v-else-if="state.image"
         ref="cropAreaRef"
-        class="relative overflow-hidden bg-dark-900 rounded-lg select-none"
+        class="relative overflow-hidden bg-dark-900 select-none touch-none"
+        :class="shapeClass"
         :style="{ 
           width: `${cropSize}px`, 
           height: `${cropSize}px`,
-          cursor: isDragging ? 'grabbing' : 'grab',
-          touchAction: 'none'
+          cursor: isDragging ? 'grabbing' : 'grab'
         }"
         @pointerdown="handlePointerDown"
         @pointermove="handlePointerMove"
         @pointerup="handlePointerUp"
         @pointercancel="handlePointerUp"
-        @wheel.prevent="handleWheel"
+        @wheel="handleWheel"
         @touchstart="handleTouchStart"
         @touchmove="handleTouchMove"
       >
-        <!-- The image - no pointer events, no selection -->
+        <!-- The image -->
         <img
           :src="sourceUrl || ''"
           alt="Crop preview"
-          class="cropper-image absolute top-0 left-0 origin-top-left"
+          class="absolute top-0 left-0 origin-top-left pointer-events-none"
           :style="{ transform: imageTransform }"
           draggable="false"
         />
 
-        <!-- Dark mask overlay with transparent crop area -->
-        <svg
-          v-if="shape === 'circle' || shape === 'rounded'"
-          class="absolute inset-0 pointer-events-none"
-          :width="cropSize"
-          :height="cropSize"
-        >
-          <defs>
-            <mask :id="`crop-mask-${cropSize}`">
-              <rect width="100%" height="100%" fill="white" />
-              <circle
-                v-if="shape === 'circle'"
-                :cx="cropSize / 2"
-                :cy="cropSize / 2"
-                :r="cropSize / 2"
-                fill="black"
-              />
-              <rect
-                v-else-if="shape === 'rounded'"
-                x="0"
-                y="0"
-                :width="cropSize"
-                :height="cropSize"
-                rx="24"
-                ry="24"
-                fill="black"
-              />
-            </mask>
-          </defs>
-          <rect
-            width="100%"
-            height="100%"
-            fill="rgba(0, 0, 0, 0.6)"
-            :mask="`url(#crop-mask-${cropSize})`"
-          />
-        </svg>
+        <!-- Subtle grid overlay for positioning guidance -->
+        <div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity">
+          <div class="absolute inset-0 border border-white/20"></div>
+          <div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10"></div>
+          <div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10"></div>
+          <div class="absolute top-1/3 left-0 right-0 h-px bg-white/10"></div>
+          <div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10"></div>
+          <!-- Center crosshair -->
+          <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6">
+            <div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2"></div>
+            <div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2"></div>
+          </div>
+        </div>
 
-        <!-- Crop border -->
+        <!-- Drag hint overlay (shows briefly) -->
         <div
-          class="absolute inset-0 pointer-events-none border-2 border-white/40"
-          :class="{
-            'rounded-full': shape === 'circle',
-            'rounded-3xl': shape === 'rounded',
-            'rounded-none': shape === 'square'
-          }"
-        ></div>
-
-        <!-- Center guides (subtle) -->
-        <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/20 -translate-x-1/2"></div>
-          <div class="absolute top-1/2 left-0 right-0 h-px bg-white/20 -translate-y-1/2"></div>
+          v-if="!isDragging"
+          class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity pointer-events-none"
+        >
+          <div class="flex items-center gap-2 px-3 py-1.5 bg-black/60 rounded-full text-white text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+            </svg>
+            Drag to reposition
+          </div>
         </div>
       </div>
 
       <!-- Empty state -->
       <div
         v-else
-        class="flex items-center justify-center bg-dark-800 text-dark-500 rounded-lg"
+        class="flex items-center justify-center bg-dark-800 text-dark-500"
+        :class="shapeClass"
         :style="{ width: `${cropSize}px`, height: `${cropSize}px` }"
       >
         <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
       </div>
+
+      <!-- Shape outline (for non-circle shapes, subtle border) -->
+      <div
+        v-if="props.shape !== 'circle' && state.image"
+        class="absolute inset-0 pointer-events-none border-2 border-white/20"
+        :class="shapeClass"
+      ></div>
     </div>
 
     <!-- Zoom controls -->
@@ -355,7 +328,7 @@ onUnmounted(() => {
         <!-- Zoom out icon -->
         <button
           type="button"
-          class="p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors disabled:opacity-40"
+          class="p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors"
           @click="setZoom(state.zoom - (state.maxZoom - state.minZoom) * 0.1)"
           :disabled="state.zoom <= state.minZoom"
         >
@@ -380,7 +353,7 @@ onUnmounted(() => {
         <!-- Zoom in icon -->
         <button
           type="button"
-          class="p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors disabled:opacity-40"
+          class="p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors"
           @click="setZoom(state.zoom + (state.maxZoom - state.minZoom) * 0.1)"
           :disabled="state.zoom >= state.maxZoom"
         >
@@ -439,13 +412,6 @@ onUnmounted(() => {
   --color-dark-900: #111827;
 }
 
-.cropper-image {
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-}
-
 .zoom-slider::-webkit-slider-thumb {
   appearance: none;
   width: 16px;
@@ -475,3 +441,4 @@ onUnmounted(() => {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 </style>
+

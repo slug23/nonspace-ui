@@ -28,7 +28,8 @@
     "src"
   ],
   "scripts": {
-    "build": "vue-tsc --declaration --emitDeclarationOnly --outDir dist && vite build",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && vue-tsc --declaration --emitDeclarationOnly --outDir dist && vite build",
     "dev": "vite build --watch",
     "type-check": "vue-tsc --noEmit",
     "prepare": "npm run build"

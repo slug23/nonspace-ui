@@ -48,35 +48,6 @@ export interface Avatar {
   updated_at: string
 }
 
-/**
- * Normalize avatar from API response (handles both camelCase and snake_case)
- */
-function normalizeAvatar(raw: any): Avatar {
-  return {
-    id: raw.id,
-    name: raw.name,
-    is_primary: raw.is_primary ?? raw.isPrimary ?? false,
-    source: raw.source || 'upload',
-    original_url: raw.original_url ?? raw.originalUrl ?? '',
-    variants: raw.variants || {},
-    format: raw.format || 'static',
-    animated_url: raw.animated_url ?? raw.animatedUrl,
-    crop: raw.crop,
-    blurhash: raw.blurhash,
-    dominant_color: raw.dominant_color ?? raw.dominantColor,
-    alt_text: raw.alt_text ?? raw.altText,
-    moderation_status: raw.moderation_status ?? raw.moderationStatus ?? 'approved',
-    fallback: raw.fallback ? {
-      type: raw.fallback.type || 'default',
-      initials: raw.fallback.initials,
-      background_color: raw.fallback.background_color ?? raw.fallback.backgroundColor,
-      url: raw.fallback.url,
-    } : { type: 'default' },
-    created_at: raw.created_at ?? raw.createdAt ?? '',
-    updated_at: raw.updated_at ?? raw.updatedAt ?? '',
-  }
-}
-
 export interface AvatarManagerConfig {
   /** Base API URL (e.g., '/api' or 'https://api.example.com') */
   apiBaseUrl: string
@@ -155,8 +126,7 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
       }
 
       const data = await response.json()
-      const rawAvatars = data.avatars || []
-      avatars.value = rawAvatars.map(normalizeAvatar)
+      avatars.value = data.avatars || []
     } catch (e: any) {
       error.value = e.message || 'Failed to fetch avatars'
     } finally {
@@ -207,8 +177,7 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
         throw new Error(await response.text())
       }
 
-      const rawAvatar = await response.json()
-      const avatar = normalizeAvatar(rawAvatar)
+      const avatar = await response.json()
       
       // Refresh list
       await fetchAvatars()
@@ -299,8 +268,7 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
         throw new Error(await response.text())
       }
 
-      const rawUpdatedAvatar = await response.json()
-      const updatedAvatar = normalizeAvatar(rawUpdatedAvatar)
+      const updatedAvatar = await response.json()
 
       // Update local state
       avatars.value = avatars.value.map(a => 
@@ -384,14 +352,9 @@ export function useAvatarManager(localConfig?: Partial<AvatarManagerConfig>) {
       uploadProgress.value = 100
 
       // Create the avatar record
-      // Handle both camelCase and snake_case from different APIs
-      const avatarUrl = uploadResult.url || uploadResult.signedUrl || uploadResult.signed_url || ''
-      console.log('Upload result:', uploadResult)
-      console.log('Avatar URL for create:', avatarUrl)
-      
       const avatar = await createAvatar({
-        original_url: avatarUrl,
-        file_id: uploadResult.id || uploadResult.fileId,
+        original_url: uploadResult.url || uploadResult.signed_url,
+        file_id: uploadResult.id,
         name: options?.name,
         is_primary: options?.is_primary,
         variants: uploadResult.variants,

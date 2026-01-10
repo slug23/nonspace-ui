@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<{
   allowUpload: true,
   allowDelete: true,
   allowEdit: true,
-  enableCropOnUpload: false,
+  enableCropOnUpload: true,
   avatarSize: 80,
   shape: 'circle',
   mode: 'compact',
@@ -238,7 +238,7 @@ function getSourceLabel(source: string): string {
       ref="fileInputRef"
       type="file"
       accept="image/*"
-      style="display: none;"
+      class="hidden"
       @change="handleFileSelect"
     />
 
@@ -337,12 +337,10 @@ function getSourceLabel(source: string): string {
 
           <!-- Hover actions overlay -->
           <div
-            class="absolute inset-0 bg-black/70 transition-opacity flex items-center justify-center gap-1"
+            class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1"
             :class="[
               shapeClass,
-              confirmDeleteId === avatar.id 
-                ? 'z-50 opacity-100' 
-                : 'z-10 opacity-0 group-hover:opacity-100'
+              confirmDeleteId === avatar.id ? 'z-50 opacity-100' : 'z-10'
             ]"
           >
             <!-- Edit/Crop button -->
@@ -391,31 +389,22 @@ function getSourceLabel(source: string): string {
           type="button"
           @click="triggerUpload"
           :disabled="uploading"
-          class="upload-button flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors"
+          class="flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors"
           :class="shapeClass"
-          :style="{ 
-            width: `${avatarSize}px`, 
-            height: `${avatarSize}px`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: '2px dashed #4b5563',
-            borderRadius: shape === 'circle' ? '9999px' : shape === 'rounded' ? '12px' : '0',
-            backgroundColor: 'transparent',
-            cursor: 'pointer',
-            transition: 'border-color 0.2s'
-          }"
+          :style="{ width: `${avatarSize}px`, height: `${avatarSize}px` }"
         >
-          <div v-if="uploading" style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-            <svg style="position: absolute; inset: 8px; width: auto; height: auto;" viewBox="0 0 36 36">
+          <div v-if="uploading" class="relative w-full h-full flex items-center justify-center">
+            <svg class="absolute inset-2 w-auto h-auto" viewBox="0 0 36 36">
               <path
-                stroke="#374151"
+                class="text-dark-700"
+                stroke="currentColor"
                 stroke-width="3"
                 fill="none"
                 d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
               />
               <path
-                stroke="#8b5cf6"
+                class="text-primary-500"
+                stroke="currentColor"
                 stroke-width="3"
                 fill="none"
                 stroke-linecap="round"
@@ -423,10 +412,10 @@ function getSourceLabel(source: string): string {
                 d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
               />
             </svg>
-            <span style="font-size: 12px; font-weight: 500; color: #9ca3af;">{{ uploadProgress }}%</span>
+            <span class="text-xs font-medium text-dark-300">{{ uploadProgress }}%</span>
           </div>
-          <div v-else style="color: #6b7280;">
-            <svg style="width: 24px; height: 24px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div v-else class="text-dark-500 hover:text-primary-400 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
           </div>
