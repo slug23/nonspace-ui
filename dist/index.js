@@ -1,25 +1,25 @@
-import { ref as _, readonly as ie, defineComponent as le, computed as O, watch as Q, onMounted as fe, onUnmounted as me, createBlock as ne, openBlock as d, Teleport as he, createVNode as ae, Transition as ge, withCtx as ye, createElementBlock as p, createCommentVNode as U, withModifiers as ee, createElementVNode as e, toDisplayString as R, withDirectives as ze, normalizeStyle as W, vShow as $e, Fragment as te, renderList as ce, normalizeClass as Y, unref as h, createStaticVNode as Me, createTextVNode as de } from "vue";
-const oe = _(!1), ke = _([]), we = _(0);
-let be = null;
+import { ref as _, readonly as ie, defineComponent as oe, computed as F, watch as Q, onMounted as fe, onUnmounted as me, createBlock as le, openBlock as d, Teleport as he, createVNode as ae, Transition as ge, withCtx as ye, createElementBlock as p, createCommentVNode as I, withModifiers as ee, createElementVNode as e, toDisplayString as R, withDirectives as ze, normalizeStyle as q, vShow as $e, Fragment as te, renderList as ce, normalizeClass as X, unref as h, createStaticVNode as Me, createTextVNode as de } from "vue";
+const ne = _(!1), ke = _([]), we = _(0);
+let xe = null;
 function Ce() {
   function c(k) {
-    be = k;
+    xe = k;
   }
-  function S() {
-    return be;
+  function L() {
+    return xe;
   }
-  function a(k, l = 0) {
-    ke.value = k, we.value = l, oe.value = !0;
+  function a(k, o = 0) {
+    ke.value = k, we.value = o, ne.value = !0;
   }
   function i() {
-    oe.value = !1;
+    ne.value = !1;
   }
-  function u(k, l) {
-    a([{ url: k, alt: l }], 0);
+  function u(k, o) {
+    a([{ url: k, alt: o }], 0);
   }
   return {
     // State (readonly to prevent external mutation)
-    isOpen: ie(oe),
+    isOpen: ie(ne),
     images: ie(ke),
     initialIndex: ie(we),
     // Actions
@@ -27,29 +27,29 @@ function Ce() {
     closeViewer: i,
     openImage: u,
     setVariantFetcher: c,
-    getVariantFetcher: S,
+    getVariantFetcher: L,
     // For the provider component
     _setOpen: (k) => {
-      oe.value = k;
+      ne.value = k;
     }
   };
 }
 const Se = { class: "viewer-toolbar top" }, Le = {
   key: 0,
   class: "image-counter"
-}, Ee = { class: "image-container" }, Ue = {
+}, Ee = { class: "image-container" }, Ie = {
   key: 0,
   class: "loading-spinner"
-}, Ie = {
+}, Ue = {
   key: 1,
   class: "error-state"
-}, Ae = ["src", "alt"], je = {
+}, Ae = ["src", "alt"], Oe = {
   key: 2,
   class: "loading-variants"
-}, Oe = { class: "viewer-toolbar bottom" }, Pe = { class: "zoom-controls" }, Re = {
+}, je = { class: "viewer-toolbar bottom" }, Fe = { class: "zoom-controls" }, Pe = {
   key: 2,
   class: "thumbnail-strip"
-}, De = ["onClick"], Be = ["src", "alt"], Te = 0.5, Fe = 5, xe = 0.25, Ze = /* @__PURE__ */ le({
+}, Re = ["onClick"], De = ["src", "alt"], Be = 0.5, Te = 5, be = 0.25, Ze = /* @__PURE__ */ oe({
   __name: "ImageViewer",
   props: {
     images: {},
@@ -57,106 +57,106 @@ const Se = { class: "viewer-toolbar top" }, Le = {
     open: { type: Boolean }
   },
   emits: ["close", "indexChange"],
-  setup(c, { emit: S }) {
-    const a = c, i = S, { getVariantFetcher: u } = Ce(), k = _(a.initialIndex), l = _(1), j = _(0), I = _(0), D = _(!1), T = _({ x: 0, y: 0 }), H = _(!0), Z = _(!1), z = _(!1), $ = _(/* @__PURE__ */ new Map()), s = O(() => a.images[k.value]), v = O(() => {
-      const n = s.value;
-      if (!n) return null;
-      if (n.fileId && $.value.has(n.fileId)) {
-        const L = $.value.get(n.fileId);
-        return { ...n, variants: L };
+  setup(c, { emit: L }) {
+    const a = c, i = L, { getVariantFetcher: u } = Ce(), k = _(a.initialIndex), o = _(1), O = _(0), U = _(0), D = _(!1), H = _({ x: 0, y: 0 }), B = _(!0), Z = _(!1), $ = _(!1), M = _(/* @__PURE__ */ new Map()), r = F(() => a.images[k.value]), v = F(() => {
+      const l = r.value;
+      if (!l) return null;
+      if (l.fileId && M.value.has(l.fileId)) {
+        const S = M.value.get(l.fileId);
+        return { ...l, variants: S };
       }
-      return n;
-    }), b = O(() => {
-      var L, X, N, F, se;
-      const n = v.value;
-      if (!n) return "";
-      if (n.variants) {
-        if ((L = n.variants.lg) != null && L.url) return n.variants.lg.url;
-        if ((X = n.variants.original) != null && X.url) return n.variants.original.url;
-        if ((N = n.variants.md) != null && N.url) return n.variants.md.url;
-        if ((F = n.variants.sm) != null && F.url) return n.variants.sm.url;
-        if ((se = n.variants.thumb) != null && se.url) return n.variants.thumb.url;
+      return l;
+    }), w = F(() => {
+      var S, W, N, T, se;
+      const l = v.value;
+      if (!l) return "";
+      if (l.variants) {
+        if ((S = l.variants.lg) != null && S.url) return l.variants.lg.url;
+        if ((W = l.variants.original) != null && W.url) return l.variants.original.url;
+        if ((N = l.variants.md) != null && N.url) return l.variants.md.url;
+        if ((T = l.variants.sm) != null && T.url) return l.variants.sm.url;
+        if ((se = l.variants.thumb) != null && se.url) return l.variants.thumb.url;
       }
-      return n.url;
-    }), w = O(() => a.images.length > 1), y = O(() => k.value > 0), r = O(() => k.value < a.images.length - 1);
+      return l.url;
+    }), x = F(() => a.images.length > 1), g = F(() => k.value > 0), y = F(() => k.value < a.images.length - 1);
     Q(k, () => {
-      l.value = 1, j.value = 0, I.value = 0, H.value = !0, Z.value = !1, i("indexChange", k.value);
-    }), Q(() => a.open, (n) => {
-      n ? (k.value = a.initialIndex, l.value = 1, j.value = 0, I.value = 0, H.value = !0, Z.value = !1, document.body.style.overflow = "hidden", f()) : document.body.style.overflow = "";
-    }), Q(s, () => {
-      f();
+      o.value = 1, O.value = 0, U.value = 0, B.value = !0, Z.value = !1, i("indexChange", k.value);
+    }), Q(() => a.open, (l) => {
+      l ? (k.value = a.initialIndex, o.value = 1, O.value = 0, U.value = 0, B.value = !0, Z.value = !1, document.body.style.overflow = "hidden", s()) : document.body.style.overflow = "";
+    }), Q(r, () => {
+      s();
     });
-    async function f() {
-      var X, N;
-      const n = s.value;
-      if (!(n != null && n.fileId) || $.value.has(n.fileId) || (X = n.variants) != null && X.lg || (N = n.variants) != null && N.original) return;
-      const L = u();
-      if (L) {
-        z.value = !0;
+    async function s() {
+      var W, N;
+      const l = r.value;
+      if (!(l != null && l.fileId) || M.value.has(l.fileId) || (W = l.variants) != null && W.lg || (N = l.variants) != null && N.original) return;
+      const S = u();
+      if (S) {
+        $.value = !0;
         try {
-          const F = await L(n.fileId);
-          F && $.value.set(n.fileId, F);
-        } catch (F) {
-          console.error("Failed to fetch variants:", F);
+          const T = await S(l.fileId);
+          T && M.value.set(l.fileId, T);
+        } catch (T) {
+          console.error("Failed to fetch variants:", T);
         } finally {
-          z.value = !1;
+          $.value = !1;
         }
       }
     }
-    function m() {
-      y.value && k.value--;
+    function f() {
+      g.value && k.value--;
     }
-    function g() {
-      r.value && k.value++;
+    function C() {
+      y.value && k.value++;
     }
-    function x(n) {
-      n >= 0 && n < a.images.length && (k.value = n);
+    function m(l) {
+      l >= 0 && l < a.images.length && (k.value = l);
     }
     function E() {
-      l.value = Math.min(Fe, l.value + xe);
+      o.value = Math.min(Te, o.value + be);
     }
-    function B() {
-      l.value = Math.max(Te, l.value - xe), l.value <= 1 && (j.value = 0, I.value = 0);
+    function j() {
+      o.value = Math.max(Be, o.value - be), o.value <= 1 && (O.value = 0, U.value = 0);
     }
     function V() {
-      l.value = 1, j.value = 0, I.value = 0;
+      o.value = 1, O.value = 0, U.value = 0;
     }
-    function q(n) {
-      n.preventDefault(), n.deltaY < 0 ? E() : B();
+    function Y(l) {
+      l.preventDefault(), l.deltaY < 0 ? E() : j();
     }
-    function G(n) {
-      if (l.value <= 1) return;
+    function G(l) {
+      if (o.value <= 1) return;
       D.value = !0;
-      const L = "touches" in n ? n.touches[0] : n;
-      T.value = { x: L.clientX - j.value, y: L.clientY - I.value };
+      const S = "touches" in l ? l.touches[0] : l;
+      H.value = { x: S.clientX - O.value, y: S.clientY - U.value };
     }
-    function K(n) {
+    function K(l) {
       if (!D.value) return;
-      n.preventDefault();
-      const L = "touches" in n ? n.touches[0] : n;
-      j.value = L.clientX - T.value.x, I.value = L.clientY - T.value.y;
+      l.preventDefault();
+      const S = "touches" in l ? l.touches[0] : l;
+      O.value = S.clientX - H.value.x, U.value = S.clientY - H.value.y;
     }
     function J() {
       D.value = !1;
     }
-    function C(n) {
+    function b(l) {
       if (a.open)
-        switch (n.key) {
+        switch (l.key) {
           case "Escape":
             i("close");
             break;
           case "ArrowLeft":
-            m();
+            f();
             break;
           case "ArrowRight":
-            g();
+            C();
             break;
           case "+":
           case "=":
             E();
             break;
           case "-":
-            B();
+            j();
             break;
           case "0":
             V();
@@ -166,46 +166,46 @@ const Se = { class: "viewer-toolbar top" }, Le = {
     async function A() {
       if (v.value)
         try {
-          const n = b.value, X = await (await fetch(n)).blob(), N = URL.createObjectURL(X), F = document.createElement("a");
-          F.href = N, F.download = v.value.alt || `image-${k.value + 1}`, document.body.appendChild(F), F.click(), document.body.removeChild(F), URL.revokeObjectURL(N);
-        } catch (n) {
-          console.error("Failed to download image:", n);
+          const l = w.value, W = await (await fetch(l)).blob(), N = URL.createObjectURL(W), T = document.createElement("a");
+          T.href = N, T.download = v.value.alt || `image-${k.value + 1}`, document.body.appendChild(T), T.click(), document.body.removeChild(T), URL.revokeObjectURL(N);
+        } catch (l) {
+          console.error("Failed to download image:", l);
         }
     }
     function P() {
-      H.value = !1;
+      B.value = !1;
     }
-    function M() {
-      H.value = !1, Z.value = !0;
+    function z() {
+      B.value = !1, Z.value = !0;
     }
-    function t(n) {
-      n.target.classList.contains("viewer-backdrop") && i("close");
+    function t(l) {
+      l.target.classList.contains("viewer-backdrop") && i("close");
     }
     fe(() => {
-      window.addEventListener("keydown", C);
+      window.addEventListener("keydown", b);
     }), me(() => {
-      window.removeEventListener("keydown", C), document.body.style.overflow = "";
+      window.removeEventListener("keydown", b), document.body.style.overflow = "";
     });
-    const o = O(() => ({
-      transform: `scale(${l.value}) translate(${j.value / l.value}px, ${I.value / l.value}px)`,
-      cursor: l.value > 1 ? D.value ? "grabbing" : "grab" : "default"
+    const n = F(() => ({
+      transform: `scale(${o.value}) translate(${O.value / o.value}px, ${U.value / o.value}px)`,
+      cursor: o.value > 1 ? D.value ? "grabbing" : "grab" : "default"
     }));
-    return (n, L) => (d(), ne(he, { to: "body" }, [
+    return (l, S) => (d(), le(he, { to: "body" }, [
       ae(ge, { name: "viewer" }, {
         default: ye(() => {
-          var X;
+          var W;
           return [
             c.open ? (d(), p("div", {
               key: 0,
               class: "viewer-backdrop",
               onClick: t,
-              onWheel: ee(q, ["prevent"])
+              onWheel: ee(Y, ["prevent"])
             }, [
               e("button", {
                 class: "viewer-btn close-btn",
-                onClick: L[0] || (L[0] = (N) => i("close")),
+                onClick: S[0] || (S[0] = (N) => i("close")),
                 title: "Close (Esc)"
-              }, [...L[1] || (L[1] = [
+              }, [...S[1] || (S[1] = [
                 e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
@@ -216,14 +216,14 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                 ], -1)
               ])]),
               e("div", Se, [
-                w.value ? (d(), p("span", Le, R(k.value + 1) + " / " + R(c.images.length), 1)) : U("", !0)
+                x.value ? (d(), p("span", Le, R(k.value + 1) + " / " + R(c.images.length), 1)) : I("", !0)
               ]),
-              w.value && y.value ? (d(), p("button", {
+              x.value && g.value ? (d(), p("button", {
                 key: 0,
                 class: "viewer-btn nav-btn prev",
-                onClick: ee(m, ["stop"]),
+                onClick: ee(f, ["stop"]),
                 title: "Previous (←)"
-              }, [...L[2] || (L[2] = [
+              }, [...S[2] || (S[2] = [
                 e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
@@ -232,13 +232,13 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                 }, [
                   e("path", { d: "M15 18l-6-6 6-6" })
                 ], -1)
-              ])])) : U("", !0),
-              w.value && r.value ? (d(), p("button", {
+              ])])) : I("", !0),
+              x.value && y.value ? (d(), p("button", {
                 key: 1,
                 class: "viewer-btn nav-btn next",
-                onClick: ee(g, ["stop"]),
+                onClick: ee(C, ["stop"]),
                 title: "Next (→)"
-              }, [...L[3] || (L[3] = [
+              }, [...S[3] || (S[3] = [
                 e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
@@ -247,12 +247,12 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                 }, [
                   e("path", { d: "M9 18l6-6-6-6" })
                 ], -1)
-              ])])) : U("", !0),
+              ])])) : I("", !0),
               e("div", Ee, [
-                H.value ? (d(), p("div", Ue, [...L[4] || (L[4] = [
+                B.value ? (d(), p("div", Ie, [...S[4] || (S[4] = [
                   e("div", { class: "spinner" }, null, -1)
-                ])])) : U("", !0),
-                Z.value ? (d(), p("div", Ie, [...L[5] || (L[5] = [
+                ])])) : I("", !0),
+                Z.value ? (d(), p("div", Ue, [...S[5] || (S[5] = [
                   e("svg", {
                     viewBox: "0 0 24 24",
                     fill: "none",
@@ -267,15 +267,15 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                     e("path", { d: "M12 8v4M12 16h.01" })
                   ], -1),
                   e("span", null, "Failed to load image", -1)
-                ])])) : U("", !0),
+                ])])) : I("", !0),
                 ze(e("img", {
-                  src: b.value,
-                  alt: ((X = v.value) == null ? void 0 : X.alt) || "Image",
-                  style: W(o.value),
+                  src: w.value,
+                  alt: ((W = v.value) == null ? void 0 : W.alt) || "Image",
+                  style: q(n.value),
                   class: "viewer-image",
                   draggable: "false",
                   onLoad: P,
-                  onError: M,
+                  onError: z,
                   onMousedown: G,
                   onMousemove: K,
                   onMouseup: J,
@@ -286,15 +286,15 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                 }, null, 44, Ae), [
                   [$e, !Z.value]
                 ]),
-                z.value ? (d(), p("div", je, " Loading full resolution... ")) : U("", !0)
+                $.value ? (d(), p("div", Oe, " Loading full resolution... ")) : I("", !0)
               ]),
-              e("div", Oe, [
-                e("div", Pe, [
+              e("div", je, [
+                e("div", Fe, [
                   e("button", {
                     class: "viewer-btn small",
-                    onClick: B,
+                    onClick: j,
                     title: "Zoom out (-)"
-                  }, [...L[6] || (L[6] = [
+                  }, [...S[6] || (S[6] = [
                     e("svg", {
                       viewBox: "0 0 24 24",
                       fill: "none",
@@ -313,12 +313,12 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                     class: "zoom-level",
                     onClick: V,
                     title: "Reset zoom (0)"
-                  }, R(Math.round(l.value * 100)) + "% ", 1),
+                  }, R(Math.round(o.value * 100)) + "% ", 1),
                   e("button", {
                     class: "viewer-btn small",
                     onClick: E,
                     title: "Zoom in (+)"
-                  }, [...L[7] || (L[7] = [
+                  }, [...S[7] || (S[7] = [
                     e("svg", {
                       viewBox: "0 0 24 24",
                       fill: "none",
@@ -338,7 +338,7 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                   class: "viewer-btn small",
                   onClick: A,
                   title: "Download"
-                }, [...L[8] || (L[8] = [
+                }, [...S[8] || (S[8] = [
                   e("svg", {
                     viewBox: "0 0 24 24",
                     fill: "none",
@@ -349,50 +349,50 @@ const Se = { class: "viewer-toolbar top" }, Le = {
                   ], -1)
                 ])])
               ]),
-              w.value && c.images.length <= 20 ? (d(), p("div", Re, [
-                (d(!0), p(te, null, ce(c.images, (N, F) => (d(), p("button", {
-                  key: F,
-                  class: Y(["thumbnail", { active: F === k.value }]),
-                  onClick: (se) => x(F)
+              x.value && c.images.length <= 20 ? (d(), p("div", Pe, [
+                (d(!0), p(te, null, ce(c.images, (N, T) => (d(), p("button", {
+                  key: T,
+                  class: X(["thumbnail", { active: T === k.value }]),
+                  onClick: (se) => m(T)
                 }, [
                   e("img", {
                     src: N.thumbnail || N.url,
-                    alt: `Thumbnail ${F + 1}`
-                  }, null, 8, Be)
-                ], 10, De))), 128))
-              ])) : U("", !0)
-            ], 32)) : U("", !0)
+                    alt: `Thumbnail ${T + 1}`
+                  }, null, 8, De)
+                ], 10, Re))), 128))
+              ])) : I("", !0)
+            ], 32)) : I("", !0)
           ];
         }),
         _: 1
       })
     ]));
   }
-}), re = (c, S) => {
+}), re = (c, L) => {
   const a = c.__vccOpts || c;
-  for (const [i, u] of S)
+  for (const [i, u] of L)
     a[i] = u;
   return a;
-}, He = /* @__PURE__ */ re(Ze, [["__scopeId", "data-v-1fa5ee85"]]), pa = /* @__PURE__ */ le({
+}, He = /* @__PURE__ */ re(Ze, [["__scopeId", "data-v-1fa5ee85"]]), pa = /* @__PURE__ */ oe({
   __name: "ImageViewerProvider",
   setup(c) {
-    const { isOpen: S, images: a, initialIndex: i, _setOpen: u } = Ce(), k = O(() => [...a.value]);
-    function l() {
+    const { isOpen: L, images: a, initialIndex: i, _setOpen: u } = Ce(), k = F(() => [...a.value]);
+    function o() {
       u(!1);
     }
-    return (j, I) => (d(), ne(He, {
+    return (O, U) => (d(), le(He, {
       images: k.value,
       "initial-index": h(i),
-      open: h(S),
-      onClose: l
+      open: h(L),
+      onClose: o
     }, null, 8, ["images", "initial-index", "open"]));
   }
 }), ve = _({});
 function fa(c) {
   ve.value = { ...ve.value, ...c };
 }
-function Ve(c) {
-  const S = _(!1), a = _(0), i = _(null), u = _(null), k = _(null), l = O(() => ({
+function Ye(c) {
+  const L = _(!1), a = _(0), i = _(null), u = _(null), k = _(null), o = F(() => ({
     uploadUrl: "/api/v1/upload",
     profile: "avatar",
     maxFileSize: 10 * 1024 * 1024,
@@ -401,140 +401,140 @@ function Ve(c) {
     ...ve.value,
     ...c
   }));
-  function j(z) {
-    var $;
-    return ($ = l.value.acceptedTypes) != null && $.some((s) => z.type === s || z.type.startsWith(s.replace("/*", "/"))) ? l.value.maxFileSize && z.size > l.value.maxFileSize ? {
-      message: `File too large. Maximum size is ${Math.round(l.value.maxFileSize / 1048576)}MB.`,
+  function O($) {
+    var M;
+    return (M = o.value.acceptedTypes) != null && M.some((r) => $.type === r || $.type.startsWith(r.replace("/*", "/"))) ? o.value.maxFileSize && $.size > o.value.maxFileSize ? {
+      message: `File too large. Maximum size is ${Math.round(o.value.maxFileSize / 1048576)}MB.`,
       code: "FILE_TOO_LARGE"
     } : null : {
       message: "Invalid file type. Please select a JPEG, PNG, WebP, or HEIC image.",
       code: "INVALID_TYPE"
     };
   }
-  function I(z) {
-    const $ = j(z);
-    return $ ? (i.value = $, $) : (u.value && URL.revokeObjectURL(u.value), k.value = z, u.value = URL.createObjectURL(z), i.value = null, null);
+  function U($) {
+    const M = O($);
+    return M ? (i.value = M, M) : (u.value && URL.revokeObjectURL(u.value), k.value = $, u.value = URL.createObjectURL($), i.value = null, null);
   }
   function D() {
     u.value && URL.revokeObjectURL(u.value), k.value = null, u.value = null, i.value = null, a.value = 0;
   }
-  async function T() {
+  async function H() {
     if (!k.value)
       return i.value = { message: "No file selected", code: "NO_FILE" }, null;
-    S.value = !0, a.value = 0, i.value = null;
-    try {
-      const z = new FormData();
-      z.append("file", k.value), z.append("profile", l.value.profile || "avatar"), l.value.projectId && z.append("project_id", l.value.projectId);
-      const $ = {};
-      l.value.apiKey && ($.Authorization = `Bearer ${l.value.apiKey}`), l.value.headers && Object.assign($, l.value.headers);
-      const s = await new Promise((v, b) => {
-        const w = new XMLHttpRequest();
-        w.upload.addEventListener("progress", (y) => {
-          y.lengthComputable && (a.value = Math.round(y.loaded / y.total * 100));
-        }), w.addEventListener("load", () => {
-          if (w.status >= 200 && w.status < 300)
-            try {
-              const y = JSON.parse(w.responseText), r = y.data || y;
-              v({
-                id: r.id,
-                url: r.url || r.signed_url,
-                variants: r.variants || {}
-              });
-            } catch {
-              b({ message: "Invalid response from server", code: "PARSE_ERROR" });
-            }
-          else {
-            let y = "Upload failed";
-            try {
-              const r = JSON.parse(w.responseText);
-              y = r.error || r.message || y;
-            } catch {
-            }
-            b({ message: y, code: `HTTP_${w.status}` });
-          }
-        }), w.addEventListener("error", () => {
-          b({ message: "Network error during upload", code: "NETWORK_ERROR" });
-        }), w.addEventListener("abort", () => {
-          b({ message: "Upload cancelled", code: "ABORTED" });
-        }), w.open("POST", l.value.uploadUrl);
-        for (const [y, r] of Object.entries($))
-          w.setRequestHeader(y, r);
-        w.send(z);
-      });
-      return a.value = 100, s;
-    } catch (z) {
-      return i.value = z, null;
-    } finally {
-      S.value = !1;
-    }
-  }
-  async function H(z) {
-    return I(z) ? null : T();
-  }
-  async function Z(z) {
-    if (!k.value)
-      return i.value = { message: "No file selected", code: "NO_FILE" }, null;
-    S.value = !0, a.value = 0, i.value = null;
+    L.value = !0, a.value = 0, i.value = null;
     try {
       const $ = new FormData();
-      $.append("file", k.value), $.append("profile", l.value.profile || "avatar"), $.append("crop_x", String(z.x)), $.append("crop_y", String(z.y)), $.append("crop_width", String(z.width)), $.append("crop_height", String(z.height)), z.zoom !== void 0 && $.append("crop_zoom", String(z.zoom)), l.value.projectId && $.append("project_id", l.value.projectId);
-      const s = {};
-      l.value.apiKey && (s.Authorization = `Bearer ${l.value.apiKey}`), l.value.headers && Object.assign(s, l.value.headers);
-      const v = await new Promise((b, w) => {
-        const y = new XMLHttpRequest();
-        y.upload.addEventListener("progress", (r) => {
-          r.lengthComputable && (a.value = Math.round(r.loaded / r.total * 100));
-        }), y.addEventListener("load", () => {
-          if (y.status >= 200 && y.status < 300)
+      $.append("file", k.value), $.append("profile", o.value.profile || "avatar"), o.value.projectId && $.append("project_id", o.value.projectId);
+      const M = {};
+      o.value.apiKey && (M.Authorization = `Bearer ${o.value.apiKey}`), o.value.headers && Object.assign(M, o.value.headers);
+      const r = await new Promise((v, w) => {
+        const x = new XMLHttpRequest();
+        x.upload.addEventListener("progress", (g) => {
+          g.lengthComputable && (a.value = Math.round(g.loaded / g.total * 100));
+        }), x.addEventListener("load", () => {
+          if (x.status >= 200 && x.status < 300)
             try {
-              const r = JSON.parse(y.responseText), f = r.data || r;
-              b({
-                id: f.id,
-                url: f.url || f.signed_url,
-                variants: f.variants || {}
+              const g = JSON.parse(x.responseText), y = g.data || g;
+              v({
+                id: y.id,
+                url: y.url || y.signed_url,
+                variants: y.variants || {}
               });
             } catch {
               w({ message: "Invalid response from server", code: "PARSE_ERROR" });
             }
           else {
-            let r = "Upload failed";
+            let g = "Upload failed";
             try {
-              const f = JSON.parse(y.responseText);
-              r = f.error || f.message || r;
+              const y = JSON.parse(x.responseText);
+              g = y.error || y.message || g;
             } catch {
             }
-            w({ message: r, code: `HTTP_${y.status}` });
+            w({ message: g, code: `HTTP_${x.status}` });
           }
-        }), y.addEventListener("error", () => {
+        }), x.addEventListener("error", () => {
           w({ message: "Network error during upload", code: "NETWORK_ERROR" });
-        }), y.addEventListener("abort", () => {
+        }), x.addEventListener("abort", () => {
           w({ message: "Upload cancelled", code: "ABORTED" });
-        }), y.open("POST", l.value.uploadUrl);
-        for (const [r, f] of Object.entries(s))
-          y.setRequestHeader(r, f);
-        y.send($);
+        }), x.open("POST", o.value.uploadUrl);
+        for (const [g, y] of Object.entries(M))
+          x.setRequestHeader(g, y);
+        x.send($);
       });
-      return a.value = 100, v;
+      return a.value = 100, r;
     } catch ($) {
       return i.value = $, null;
     } finally {
-      S.value = !1;
+      L.value = !1;
+    }
+  }
+  async function B($) {
+    return U($) ? null : H();
+  }
+  async function Z($) {
+    if (!k.value)
+      return i.value = { message: "No file selected", code: "NO_FILE" }, null;
+    L.value = !0, a.value = 0, i.value = null;
+    try {
+      const M = new FormData();
+      M.append("file", k.value), M.append("profile", o.value.profile || "avatar"), M.append("crop_x", String($.x)), M.append("crop_y", String($.y)), M.append("crop_width", String($.width)), M.append("crop_height", String($.height)), $.zoom !== void 0 && M.append("crop_zoom", String($.zoom)), o.value.projectId && M.append("project_id", o.value.projectId);
+      const r = {};
+      o.value.apiKey && (r.Authorization = `Bearer ${o.value.apiKey}`), o.value.headers && Object.assign(r, o.value.headers);
+      const v = await new Promise((w, x) => {
+        const g = new XMLHttpRequest();
+        g.upload.addEventListener("progress", (y) => {
+          y.lengthComputable && (a.value = Math.round(y.loaded / y.total * 100));
+        }), g.addEventListener("load", () => {
+          if (g.status >= 200 && g.status < 300)
+            try {
+              const y = JSON.parse(g.responseText), s = y.data || y;
+              w({
+                id: s.id,
+                url: s.url || s.signed_url,
+                variants: s.variants || {}
+              });
+            } catch {
+              x({ message: "Invalid response from server", code: "PARSE_ERROR" });
+            }
+          else {
+            let y = "Upload failed";
+            try {
+              const s = JSON.parse(g.responseText);
+              y = s.error || s.message || y;
+            } catch {
+            }
+            x({ message: y, code: `HTTP_${g.status}` });
+          }
+        }), g.addEventListener("error", () => {
+          x({ message: "Network error during upload", code: "NETWORK_ERROR" });
+        }), g.addEventListener("abort", () => {
+          x({ message: "Upload cancelled", code: "ABORTED" });
+        }), g.open("POST", o.value.uploadUrl);
+        for (const [y, s] of Object.entries(r))
+          g.setRequestHeader(y, s);
+        g.send(M);
+      });
+      return a.value = 100, v;
+    } catch (M) {
+      return i.value = M, null;
+    } finally {
+      L.value = !1;
     }
   }
   return {
     // State
-    uploading: S,
+    uploading: L,
     progress: a,
     error: i,
     previewUrl: u,
     selectedFile: k,
-    config: l,
+    config: o,
     // Methods
-    validateFile: j,
-    selectFile: I,
+    validateFile: O,
+    selectFile: U,
     clearSelection: D,
-    upload: T,
-    selectAndUpload: H,
+    upload: H,
+    selectAndUpload: B,
     uploadWithCrop: Z
   };
 }
@@ -546,8 +546,8 @@ const ue = {
   format: "image/jpeg",
   quality: 0.92
 };
-function Ye(c) {
-  const S = O(() => ({ ...ue, ...c })), a = _({
+function Ve(c) {
+  const L = F(() => ({ ...ue, ...c })), a = _({
     image: null,
     naturalWidth: 0,
     naturalHeight: 0,
@@ -556,98 +556,116 @@ function Ye(c) {
     zoom: 1,
     minZoom: 1,
     maxZoom: ue.maxZoom
-  }), i = _(!1), u = _(null), k = _(null), l = _(null);
-  async function j(r) {
-    i.value = !0, u.value = null, k.value = r, l.value && URL.revokeObjectURL(l.value);
-    try {
-      const f = URL.createObjectURL(r);
-      l.value = f;
-      const m = await D(f);
-      a.value.image = m, a.value.naturalWidth = m.naturalWidth, a.value.naturalHeight = m.naturalHeight;
-      const { cropSize: g } = S.value, x = g / m.naturalWidth, E = g / m.naturalHeight, B = Math.max(x, E);
-      return a.value.minZoom = B, a.value.maxZoom = B * S.value.maxZoom, a.value.zoom = B, T(), i.value = !1, !0;
-    } catch {
-      return u.value = "Failed to load image", i.value = !1, !1;
-    }
-  }
-  async function I(r) {
-    i.value = !0, u.value = null, k.value = null, l.value = r;
-    try {
-      const f = await D(r);
-      a.value.image = f, a.value.naturalWidth = f.naturalWidth, a.value.naturalHeight = f.naturalHeight;
-      const { cropSize: m } = S.value, g = m / f.naturalWidth, x = m / f.naturalHeight, E = Math.max(g, x);
-      return a.value.minZoom = E, a.value.maxZoom = E * S.value.maxZoom, a.value.zoom = E, T(), i.value = !1, !0;
-    } catch {
-      return u.value = "Failed to load image", i.value = !1, !1;
-    }
-  }
-  function D(r) {
-    return new Promise((f, m) => {
-      const g = new Image();
-      g.crossOrigin = "anonymous", g.onload = () => f(g), g.onerror = () => m(new Error("Failed to load image")), g.src = r;
+  }), i = _(!1), u = _(null), k = _(null), o = _(null);
+  function O(s) {
+    a.value.image = s, a.value.naturalWidth = s.naturalWidth, a.value.naturalHeight = s.naturalHeight;
+    const { cropSize: f } = L.value, C = f / s.naturalWidth, m = f / s.naturalHeight, E = Math.max(C, m);
+    console.log("[Cropper] Image initialized:", {
+      naturalWidth: s.naturalWidth,
+      naturalHeight: s.naturalHeight,
+      cropSize: f,
+      scaleX: C.toFixed(4),
+      scaleY: m.toFixed(4),
+      minZoom: E.toFixed(4)
+    }), a.value.minZoom = E, a.value.maxZoom = E * L.value.maxZoom, a.value.zoom = E, B(), console.log("[Cropper] After centering:", {
+      panX: a.value.panX.toFixed(2),
+      panY: a.value.panY.toFixed(2),
+      zoom: a.value.zoom.toFixed(4)
     });
   }
-  function T() {
-    const { cropSize: r } = S.value, { naturalWidth: f, naturalHeight: m, zoom: g } = a.value, x = f * g, E = m * g;
-    a.value.panX = (x - r) / 2 / g, a.value.panY = (E - r) / 2 / g;
+  async function U(s) {
+    i.value = !0, u.value = null, k.value = s, o.value && URL.revokeObjectURL(o.value);
+    try {
+      const f = URL.createObjectURL(s);
+      o.value = f;
+      const C = await H(f);
+      return O(C), i.value = !1, !0;
+    } catch {
+      return u.value = "Failed to load image", i.value = !1, !1;
+    }
   }
-  function H(r) {
-    const { minZoom: f, maxZoom: m } = a.value, g = Math.max(f, Math.min(m, r)), x = a.value.zoom, { cropSize: E } = S.value, B = a.value.panX + E / (2 * x), V = a.value.panY + E / (2 * x);
-    a.value.zoom = g, a.value.panX = B - E / (2 * g), a.value.panY = V - E / (2 * g), z();
+  async function D(s) {
+    i.value = !0, u.value = null, k.value = null, o.value = s;
+    try {
+      const f = await H(s);
+      return O(f), i.value = !1, !0;
+    } catch {
+      return u.value = "Failed to load image", i.value = !1, !1;
+    }
   }
-  function Z(r, f) {
-    const { zoom: m } = a.value;
-    a.value.panX -= r / m, a.value.panY -= f / m, z();
+  function H(s) {
+    return new Promise((f, C) => {
+      const m = new Image();
+      m.crossOrigin = "anonymous", m.onload = () => f(m), m.onerror = () => C(new Error("Failed to load image")), m.src = s;
+    });
   }
-  function z() {
-    const { cropSize: r } = S.value, { naturalWidth: f, naturalHeight: m, zoom: g } = a.value, x = r / g, E = r / g, B = f - x, V = m - E;
-    a.value.panX = Math.max(0, Math.min(B, a.value.panX)), a.value.panY = Math.max(0, Math.min(V, a.value.panY));
+  function B() {
+    const { cropSize: s } = L.value, { naturalWidth: f, naturalHeight: C, zoom: m } = a.value, E = s / m, j = s / m;
+    a.value.panX = (f - E) / 2, a.value.panY = (C - j) / 2;
   }
-  const $ = O(() => {
+  function Z(s) {
+    const { minZoom: f, maxZoom: C } = a.value, m = Math.max(f, Math.min(C, s)), E = a.value.zoom, { cropSize: j } = L.value, V = a.value.panX + j / (2 * E), Y = a.value.panY + j / (2 * E);
+    a.value.zoom = m, a.value.panX = V - j / (2 * m), a.value.panY = Y - j / (2 * m), M();
+  }
+  function $(s, f) {
+    const { zoom: C } = a.value;
+    a.value.panX -= s / C, a.value.panY -= f / C, M();
+  }
+  function M() {
+    const { cropSize: s } = L.value, { naturalWidth: f, naturalHeight: C, zoom: m } = a.value, E = s / m, j = s / m, V = f - E, Y = C - j;
+    a.value.panX = Math.max(0, Math.min(V, a.value.panX)), a.value.panY = Math.max(0, Math.min(Y, a.value.panY));
+  }
+  const r = F(() => {
     if (!a.value.image) return null;
-    const { cropSize: r } = S.value, { panX: f, panY: m, zoom: g } = a.value, x = r / g, E = r / g;
+    const { cropSize: s } = L.value, { panX: f, panY: C, zoom: m } = a.value, E = s / m, j = s / m;
     return {
       x: Math.round(f),
-      y: Math.round(m),
-      width: Math.round(x),
-      height: Math.round(E),
-      zoom: g
+      y: Math.round(C),
+      width: Math.round(E),
+      height: Math.round(j),
+      zoom: m
     };
-  }), s = O(() => {
-    const { zoom: r, panX: f, panY: m } = a.value, g = -f * r, x = -m * r;
-    return `translate(${g}px, ${x}px) scale(${r})`;
+  }), v = F(() => {
+    const { zoom: s, panX: f, panY: C } = a.value, m = -f * s, E = -C * s;
+    return Math.random() < 0.01 && console.log("[Cropper] Transform:", {
+      panX: f.toFixed(2),
+      panY: C.toFixed(2),
+      zoom: s.toFixed(4),
+      translateX: m.toFixed(2),
+      translateY: E.toFixed(2)
+    }), `translate(${m}px, ${E}px) scale(${s})`;
   });
-  async function v() {
-    if (!a.value.image || !$.value) return null;
-    const { outputSize: r, format: f, quality: m } = S.value, g = $.value, x = document.createElement("canvas");
-    x.width = r, x.height = r;
-    const E = x.getContext("2d");
-    return E ? (E.drawImage(
+  async function w() {
+    if (!a.value.image || !r.value) return null;
+    const { outputSize: s, format: f, quality: C } = L.value, m = r.value, E = document.createElement("canvas");
+    E.width = s, E.height = s;
+    const j = E.getContext("2d");
+    return j ? (j.drawImage(
       a.value.image,
-      g.x,
-      g.y,
-      g.width,
-      g.height,
+      m.x,
+      m.y,
+      m.width,
+      m.height,
       0,
       0,
-      r,
-      r
-    ), new Promise((B) => {
-      x.toBlob(
-        (V) => B(V),
+      s,
+      s
+    ), new Promise((V) => {
+      E.toBlob(
+        (Y) => V(Y),
         f,
-        m
+        C
       );
     })) : null;
   }
-  async function b(r) {
-    const f = await v();
+  async function x(s) {
+    const f = await w();
     if (!f) return null;
-    const { format: m } = S.value, g = m.split("/")[1], x = r || `avatar-cropped.${g}`;
-    return new File([f], x, { type: m });
+    const { format: C } = L.value, m = C.split("/")[1], E = s || `avatar-cropped.${m}`;
+    return new File([f], E, { type: C });
   }
-  function w() {
-    l.value && k.value && URL.revokeObjectURL(l.value), a.value = {
+  function g() {
+    o.value && k.value && URL.revokeObjectURL(o.value), a.value = {
       image: null,
       naturalWidth: 0,
       naturalHeight: 0,
@@ -656,12 +674,12 @@ function Ye(c) {
       zoom: 1,
       minZoom: 1,
       maxZoom: ue.maxZoom
-    }, k.value = null, l.value = null, u.value = null;
+    }, k.value = null, o.value = null, u.value = null;
   }
   function y() {
     if (!a.value.image) return;
-    const { cropSize: r } = S.value, f = r / a.value.naturalWidth, m = r / a.value.naturalHeight, g = Math.max(f, m);
-    a.value.zoom = g, T();
+    const { cropSize: s } = L.value, f = s / a.value.naturalWidth, C = s / a.value.naturalHeight, m = Math.max(f, C);
+    a.value.zoom = m, B();
   }
   return {
     // State
@@ -669,29 +687,29 @@ function Ye(c) {
     loading: i,
     error: u,
     sourceFile: k,
-    sourceUrl: l,
-    cropRegion: $,
-    imageTransform: s,
-    config: S,
+    sourceUrl: o,
+    cropRegion: r,
+    imageTransform: v,
+    config: L,
     // Methods
-    loadFile: j,
-    loadUrl: I,
-    setZoom: H,
-    pan: Z,
-    centerImage: T,
+    loadFile: U,
+    loadUrl: D,
+    setZoom: Z,
+    pan: $,
+    centerImage: B,
     reset: y,
-    exportCrop: v,
-    exportCropAsFile: b,
-    cleanup: w
+    exportCrop: w,
+    exportCropAsFile: x,
+    cleanup: g
   };
 }
-const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { class: "relative" }, We = { class: "text-sm" }, qe = ["src"], Je = {
+const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { class: "relative" }, We = { class: "text-sm" }, qe = ["src"], Je = {
   key: 0,
   class: "absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity pointer-events-none"
 }, Ge = {
   key: 0,
   class: "w-full max-w-xs space-y-2"
-}, Ke = { class: "flex items-center gap-3" }, Qe = ["disabled"], et = { class: "flex-1 relative" }, tt = ["value"], at = ["disabled"], lt = { class: "w-12 text-right text-sm text-dark-400 tabular-nums" }, ot = { class: "flex items-center gap-3" }, nt = ["disabled"], rt = /* @__PURE__ */ le({
+}, Ke = { class: "flex items-center gap-3" }, Qe = ["disabled"], et = { class: "flex-1 relative" }, tt = ["value"], at = ["disabled"], ot = { class: "w-12 text-right text-sm text-dark-400 tabular-nums" }, nt = { class: "flex items-center gap-3" }, lt = ["disabled"], rt = /* @__PURE__ */ oe({
   __name: "AvatarCropper",
   props: {
     file: {},
@@ -706,45 +724,45 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
     config: {}
   },
   emits: ["confirm", "cancel", "crop-change"],
-  setup(c, { emit: S }) {
-    const a = c, i = S, {
+  setup(c, { emit: L }) {
+    const a = c, i = L, {
       state: u,
       loading: k,
-      error: l,
-      sourceUrl: j,
-      cropRegion: I,
+      error: o,
+      sourceUrl: O,
+      cropRegion: U,
       imageTransform: D,
-      config: T,
-      loadFile: H,
+      config: H,
+      loadFile: B,
       loadUrl: Z,
-      setZoom: z,
-      pan: $,
-      reset: s,
+      setZoom: $,
+      pan: M,
+      reset: r,
       exportCropAsFile: v,
-      cleanup: b
-    } = Ye({
+      cleanup: w
+    } = Ve({
       shape: a.shape,
       cropSize: a.cropSize,
       outputSize: a.outputSize,
       ...a.config
-    }), w = _(null), y = _(!1), r = _({ x: 0, y: 0 });
+    }), x = _(null), g = _(!1), y = _({ x: 0, y: 0 });
     Q(() => a.file, async (t) => {
-      t && await H(t);
+      t && await B(t);
     }, { immediate: !0 }), Q(() => a.url, async (t) => {
       t && !a.file && await Z(t);
-    }, { immediate: !0 }), Q(I, (t) => {
+    }, { immediate: !0 }), Q(U, (t) => {
       t && i("crop-change", t);
     });
-    const f = O(() => u.value.minZoom ? Math.round(u.value.zoom / u.value.minZoom * 100) : 100), m = O({
+    const s = F(() => u.value.minZoom ? Math.round(u.value.zoom / u.value.minZoom * 100) : 100), f = F({
       get: () => {
-        const { zoom: t, minZoom: o, maxZoom: n } = u.value;
-        return n === o ? 0 : (t - o) / (n - o);
+        const { zoom: t, minZoom: n, maxZoom: l } = u.value;
+        return l === n ? 0 : (t - n) / (l - n);
       },
       set: (t) => {
-        const { minZoom: o, maxZoom: n } = u.value, L = o + t * (n - o);
-        z(L);
+        const { minZoom: n, maxZoom: l } = u.value, S = n + t * (l - n);
+        $(S);
       }
-    }), g = O(() => {
+    }), C = F(() => {
       switch (a.shape) {
         case "circle":
           return "rounded-full";
@@ -754,70 +772,70 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
           return "";
       }
     });
-    function x(t) {
+    function m(t) {
       if (k.value) return;
-      y.value = !0, r.value = { x: t.clientX, y: t.clientY }, t.target.setPointerCapture(t.pointerId);
+      g.value = !0, y.value = { x: t.clientX, y: t.clientY }, t.target.setPointerCapture(t.pointerId);
     }
     function E(t) {
-      if (!y.value) return;
-      const o = t.clientX - r.value.x, n = t.clientY - r.value.y;
-      $(o, n), r.value = { x: t.clientX, y: t.clientY };
+      if (!g.value) return;
+      const n = t.clientX - y.value.x, l = t.clientY - y.value.y;
+      M(n, l), y.value = { x: t.clientX, y: t.clientY };
     }
-    function B(t) {
-      y.value = !1, t.target.releasePointerCapture(t.pointerId);
+    function j(t) {
+      g.value = !1, t.target.releasePointerCapture(t.pointerId);
     }
     function V(t) {
       t.preventDefault();
-      const o = t.deltaY > 0 ? -0.1 : 0.1, { zoom: n, minZoom: L, maxZoom: X } = u.value, N = X - L, F = n + o * N * 0.3;
-      z(F);
+      const n = t.deltaY > 0 ? -0.1 : 0.1, { zoom: l, minZoom: S, maxZoom: W } = u.value, N = W - S, T = l + n * N * 0.3;
+      $(T);
     }
-    let q = 0;
+    let Y = 0;
     function G(t) {
-      t.touches.length === 2 && (q = J(t.touches));
+      t.touches.length === 2 && (Y = J(t.touches));
     }
     function K(t) {
       if (t.touches.length === 2) {
         t.preventDefault();
-        const o = J(t.touches), n = o / q;
-        z(u.value.zoom * n), q = o;
+        const n = J(t.touches), l = n / Y;
+        $(u.value.zoom * l), Y = n;
       }
     }
     function J(t) {
-      const o = t[0].clientX - t[1].clientX, n = t[0].clientY - t[1].clientY;
-      return Math.sqrt(o * o + n * n);
+      const n = t[0].clientX - t[1].clientX, l = t[0].clientY - t[1].clientY;
+      return Math.sqrt(n * n + l * l);
     }
-    async function C() {
-      if (!I.value) return;
+    async function b() {
+      if (!U.value) return;
       const t = await v();
-      t && i("confirm", { file: t, crop: I.value });
+      t && i("confirm", { file: t, crop: U.value });
     }
     function A() {
-      b(), i("cancel");
+      w(), i("cancel");
     }
     function P() {
-      s();
+      r();
     }
-    function M(t) {
-      t.key === "Escape" ? A() : t.key === "Enter" && C();
+    function z(t) {
+      t.key === "Escape" ? A() : t.key === "Enter" && b();
     }
     return fe(() => {
-      document.addEventListener("keydown", M);
+      document.addEventListener("keydown", z);
     }), me(() => {
-      document.removeEventListener("keydown", M), b();
-    }), (t, o) => (d(), p("div", Ne, [
-      e("div", Xe, [
+      document.removeEventListener("keydown", z), w();
+    }), (t, n) => (d(), p("div", Xe, [
+      e("div", Ne, [
         h(k) ? (d(), p("div", {
           key: 0,
-          class: Y(["flex items-center justify-center bg-dark-800", g.value]),
-          style: W({ width: `${c.cropSize}px`, height: `${c.cropSize}px` })
-        }, [...o[3] || (o[3] = [
+          class: X(["flex items-center justify-center bg-dark-800", C.value]),
+          style: q({ width: `${c.cropSize}px`, height: `${c.cropSize}px` })
+        }, [...n[3] || (n[3] = [
           e("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
-        ])], 6)) : h(l) ? (d(), p("div", {
+        ])], 6)) : h(o) ? (d(), p("div", {
           key: 1,
-          class: Y(["flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400", g.value]),
-          style: W({ width: `${c.cropSize}px`, height: `${c.cropSize}px` })
+          class: X(["flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400", C.value]),
+          style: q({ width: `${c.cropSize}px`, height: `${c.cropSize}px` })
         }, [
-          o[4] || (o[4] = e("svg", {
+          n[4] || (n[4] = e("svg", {
             class: "w-8 h-8",
             fill: "none",
             stroke: "currentColor",
@@ -830,34 +848,39 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
               d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             })
           ], -1)),
-          e("span", We, R(h(l)), 1)
+          e("span", We, R(h(o)), 1)
         ], 6)) : h(u).image ? (d(), p("div", {
           key: 2,
           ref_key: "cropAreaRef",
-          ref: w,
-          class: Y(["relative overflow-hidden bg-dark-900 select-none touch-none", g.value]),
-          style: W({
+          ref: x,
+          class: X(["relative overflow-hidden bg-dark-900 select-none touch-none", C.value]),
+          style: q({
             width: `${c.cropSize}px`,
             height: `${c.cropSize}px`,
-            cursor: y.value ? "grabbing" : "grab"
+            cursor: g.value ? "grabbing" : "grab"
           }),
-          onPointerdown: x,
+          onPointerdown: m,
           onPointermove: E,
-          onPointerup: B,
-          onPointercancel: B,
+          onPointerup: j,
+          onPointercancel: j,
           onWheel: V,
           onTouchstart: G,
           onTouchmove: K
         }, [
           e("img", {
-            src: h(j) || "",
+            src: h(O) || "",
             alt: "Crop preview",
-            class: "absolute top-0 left-0 origin-top-left pointer-events-none",
-            style: W({ transform: h(D) }),
+            class: "absolute pointer-events-none",
+            style: q({
+              top: "0",
+              left: "0",
+              transformOrigin: "0 0",
+              transform: h(D)
+            }),
             draggable: "false"
           }, null, 12, qe),
-          o[6] || (o[6] = Me('<div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity" data-v-4c04fc7e><div class="absolute inset-0 border border-white/20" data-v-4c04fc7e></div><div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10" data-v-4c04fc7e></div><div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10" data-v-4c04fc7e></div><div class="absolute top-1/3 left-0 right-0 h-px bg-white/10" data-v-4c04fc7e></div><div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10" data-v-4c04fc7e></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6" data-v-4c04fc7e><div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2" data-v-4c04fc7e></div><div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2" data-v-4c04fc7e></div></div></div>', 1)),
-          y.value ? U("", !0) : (d(), p("div", Je, [...o[5] || (o[5] = [
+          n[6] || (n[6] = Me('<div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity" data-v-e9681595><div class="absolute inset-0 border border-white/20" data-v-e9681595></div><div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10" data-v-e9681595></div><div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10" data-v-e9681595></div><div class="absolute top-1/3 left-0 right-0 h-px bg-white/10" data-v-e9681595></div><div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10" data-v-e9681595></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6" data-v-e9681595><div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2" data-v-e9681595></div><div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2" data-v-e9681595></div></div></div>', 1)),
+          g.value ? I("", !0) : (d(), p("div", Je, [...n[5] || (n[5] = [
             e("div", { class: "flex items-center gap-2 px-3 py-1.5 bg-black/60 rounded-full text-white text-sm" }, [
               e("svg", {
                 class: "w-4 h-4",
@@ -877,9 +900,9 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
           ])]))
         ], 38)) : (d(), p("div", {
           key: 3,
-          class: Y(["flex items-center justify-center bg-dark-800 text-dark-500", g.value]),
-          style: W({ width: `${c.cropSize}px`, height: `${c.cropSize}px` })
-        }, [...o[7] || (o[7] = [
+          class: X(["flex items-center justify-center bg-dark-800 text-dark-500", C.value]),
+          style: q({ width: `${c.cropSize}px`, height: `${c.cropSize}px` })
+        }, [...n[7] || (n[7] = [
           e("svg", {
             class: "w-12 h-12",
             fill: "none",
@@ -896,17 +919,17 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
         ])], 6)),
         a.shape !== "circle" && h(u).image ? (d(), p("div", {
           key: 4,
-          class: Y(["absolute inset-0 pointer-events-none border-2 border-white/20", g.value])
-        }, null, 2)) : U("", !0)
+          class: X(["absolute inset-0 pointer-events-none border-2 border-white/20", C.value])
+        }, null, 2)) : I("", !0)
       ]),
       c.showZoomSlider && h(u).image ? (d(), p("div", Ge, [
         e("div", Ke, [
           e("button", {
             type: "button",
             class: "p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-            onClick: o[0] || (o[0] = (n) => h(z)(h(u).zoom - (h(u).maxZoom - h(u).minZoom) * 0.1)),
+            onClick: n[0] || (n[0] = (l) => h($)(h(u).zoom - (h(u).maxZoom - h(u).minZoom) * 0.1)),
             disabled: h(u).zoom <= h(u).minZoom
-          }, [...o[8] || (o[8] = [
+          }, [...n[8] || (n[8] = [
             e("svg", {
               class: "w-4 h-4",
               fill: "none",
@@ -924,20 +947,20 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
           e("div", et, [
             e("input", {
               type: "range",
-              value: m.value,
+              value: f.value,
               min: "0",
               max: "1",
               step: "0.01",
               class: "zoom-slider w-full h-2 bg-dark-700 rounded-full appearance-none cursor-pointer",
-              onInput: o[1] || (o[1] = (n) => m.value = parseFloat(n.target.value))
+              onInput: n[1] || (n[1] = (l) => f.value = parseFloat(l.target.value))
             }, null, 40, tt)
           ]),
           e("button", {
             type: "button",
             class: "p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-            onClick: o[2] || (o[2] = (n) => h(z)(h(u).zoom + (h(u).maxZoom - h(u).minZoom) * 0.1)),
+            onClick: n[2] || (n[2] = (l) => h($)(h(u).zoom + (h(u).maxZoom - h(u).minZoom) * 0.1)),
             disabled: h(u).zoom >= h(u).maxZoom
-          }, [...o[9] || (o[9] = [
+          }, [...n[9] || (n[9] = [
             e("svg", {
               class: "w-4 h-4",
               fill: "none",
@@ -952,16 +975,16 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
               })
             ], -1)
           ])], 8, at),
-          e("span", lt, R(f.value) + "% ", 1)
+          e("span", ot, R(s.value) + "% ", 1)
         ])
-      ])) : U("", !0),
-      e("div", ot, [
+      ])) : I("", !0),
+      e("div", nt, [
         c.showReset && h(u).image ? (d(), p("button", {
           key: 0,
           type: "button",
           class: "px-4 py-2 text-sm text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
           onClick: P
-        }, " Reset ")) : U("", !0),
+        }, " Reset ")) : I("", !0),
         e("button", {
           type: "button",
           class: "px-4 py-2 text-sm text-dark-300 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors",
@@ -971,12 +994,12 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
           type: "button",
           class: "px-6 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-500 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
           disabled: !h(u).image || h(k),
-          onClick: C
-        }, R(c.confirmLabel), 9, nt)
+          onClick: b
+        }, R(c.confirmLabel), 9, lt)
       ])
     ]));
   }
-}), _e = /* @__PURE__ */ re(rt, [["__scopeId", "data-v-4c04fc7e"]]), st = {
+}), _e = /* @__PURE__ */ re(rt, [["__scopeId", "data-v-e9681595"]]), st = {
   key: 0,
   class: "fixed inset-0 z-50 flex items-center justify-center p-4"
 }, it = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, ut = ["src"], ct = {
@@ -997,7 +1020,7 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
 }, mt = ["stroke-dasharray", "stroke-dashoffset"], ht = { class: "absolute text-white font-medium text-sm" }, gt = {
   key: 0,
   class: "absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs text-red-400"
-}, yt = /* @__PURE__ */ le({
+}, yt = /* @__PURE__ */ oe({
   __name: "AvatarUpload",
   props: {
     modelValue: {},
@@ -1013,18 +1036,18 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
     cropOutputSize: { default: 512 }
   },
   emits: ["update:modelValue", "upload-start", "upload-progress", "upload-success", "upload-error", "file-selected", "crop-applied"],
-  setup(c, { emit: S }) {
-    const a = c, i = S, {
+  setup(c, { emit: L }) {
+    const a = c, i = L, {
       uploading: u,
       progress: k,
-      error: l,
-      previewUrl: j,
-      selectedFile: I,
+      error: o,
+      previewUrl: O,
+      selectedFile: U,
       selectFile: D,
-      clearSelection: T,
-      upload: H,
+      clearSelection: H,
+      upload: B,
       uploadWithCrop: Z
-    } = Ve(a.config), z = _(null), $ = _(!1), s = _(!1), v = _(null), b = _(null), w = O(() => j.value || a.modelValue || null), y = O(() => {
+    } = Ye(a.config), $ = _(null), M = _(!1), r = _(!1), v = _(null), w = _(null), x = F(() => O.value || a.modelValue || null), g = F(() => {
       switch (a.shape) {
         case "rounded":
           return "rounded-2xl";
@@ -1033,85 +1056,85 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
         default:
           return "rounded-full";
       }
-    }), r = O(() => 2 * Math.PI * 45), f = O(() => r.value - k.value / 100 * r.value);
-    Q(k, (C) => {
-      i("upload-progress", C);
-    }), Q(l, (C) => {
-      C && i("upload-error", C);
+    }), y = F(() => 2 * Math.PI * 45), s = F(() => y.value - k.value / 100 * y.value);
+    Q(k, (b) => {
+      i("upload-progress", b);
+    }), Q(o, (b) => {
+      b && i("upload-error", b);
     });
-    function m() {
-      var C;
-      !a.editable || u.value || (C = z.value) == null || C.click();
+    function f() {
+      var b;
+      !a.editable || u.value || (b = $.value) == null || b.click();
     }
-    function g(C) {
-      var M;
-      const A = C.target, P = (M = A.files) == null ? void 0 : M[0];
-      P && x(P), A.value = "";
+    function C(b) {
+      var z;
+      const A = b.target, P = (z = A.files) == null ? void 0 : z[0];
+      P && m(P), A.value = "";
     }
-    function x(C) {
-      if (!["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"].some((P) => C.type === P)) {
+    function m(b) {
+      if (!["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"].some((P) => b.type === P)) {
         i("upload-error", {
           message: "Invalid file type. Please select a JPEG, PNG, WebP, or HEIC image.",
           code: "INVALID_TYPE"
         });
         return;
       }
-      if (i("file-selected", C), a.enableCrop)
-        v.value = C, s.value = !0;
+      if (i("file-selected", b), a.enableCrop)
+        v.value = b, r.value = !0;
       else {
-        if (D(C))
+        if (D(b))
           return;
         E();
       }
     }
     async function E() {
-      var A, P, M, t;
-      if (!I.value) return;
-      i("upload-start", I.value);
-      const C = await H();
-      if (C) {
-        i("upload-success", C);
-        const o = ((P = (A = C.variants) == null ? void 0 : A.lg) == null ? void 0 : P.url) || ((t = (M = C.variants) == null ? void 0 : M.md) == null ? void 0 : t.url) || C.url;
-        i("update:modelValue", o), T();
+      var A, P, z, t;
+      if (!U.value) return;
+      i("upload-start", U.value);
+      const b = await B();
+      if (b) {
+        i("upload-success", b);
+        const n = ((P = (A = b.variants) == null ? void 0 : A.lg) == null ? void 0 : P.url) || ((t = (z = b.variants) == null ? void 0 : z.md) == null ? void 0 : t.url) || b.url;
+        i("update:modelValue", n), H();
       }
     }
-    async function B(C) {
-      var M, t, o, n;
-      if (s.value = !1, v.value = null, b.value = C.crop, i("crop-applied", C), D(C.file))
+    async function j(b) {
+      var z, t, n, l;
+      if (r.value = !1, v.value = null, w.value = b.crop, i("crop-applied", b), D(b.file))
         return;
-      i("upload-start", C.file);
-      const P = await Z(C.crop);
+      i("upload-start", b.file);
+      const P = await Z(b.crop);
       if (P) {
-        i("upload-success", { ...P, crop: C.crop });
-        const L = ((t = (M = P.variants) == null ? void 0 : M.lg) == null ? void 0 : t.url) || ((n = (o = P.variants) == null ? void 0 : o.md) == null ? void 0 : n.url) || P.url;
-        i("update:modelValue", L), T();
+        i("upload-success", { ...P, crop: b.crop });
+        const S = ((t = (z = P.variants) == null ? void 0 : z.lg) == null ? void 0 : t.url) || ((l = (n = P.variants) == null ? void 0 : n.md) == null ? void 0 : l.url) || P.url;
+        i("update:modelValue", S), H();
       }
     }
     function V() {
-      s.value = !1, v.value = null;
+      r.value = !1, v.value = null;
     }
-    function q(C) {
-      C.preventDefault(), a.editable && !u.value && ($.value = !0);
+    function Y(b) {
+      b.preventDefault(), a.editable && !u.value && (M.value = !0);
     }
-    function G(C) {
-      C.preventDefault(), $.value = !1;
+    function G(b) {
+      b.preventDefault(), M.value = !1;
     }
-    function K(C) {
-      C.preventDefault();
+    function K(b) {
+      b.preventDefault();
     }
-    function J(C) {
+    function J(b) {
       var P;
-      if (C.preventDefault(), $.value = !1, !a.editable || u.value) return;
-      const A = (P = C.dataTransfer) == null ? void 0 : P.files[0];
-      A && A.type.startsWith("image/") && x(A);
+      if (b.preventDefault(), M.value = !1, !a.editable || u.value) return;
+      const A = (P = b.dataTransfer) == null ? void 0 : P.files[0];
+      A && A.type.startsWith("image/") && m(A);
     }
     return me(() => {
-      T();
-    }), (C, A) => (d(), p("div", null, [
-      (d(), ne(he, { to: "body" }, [
+      H();
+    }), (b, A) => (d(), p("div", null, [
+      (d(), le(he, { to: "body" }, [
         ae(ge, { name: "fade" }, {
           default: ye(() => [
-            s.value && v.value ? (d(), p("div", st, [
+            r.value && v.value ? (d(), p("div", st, [
               e("div", {
                 class: "absolute inset-0 bg-black/80 backdrop-blur-sm",
                 onClick: V
@@ -1124,50 +1147,50 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
                   "crop-size": c.cropSize,
                   "output-size": c.cropOutputSize,
                   "confirm-label": "Save",
-                  onConfirm: B,
+                  onConfirm: j,
                   onCancel: V
                 }, null, 8, ["file", "shape", "crop-size", "output-size"])
               ])
-            ])) : U("", !0)
+            ])) : I("", !0)
           ]),
           _: 1
         })
       ])),
       e("div", {
-        class: Y(["avatar-upload-container relative inline-block", c.containerClass]),
-        style: W({ width: `${c.size}px`, height: `${c.size}px` })
+        class: X(["avatar-upload-container relative inline-block", c.containerClass]),
+        style: q({ width: `${c.size}px`, height: `${c.size}px` })
       }, [
         e("input", {
           ref_key: "fileInput",
-          ref: z,
+          ref: $,
           type: "file",
           accept: "image/jpeg,image/png,image/webp,image/heic,image/heif",
           class: "hidden",
-          onChange: g
+          onChange: C
         }, null, 544),
         e("div", {
-          class: Y(["avatar-upload relative w-full h-full overflow-hidden transition-all duration-200", [
-            y.value,
+          class: X(["avatar-upload relative w-full h-full overflow-hidden transition-all duration-200", [
+            g.value,
             c.editable && !h(u) ? "cursor-pointer hover:ring-4 hover:ring-primary-500/30" : "",
-            $.value ? "ring-4 ring-primary-500 scale-105" : "",
-            h(l) ? "ring-2 ring-red-500" : ""
+            M.value ? "ring-4 ring-primary-500 scale-105" : "",
+            h(o) ? "ring-2 ring-red-500" : ""
           ]]),
-          onClick: m,
-          onDragenter: q,
+          onClick: f,
+          onDragenter: Y,
           onDragleave: G,
           onDragover: K,
           onDrop: J
         }, [
-          w.value ? (d(), p("img", {
+          x.value ? (d(), p("img", {
             key: 0,
-            src: w.value,
+            src: x.value,
             alt: "Avatar",
             class: "w-full h-full object-cover"
           }, null, 8, ut)) : (d(), p("div", ct, [
             c.placeholder ? (d(), p("span", {
               key: 0,
               class: "text-white font-semibold",
-              style: W({ fontSize: `${c.size / 3}px` })
+              style: q({ fontSize: `${c.size / 3}px` })
             }, R(c.placeholder), 5)) : (d(), p("svg", {
               key: 1,
               class: "text-slate-400",
@@ -1201,7 +1224,7 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
                 d: "M15 13a3 3 0 11-6 0 3 3 0 016 0z"
               })
             ], -1)
-          ])])) : U("", !0),
+          ])])) : I("", !0),
           h(u) ? (d(), p("div", pt, [
             c.showProgress ? (d(), p("svg", ft, [
               A[3] || (A[3] = e("circle", {
@@ -1222,14 +1245,14 @@ const Ne = { class: "avatar-cropper flex flex-col items-center gap-6" }, Xe = { 
                 "stroke-width": "6",
                 "stroke-linecap": "round",
                 class: "text-primary-500 transition-all duration-200",
-                "stroke-dasharray": r.value,
-                "stroke-dashoffset": f.value
+                "stroke-dasharray": y.value,
+                "stroke-dashoffset": s.value
               }, null, 8, mt)
-            ])) : U("", !0),
+            ])) : I("", !0),
             e("span", ht, R(h(k)) + "%", 1)
-          ])) : U("", !0)
+          ])) : I("", !0)
         ], 34),
-        h(l) && !h(u) ? (d(), p("div", gt, R(h(l).message), 1)) : U("", !0)
+        h(o) && !h(u) ? (d(), p("div", gt, R(h(o).message), 1)) : I("", !0)
       ], 6)
     ]));
   }
@@ -1238,195 +1261,195 @@ function ha(c) {
   pe.value = { ...pe.value, ...c };
 }
 function kt(c) {
-  const S = _([]), a = _(!1), i = _(null), u = _(!1), k = _(0), l = O(() => ({
+  const L = _([]), a = _(!1), i = _(null), u = _(!1), k = _(0), o = F(() => ({
     apiBaseUrl: "/api",
     getHeaders: () => ({}),
     ...pe.value,
     ...c
-  })), j = O(() => S.value.find((s) => s.is_primary));
-  async function I() {
+  })), O = F(() => L.value.find((r) => r.is_primary));
+  async function U() {
     a.value = !0, i.value = null;
     try {
-      let s = `${l.value.apiBaseUrl}/avatars`;
+      let r = `${o.value.apiBaseUrl}/avatars`;
       const v = new URLSearchParams();
-      l.value.projectId && v.set("project_id", l.value.projectId), l.value.entityType && v.set("entity_type", l.value.entityType), l.value.entityId && v.set("entity_id", l.value.entityId), v.toString() && (s += `?${v.toString()}`);
-      const b = await fetch(s, {
-        headers: l.value.getHeaders()
+      o.value.projectId && v.set("project_id", o.value.projectId), o.value.entityType && v.set("entity_type", o.value.entityType), o.value.entityId && v.set("entity_id", o.value.entityId), v.toString() && (r += `?${v.toString()}`);
+      const w = await fetch(r, {
+        headers: o.value.getHeaders()
       });
-      if (!b.ok)
-        throw new Error(await b.text());
-      const w = await b.json();
-      S.value = w.avatars || [];
-    } catch (s) {
-      i.value = s.message || "Failed to fetch avatars";
+      if (!w.ok)
+        throw new Error(await w.text());
+      const x = await w.json();
+      L.value = x.avatars || [];
+    } catch (r) {
+      i.value = r.message || "Failed to fetch avatars";
     } finally {
       a.value = !1;
     }
   }
-  async function D(s) {
+  async function D(r) {
     i.value = null;
     try {
-      const v = await fetch(`${l.value.apiBaseUrl}/avatars`, {
+      const v = await fetch(`${o.value.apiBaseUrl}/avatars`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...l.value.getHeaders()
+          ...o.value.getHeaders()
         },
         body: JSON.stringify({
-          original_url: s.original_url,
-          file_id: s.file_id,
-          name: s.name,
-          is_primary: s.is_primary ?? !1,
+          original_url: r.original_url,
+          file_id: r.file_id,
+          name: r.name,
+          is_primary: r.is_primary ?? !1,
           source: "upload",
           format: "static",
-          variants: s.variants,
-          blurhash: s.blurhash,
-          dominant_color: s.dominant_color,
-          alt_text: s.alt_text,
-          fallback_type: s.fallback_initials ? "initials" : "default",
-          fallback_data: s.fallback_initials ? { initials: s.fallback_initials } : void 0
+          variants: r.variants,
+          blurhash: r.blurhash,
+          dominant_color: r.dominant_color,
+          alt_text: r.alt_text,
+          fallback_type: r.fallback_initials ? "initials" : "default",
+          fallback_data: r.fallback_initials ? { initials: r.fallback_initials } : void 0
         })
       });
       if (!v.ok)
         throw new Error(await v.text());
-      const b = await v.json();
-      return await I(), b;
+      const w = await v.json();
+      return await U(), w;
     } catch (v) {
       return i.value = v.message || "Failed to create avatar", null;
     }
   }
-  async function T(s) {
+  async function H(r) {
     i.value = null;
     try {
-      const v = await fetch(`${l.value.apiBaseUrl}/avatars/${s}/primary`, {
+      const v = await fetch(`${o.value.apiBaseUrl}/avatars/${r}/primary`, {
         method: "POST",
-        headers: l.value.getHeaders()
+        headers: o.value.getHeaders()
       });
       if (!v.ok)
         throw new Error(await v.text());
-      return S.value = S.value.map((b) => ({
-        ...b,
-        is_primary: b.id === s
+      return L.value = L.value.map((w) => ({
+        ...w,
+        is_primary: w.id === r
       })), !0;
     } catch (v) {
       return i.value = v.message || "Failed to set primary avatar", !1;
     }
   }
-  async function H(s) {
+  async function B(r) {
     i.value = null;
     try {
-      const v = await fetch(`${l.value.apiBaseUrl}/avatars/${s}`, {
+      const v = await fetch(`${o.value.apiBaseUrl}/avatars/${r}`, {
         method: "DELETE",
-        headers: l.value.getHeaders()
+        headers: o.value.getHeaders()
       });
       if (!v.ok)
         throw new Error(await v.text());
-      return S.value = S.value.filter((b) => b.id !== s), !0;
+      return L.value = L.value.filter((w) => w.id !== r), !0;
     } catch (v) {
       return i.value = v.message || "Failed to delete avatar", !1;
     }
   }
-  async function Z(s, v) {
+  async function Z(r, v) {
     i.value = null;
     try {
-      const b = await fetch(`${l.value.apiBaseUrl}/avatars/${s}`, {
+      const w = await fetch(`${o.value.apiBaseUrl}/avatars/${r}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          ...l.value.getHeaders()
+          ...o.value.getHeaders()
         },
         body: JSON.stringify(v)
       });
-      if (!b.ok)
-        throw new Error(await b.text());
-      const w = await b.json();
-      return S.value = S.value.map(
-        (y) => y.id === s ? w : y
-      ), w;
-    } catch (b) {
-      return i.value = b.message || "Failed to update avatar", null;
+      if (!w.ok)
+        throw new Error(await w.text());
+      const x = await w.json();
+      return L.value = L.value.map(
+        (g) => g.id === r ? x : g
+      ), x;
+    } catch (w) {
+      return i.value = w.message || "Failed to update avatar", null;
     }
   }
-  async function z(s, v) {
-    if (!l.value.uploadUrl)
+  async function $(r, v) {
+    if (!o.value.uploadUrl)
       return i.value = "Upload URL not configured", null;
     u.value = !0, k.value = 0, i.value = null;
     try {
-      const b = new FormData();
-      b.append("file", s), b.append("profile", "avatar");
-      const w = await new Promise((r, f) => {
-        const m = new XMLHttpRequest();
-        m.upload.addEventListener("progress", (x) => {
-          x.lengthComputable && (k.value = Math.round(x.loaded / x.total * 100));
-        }), m.addEventListener("load", () => {
-          if (m.status >= 200 && m.status < 300)
+      const w = new FormData();
+      w.append("file", r), w.append("profile", "avatar");
+      const x = await new Promise((y, s) => {
+        const f = new XMLHttpRequest();
+        f.upload.addEventListener("progress", (m) => {
+          m.lengthComputable && (k.value = Math.round(m.loaded / m.total * 100));
+        }), f.addEventListener("load", () => {
+          if (f.status >= 200 && f.status < 300)
             try {
-              const x = JSON.parse(m.responseText);
-              r(x.data || x);
+              const m = JSON.parse(f.responseText);
+              y(m.data || m);
             } catch {
-              f(new Error("Invalid response from server"));
+              s(new Error("Invalid response from server"));
             }
           else {
-            let x = "Upload failed";
+            let m = "Upload failed";
             try {
-              const E = JSON.parse(m.responseText);
-              x = E.error || E.message || x;
+              const E = JSON.parse(f.responseText);
+              m = E.error || E.message || m;
             } catch {
             }
-            f(new Error(x));
+            s(new Error(m));
           }
-        }), m.addEventListener("error", () => f(new Error("Network error"))), m.addEventListener("abort", () => f(new Error("Upload cancelled"))), m.open("POST", l.value.uploadUrl);
-        const g = l.value.getHeaders();
-        for (const [x, E] of Object.entries(g))
-          m.setRequestHeader(x, E);
-        m.send(b);
+        }), f.addEventListener("error", () => s(new Error("Network error"))), f.addEventListener("abort", () => s(new Error("Upload cancelled"))), f.open("POST", o.value.uploadUrl);
+        const C = o.value.getHeaders();
+        for (const [m, E] of Object.entries(C))
+          f.setRequestHeader(m, E);
+        f.send(w);
       });
       return k.value = 100, await D({
-        original_url: w.url || w.signed_url,
-        file_id: w.id,
+        original_url: x.url || x.signed_url,
+        file_id: x.id,
         name: v == null ? void 0 : v.name,
         is_primary: v == null ? void 0 : v.is_primary,
-        variants: w.variants,
+        variants: x.variants,
         fallback_initials: v == null ? void 0 : v.fallback_initials
       });
-    } catch (b) {
-      return i.value = b.message || "Failed to upload avatar", null;
+    } catch (w) {
+      return i.value = w.message || "Failed to upload avatar", null;
     } finally {
       u.value = !1;
     }
   }
-  function $(s, v = "md") {
-    var w, y, r, f, m, g, x;
+  function M(r, v = "md") {
+    var x, g, y, s, f, C, m;
     if (v === "original")
-      return s.original_url;
+      return r.original_url;
     if (v === "source")
-      return ((w = s.variants.source) == null ? void 0 : w.url) || s.original_url;
-    const b = s.variants[v];
-    return b ? b.url : v === "sm" ? ((y = s.variants.md) == null ? void 0 : y.url) || ((r = s.variants.lg) == null ? void 0 : r.url) || s.original_url : v === "md" ? ((f = s.variants.lg) == null ? void 0 : f.url) || ((m = s.variants.sm) == null ? void 0 : m.url) || s.original_url : v === "lg" && (((g = s.variants.md) == null ? void 0 : g.url) || ((x = s.variants.sm) == null ? void 0 : x.url)) || s.original_url;
+      return ((x = r.variants.source) == null ? void 0 : x.url) || r.original_url;
+    const w = r.variants[v];
+    return w ? w.url : v === "sm" ? ((g = r.variants.md) == null ? void 0 : g.url) || ((y = r.variants.lg) == null ? void 0 : y.url) || r.original_url : v === "md" ? ((s = r.variants.lg) == null ? void 0 : s.url) || ((f = r.variants.sm) == null ? void 0 : f.url) || r.original_url : v === "lg" && (((C = r.variants.md) == null ? void 0 : C.url) || ((m = r.variants.sm) == null ? void 0 : m.url)) || r.original_url;
   }
   return {
     // State
-    avatars: S,
+    avatars: L,
     loading: a,
     error: i,
     uploading: u,
     uploadProgress: k,
-    primaryAvatar: j,
-    config: l,
+    primaryAvatar: O,
+    config: o,
     // Methods
-    fetchAvatars: I,
+    fetchAvatars: U,
     createAvatar: D,
-    setPrimary: T,
-    deleteAvatar: H,
+    setPrimary: H,
+    deleteAvatar: B,
     updateAvatar: Z,
-    uploadAndCreateAvatar: z,
-    getAvatarUrl: $
+    uploadAndCreateAvatar: $,
+    getAvatarUrl: M
   };
 }
-const wt = { class: "avatar-manager" }, bt = {
+const wt = { class: "avatar-manager" }, xt = {
   key: 0,
   class: "fixed inset-0 z-50 flex items-center justify-center p-4"
-}, xt = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, Ct = { class: "text-lg font-semibold text-white mb-4 text-center" }, _t = {
+}, bt = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, Ct = { class: "text-lg font-semibold text-white mb-4 text-center" }, _t = {
   key: 0,
   class: "flex items-center justify-center py-8"
 }, zt = {
@@ -1435,26 +1458,26 @@ const wt = { class: "avatar-manager" }, bt = {
 }, $t = { class: "text-red-400 mb-2" }, Mt = {
   key: 2,
   class: "space-y-3"
-}, St = { class: "flex flex-wrap gap-3" }, Lt = ["onClick"], Et = ["src", "alt"], Ut = {
+}, St = { class: "flex flex-wrap gap-3" }, Lt = ["onClick"], Et = ["src", "alt"], It = {
   key: 0,
   class: "absolute -top-1 -right-1 w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg",
   title: "Pending moderation"
-}, It = ["onClick"], At = ["onClick"], jt = ["onClick", "title"], Ot = ["disabled"], Pt = {
+}, Ut = ["onClick"], At = ["onClick"], Ot = ["onClick", "title"], jt = ["disabled"], Ft = {
   key: 0,
   class: "relative w-full h-full flex items-center justify-center"
-}, Rt = {
+}, Pt = {
   class: "absolute inset-2 w-auto h-auto",
   viewBox: "0 0 36 36"
-}, Dt = ["stroke-dasharray"], Bt = { class: "text-xs font-medium text-dark-300" }, Tt = {
+}, Rt = ["stroke-dasharray"], Dt = { class: "text-xs font-medium text-dark-300" }, Bt = {
   key: 1,
   class: "text-dark-500 hover:text-primary-400 transition-colors"
-}, Ft = { class: "text-xs text-dark-500" }, Zt = { key: 0 }, Ht = { key: 1 }, Vt = {
+}, Tt = { class: "text-xs text-dark-500" }, Zt = { key: 0 }, Ht = { key: 1 }, Yt = {
   key: 0,
   class: "text-sm text-red-400"
-}, Yt = {
+}, Vt = {
   key: 3,
   class: "space-y-3"
-}, Nt = { class: "space-y-2" }, Xt = ["onClick"], Wt = ["src", "alt"], qt = { class: "flex-1 min-w-0" }, Jt = { class: "flex items-center gap-2" }, Gt = { class: "font-medium text-white truncate" }, Kt = {
+}, Xt = { class: "space-y-2" }, Nt = ["onClick"], Wt = ["src", "alt"], qt = { class: "flex-1 min-w-0" }, Jt = { class: "flex items-center gap-2" }, Gt = { class: "font-medium text-white truncate" }, Kt = {
   key: 0,
   class: "px-2 py-0.5 text-xs font-medium bg-emerald-500/20 text-emerald-400 rounded-full"
 }, Qt = {
@@ -1463,10 +1486,10 @@ const wt = { class: "avatar-manager" }, bt = {
 }, ea = { class: "flex items-center gap-3 mt-1 text-xs text-dark-400" }, ta = { key: 0 }, aa = {
   key: 1,
   class: "text-purple-400"
-}, la = { class: "flex items-center gap-2" }, oa = ["onClick"], na = ["onClick"], ra = ["onClick", "title"], sa = ["disabled"], ia = { class: "text-dark-400" }, ua = { class: "flex items-center justify-between text-xs text-dark-500" }, ca = {
+}, oa = { class: "flex items-center gap-2" }, na = ["onClick"], la = ["onClick"], ra = ["onClick", "title"], sa = ["disabled"], ia = { class: "text-dark-400" }, ua = { class: "flex items-center justify-between text-xs text-dark-500" }, ca = {
   key: 0,
   class: "text-red-400"
-}, da = /* @__PURE__ */ le({
+}, da = /* @__PURE__ */ oe({
   __name: "AvatarManager",
   props: {
     initials: { default: "" },
@@ -1482,19 +1505,19 @@ const wt = { class: "avatar-manager" }, bt = {
     config: {}
   },
   emits: ["select", "primary-changed", "upload-success", "upload-error", "delete", "crop-updated"],
-  setup(c, { emit: S }) {
-    const a = c, i = S, {
+  setup(c, { emit: L }) {
+    const a = c, i = L, {
       avatars: u,
       loading: k,
-      error: l,
-      uploading: j,
-      uploadProgress: I,
+      error: o,
+      uploading: O,
+      uploadProgress: U,
       fetchAvatars: D,
-      setPrimary: T,
-      deleteAvatar: H,
+      setPrimary: H,
+      deleteAvatar: B,
       uploadAndCreateAvatar: Z,
-      getAvatarUrl: z
-    } = kt(a.config), $ = _(null), s = _(null), v = _(null), b = _(!1), w = _("upload"), y = _(null), r = _(null), f = O(() => a.allowUpload && u.value.length < a.maxAvatars), m = O(() => {
+      getAvatarUrl: $
+    } = kt(a.config), M = _(null), r = _(null), v = _(null), w = _(!1), x = _("upload"), g = _(null), y = _(null), s = F(() => a.allowUpload && u.value.length < a.maxAvatars), f = F(() => {
       switch (a.shape) {
         case "circle":
           return "rounded-full";
@@ -1505,154 +1528,154 @@ const wt = { class: "avatar-manager" }, bt = {
         default:
           return "rounded-full";
       }
-    }), g = O(() => r.value ? r.value.original_url : null);
+    }), C = F(() => y.value ? y.value.original_url : null);
     fe(() => {
       D();
     });
-    function x() {
-      var M;
-      (M = $.value) == null || M.click();
+    function m() {
+      var z;
+      (z = M.value) == null || z.click();
     }
-    async function E(M) {
-      var n;
-      const t = M.target, o = (n = t.files) == null ? void 0 : n[0];
-      if (o)
+    async function E(z) {
+      var l;
+      const t = z.target, n = (l = t.files) == null ? void 0 : l[0];
+      if (n)
         if (t.value = "", a.enableCropOnUpload)
-          y.value = o, w.value = "upload", b.value = !0;
+          g.value = n, x.value = "upload", w.value = !0;
         else {
-          const L = await Z(o, {
+          const S = await Z(n, {
             name: `Avatar ${u.value.length + 1}`,
             is_primary: u.value.length === 0,
             fallback_initials: a.initials
           });
-          L ? i("upload-success", L) : l.value && i("upload-error", l.value);
+          S ? i("upload-success", S) : o.value && i("upload-error", o.value);
         }
     }
-    function B(M) {
-      r.value = M, w.value = "edit", b.value = !0;
+    function j(z) {
+      y.value = z, x.value = "edit", w.value = !0;
     }
-    async function V(M) {
-      if (b.value = !1, w.value === "upload" && y.value) {
-        const t = await Z(M.file, {
+    async function V(z) {
+      if (w.value = !1, x.value === "upload" && g.value) {
+        const t = await Z(z.file, {
           name: `Avatar ${u.value.length + 1}`,
           is_primary: u.value.length === 0,
           fallback_initials: a.initials,
-          crop: M.crop
+          crop: z.crop
         });
-        t ? i("upload-success", t) : l.value && i("upload-error", l.value);
-      } else if (w.value === "edit" && r.value) {
-        const t = await Z(M.file, {
-          name: r.value.name,
-          is_primary: r.value.is_primary,
+        t ? i("upload-success", t) : o.value && i("upload-error", o.value);
+      } else if (x.value === "edit" && y.value) {
+        const t = await Z(z.file, {
+          name: y.value.name,
+          is_primary: y.value.is_primary,
           fallback_initials: a.initials,
-          crop: M.crop
+          crop: z.crop
         });
-        t ? (await H(r.value.id), i("crop-updated", t, M.crop)) : l.value && i("upload-error", l.value);
+        t ? (await B(y.value.id), i("crop-updated", t, z.crop)) : o.value && i("upload-error", o.value);
       }
-      y.value = null, r.value = null;
+      g.value = null, y.value = null;
     }
-    function q() {
-      b.value = !1, y.value = null, r.value = null;
+    function Y() {
+      w.value = !1, g.value = null, y.value = null;
     }
-    async function G(M) {
-      if (M.is_primary) return;
-      await T(M.id) && i("primary-changed", M);
+    async function G(z) {
+      if (z.is_primary) return;
+      await H(z.id) && i("primary-changed", z);
     }
-    async function K(M) {
-      if (s.value !== M.id) {
-        s.value = M.id;
+    async function K(z) {
+      if (r.value !== z.id) {
+        r.value = z.id;
         return;
       }
-      await H(M.id) && (i("delete", M), s.value = null);
+      await B(z.id) && (i("delete", z), r.value = null);
     }
     function J() {
-      s.value = null;
+      r.value = null;
     }
-    function C(M) {
-      v.value = M.id, i("select", M);
+    function b(z) {
+      v.value = z.id, i("select", z);
     }
-    function A(M) {
-      const t = new Date(M);
+    function A(z) {
+      const t = new Date(z);
       return t.toLocaleDateString(void 0, {
         month: "short",
         day: "numeric",
         year: t.getFullYear() !== (/* @__PURE__ */ new Date()).getFullYear() ? "numeric" : void 0
       });
     }
-    function P(M) {
+    function P(z) {
       return {
         upload: "Uploaded",
         gravatar: "Gravatar",
         oauth: "OAuth",
         generated: "Generated",
         ai: "AI Generated"
-      }[M] || M;
+      }[z] || z;
     }
-    return (M, t) => (d(), p("div", wt, [
+    return (z, t) => (d(), p("div", wt, [
       e("input", {
         ref_key: "fileInputRef",
-        ref: $,
+        ref: M,
         type: "file",
         accept: "image/*",
         class: "hidden",
         onChange: E
       }, null, 544),
-      (d(), ne(he, { to: "body" }, [
+      (d(), le(he, { to: "body" }, [
         ae(ge, { name: "fade" }, {
           default: ye(() => [
-            b.value && (y.value || r.value) ? (d(), p("div", bt, [
+            w.value && (g.value || y.value) ? (d(), p("div", xt, [
               e("div", {
                 class: "absolute inset-0 bg-black/80 backdrop-blur-sm",
-                onClick: q
+                onClick: Y
               }),
-              e("div", xt, [
-                e("h3", Ct, R(w.value === "edit" ? "Adjust your photo" : "Position your photo"), 1),
+              e("div", bt, [
+                e("h3", Ct, R(x.value === "edit" ? "Adjust your photo" : "Position your photo"), 1),
                 ae(_e, {
-                  file: y.value,
-                  url: g.value,
+                  file: g.value,
+                  url: C.value,
                   shape: c.shape,
                   "crop-size": c.cropSize,
-                  "confirm-label": w.value === "edit" ? "Save changes" : "Upload",
+                  "confirm-label": x.value === "edit" ? "Save changes" : "Upload",
                   onConfirm: V,
-                  onCancel: q
+                  onCancel: Y
                 }, null, 8, ["file", "url", "shape", "crop-size", "confirm-label"])
               ])
-            ])) : U("", !0)
+            ])) : I("", !0)
           ]),
           _: 1
         })
       ])),
       h(k) && h(u).length === 0 ? (d(), p("div", _t, [...t[1] || (t[1] = [
         e("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
-      ])])) : h(l) && h(u).length === 0 ? (d(), p("div", zt, [
-        e("div", $t, R(h(l)), 1),
+      ])])) : h(o) && h(u).length === 0 ? (d(), p("div", zt, [
+        e("div", $t, R(h(o)), 1),
         e("button", {
           onClick: t[0] || (t[0] = //@ts-ignore
-          (...o) => h(D) && h(D)(...o)),
+          (...n) => h(D) && h(D)(...n)),
           class: "text-sm text-primary-400 hover:text-primary-300 underline"
         }, " Try again ")
       ])) : c.mode === "compact" ? (d(), p("div", Mt, [
         e("div", St, [
-          (d(!0), p(te, null, ce(h(u), (o) => (d(), p("div", {
-            key: o.id,
+          (d(!0), p(te, null, ce(h(u), (n) => (d(), p("div", {
+            key: n.id,
             class: "relative group",
-            style: W({ width: `${c.avatarSize}px`, height: `${c.avatarSize}px` })
+            style: q({ width: `${c.avatarSize}px`, height: `${c.avatarSize}px` })
           }, [
             e("button", {
-              onClick: (n) => C(o),
-              class: Y(["w-full h-full overflow-hidden transition-all duration-200", [
-                m.value,
-                o.is_primary ? "ring-[3px] ring-emerald-500 ring-offset-2 ring-offset-dark-900" : v.value === o.id ? "ring-2 ring-dark-400 ring-offset-2 ring-offset-dark-900" : "ring-2 ring-transparent hover:ring-dark-500 ring-offset-2 ring-offset-dark-900"
+              onClick: (l) => b(n),
+              class: X(["w-full h-full overflow-hidden transition-all duration-200", [
+                f.value,
+                n.is_primary ? "ring-[3px] ring-emerald-500 ring-offset-2 ring-offset-dark-900" : v.value === n.id ? "ring-2 ring-dark-400 ring-offset-2 ring-offset-dark-900" : "ring-2 ring-transparent hover:ring-dark-500 ring-offset-2 ring-offset-dark-900"
               ]])
             }, [
               e("img", {
-                src: h(z)(o, "md"),
-                alt: o.alt_text || o.name || "Avatar",
+                src: h($)(n, "md"),
+                alt: n.alt_text || n.name || "Avatar",
                 class: "w-full h-full object-cover",
-                style: W(o.dominant_color ? { backgroundColor: o.dominant_color } : {})
+                style: q(n.dominant_color ? { backgroundColor: n.dominant_color } : {})
               }, null, 12, Et)
             ], 10, Lt),
-            o.moderation_status === "pending" ? (d(), p("div", Ut, [...t[2] || (t[2] = [
+            n.moderation_status === "pending" ? (d(), p("div", It, [...t[2] || (t[2] = [
               e("svg", {
                 class: "w-3 h-3 text-white",
                 fill: "currentColor",
@@ -1664,17 +1687,17 @@ const wt = { class: "avatar-manager" }, bt = {
                   "clip-rule": "evenodd"
                 })
               ], -1)
-            ])])) : U("", !0),
+            ])])) : I("", !0),
             e("div", {
-              class: Y(["absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1", [
-                m.value,
-                s.value === o.id ? "z-50 opacity-100" : "z-10"
+              class: X(["absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1", [
+                f.value,
+                r.value === n.id ? "z-50 opacity-100" : "z-10"
               ]])
             }, [
               c.allowEdit ? (d(), p("button", {
                 key: 0,
                 type: "button",
-                onClick: ee((n) => B(o), ["stop"]),
+                onClick: ee((l) => j(n), ["stop"]),
                 class: "p-1.5 bg-dark-700 hover:bg-primary-600 rounded-lg transition-colors",
                 title: "Edit crop"
               }, [...t[3] || (t[3] = [
@@ -1691,11 +1714,11 @@ const wt = { class: "avatar-manager" }, bt = {
                     d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   })
                 ], -1)
-              ])], 8, It)) : U("", !0),
-              o.is_primary ? U("", !0) : (d(), p("button", {
+              ])], 8, Ut)) : I("", !0),
+              n.is_primary ? I("", !0) : (d(), p("button", {
                 key: 1,
                 type: "button",
-                onClick: ee((n) => G(o), ["stop"]),
+                onClick: ee((l) => G(n), ["stop"]),
                 class: "p-1.5 bg-dark-700 hover:bg-emerald-600 rounded-lg transition-colors",
                 title: "Set as primary"
               }, [...t[4] || (t[4] = [
@@ -1716,9 +1739,9 @@ const wt = { class: "avatar-manager" }, bt = {
               c.allowDelete ? (d(), p("button", {
                 key: 2,
                 type: "button",
-                onClick: ee((n) => K(o), ["stop"]),
-                class: Y(["p-1.5 rounded-lg transition-colors", s.value === o.id ? "bg-red-600 hover:bg-red-700" : "bg-dark-700 hover:bg-red-600"]),
-                title: s.value === o.id ? "Click again to confirm" : "Delete"
+                onClick: ee((l) => K(n), ["stop"]),
+                class: X(["p-1.5 rounded-lg transition-colors", r.value === n.id ? "bg-red-600 hover:bg-red-700" : "bg-dark-700 hover:bg-red-600"]),
+                title: r.value === n.id ? "Click again to confirm" : "Delete"
               }, [...t[5] || (t[5] = [
                 e("svg", {
                   class: "w-4 h-4 text-white",
@@ -1733,19 +1756,19 @@ const wt = { class: "avatar-manager" }, bt = {
                     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                   })
                 ], -1)
-              ])], 10, jt)) : U("", !0)
+              ])], 10, Ot)) : I("", !0)
             ], 2)
           ], 4))), 128)),
-          f.value ? (d(), p("button", {
+          s.value ? (d(), p("button", {
             key: 0,
             type: "button",
-            onClick: x,
-            disabled: h(j),
-            class: Y(["flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors", m.value]),
-            style: W({ width: `${c.avatarSize}px`, height: `${c.avatarSize}px` })
+            onClick: m,
+            disabled: h(O),
+            class: X(["flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors", f.value]),
+            style: q({ width: `${c.avatarSize}px`, height: `${c.avatarSize}px` })
           }, [
-            h(j) ? (d(), p("div", Pt, [
-              (d(), p("svg", Rt, [
+            h(O) ? (d(), p("div", Ft, [
+              (d(), p("svg", Pt, [
                 t[6] || (t[6] = e("path", {
                   class: "text-dark-700",
                   stroke: "currentColor",
@@ -1759,12 +1782,12 @@ const wt = { class: "avatar-manager" }, bt = {
                   "stroke-width": "3",
                   fill: "none",
                   "stroke-linecap": "round",
-                  "stroke-dasharray": `${h(I)}, 100`,
+                  "stroke-dasharray": `${h(U)}, 100`,
                   d: "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                }, null, 8, Dt)
+                }, null, 8, Rt)
               ])),
-              e("span", Bt, R(h(I)) + "%", 1)
-            ])) : (d(), p("div", Tt, [...t[7] || (t[7] = [
+              e("span", Dt, R(h(U)) + "%", 1)
+            ])) : (d(), p("div", Bt, [...t[7] || (t[7] = [
               e("svg", {
                 class: "w-6 h-6",
                 fill: "none",
@@ -1779,53 +1802,53 @@ const wt = { class: "avatar-manager" }, bt = {
                 })
               ], -1)
             ])]))
-          ], 14, Ot)) : U("", !0)
+          ], 14, jt)) : I("", !0)
         ]),
-        e("p", Ft, [
+        e("p", Tt, [
           h(u).length === 0 ? (d(), p("span", Zt, "Upload your first avatar")) : (d(), p("span", Ht, [
             de(R(h(u).length) + "/" + R(c.maxAvatars) + " · ", 1),
             t[8] || (t[8] = e("span", { class: "text-emerald-500" }, "Green ring", -1)),
             t[9] || (t[9] = de(" = primary · Hover for options ", -1))
           ]))
         ]),
-        h(l) ? (d(), p("div", Vt, R(h(l)), 1)) : U("", !0)
-      ])) : (d(), p("div", Yt, [
-        e("div", Nt, [
-          (d(!0), p(te, null, ce(h(u), (o) => (d(), p("div", {
-            key: o.id,
-            class: Y(["flex items-center gap-4 p-3 rounded-xl transition-colors", [
-              o.is_primary ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-dark-800 border border-dark-700 hover:border-dark-600"
+        h(o) ? (d(), p("div", Yt, R(h(o)), 1)) : I("", !0)
+      ])) : (d(), p("div", Vt, [
+        e("div", Xt, [
+          (d(!0), p(te, null, ce(h(u), (n) => (d(), p("div", {
+            key: n.id,
+            class: X(["flex items-center gap-4 p-3 rounded-xl transition-colors", [
+              n.is_primary ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-dark-800 border border-dark-700 hover:border-dark-600"
             ]])
           }, [
             e("button", {
-              onClick: (n) => C(o),
-              class: Y(["flex-shrink-0 w-14 h-14 overflow-hidden transition-transform hover:scale-105", m.value])
+              onClick: (l) => b(n),
+              class: X(["flex-shrink-0 w-14 h-14 overflow-hidden transition-transform hover:scale-105", f.value])
             }, [
               e("img", {
-                src: h(z)(o, "sm"),
-                alt: o.alt_text || o.name || "Avatar",
+                src: h($)(n, "sm"),
+                alt: n.alt_text || n.name || "Avatar",
                 class: "w-full h-full object-cover"
               }, null, 8, Wt)
-            ], 10, Xt),
+            ], 10, Nt),
             e("div", qt, [
               e("div", Jt, [
-                e("span", Gt, R(o.name || "Unnamed avatar"), 1),
-                o.is_primary ? (d(), p("span", Kt, " Primary ")) : U("", !0),
-                o.moderation_status === "pending" ? (d(), p("span", Qt, " Pending ")) : U("", !0)
+                e("span", Gt, R(n.name || "Unnamed avatar"), 1),
+                n.is_primary ? (d(), p("span", Kt, " Primary ")) : I("", !0),
+                n.moderation_status === "pending" ? (d(), p("span", Qt, " Pending ")) : I("", !0)
               ]),
               e("div", ea, [
-                e("span", null, R(P(o.source)), 1),
+                e("span", null, R(P(n.source)), 1),
                 t[10] || (t[10] = e("span", null, "·", -1)),
-                e("span", null, R(A(o.created_at)), 1),
-                o.format === "animated" ? (d(), p("span", ta, "·")) : U("", !0),
-                o.format === "animated" ? (d(), p("span", aa, "Animated")) : U("", !0)
+                e("span", null, R(A(n.created_at)), 1),
+                n.format === "animated" ? (d(), p("span", ta, "·")) : I("", !0),
+                n.format === "animated" ? (d(), p("span", aa, "Animated")) : I("", !0)
               ])
             ]),
-            e("div", la, [
+            e("div", oa, [
               c.allowEdit ? (d(), p("button", {
                 key: 0,
                 type: "button",
-                onClick: (n) => B(o),
+                onClick: (l) => j(n),
                 class: "p-2 text-dark-400 hover:text-primary-400 hover:bg-dark-700 rounded-lg transition-colors",
                 title: "Edit crop"
               }, [...t[11] || (t[11] = [
@@ -1842,11 +1865,11 @@ const wt = { class: "avatar-manager" }, bt = {
                     d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   })
                 ], -1)
-              ])], 8, oa)) : U("", !0),
-              o.is_primary ? U("", !0) : (d(), p("button", {
+              ])], 8, na)) : I("", !0),
+              n.is_primary ? I("", !0) : (d(), p("button", {
                 key: 1,
                 type: "button",
-                onClick: (n) => G(o),
+                onClick: (l) => G(n),
                 class: "p-2 text-dark-400 hover:text-emerald-400 hover:bg-dark-700 rounded-lg transition-colors",
                 title: "Set as primary"
               }, [...t[12] || (t[12] = [
@@ -1863,13 +1886,13 @@ const wt = { class: "avatar-manager" }, bt = {
                     d: "M5 13l4 4L19 7"
                   })
                 ], -1)
-              ])], 8, na)),
+              ])], 8, la)),
               c.allowDelete ? (d(), p("button", {
                 key: 2,
                 type: "button",
-                onClick: (n) => K(o),
-                class: Y(["p-2 rounded-lg transition-colors", s.value === o.id ? "text-white bg-red-600 hover:bg-red-700" : "text-dark-400 hover:text-red-400 hover:bg-dark-700"]),
-                title: s.value === o.id ? "Click again to confirm" : "Delete"
+                onClick: (l) => K(n),
+                class: X(["p-2 rounded-lg transition-colors", r.value === n.id ? "text-white bg-red-600 hover:bg-red-700" : "text-dark-400 hover:text-red-400 hover:bg-dark-700"]),
+                title: r.value === n.id ? "Click again to confirm" : "Delete"
               }, [...t[13] || (t[13] = [
                 e("svg", {
                   class: "w-5 h-5",
@@ -1884,20 +1907,20 @@ const wt = { class: "avatar-manager" }, bt = {
                     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                   })
                 ], -1)
-              ])], 10, ra)) : U("", !0)
+              ])], 10, ra)) : I("", !0)
             ])
           ], 2))), 128))
         ]),
-        f.value ? (d(), p("button", {
+        s.value ? (d(), p("button", {
           key: 0,
           type: "button",
-          onClick: x,
-          disabled: h(j),
+          onClick: m,
+          disabled: h(O),
           class: "w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-dark-600 hover:border-primary-500 rounded-xl transition-colors group"
         }, [
-          h(j) ? (d(), p(te, { key: 0 }, [
+          h(O) ? (d(), p(te, { key: 0 }, [
             t[14] || (t[14] = e("div", { class: "w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)),
-            e("span", ia, "Uploading... " + R(h(I)) + "%", 1)
+            e("span", ia, "Uploading... " + R(h(U)) + "%", 1)
           ], 64)) : (d(), p(te, { key: 1 }, [
             t[15] || (t[15] = e("svg", {
               class: "w-5 h-5 text-dark-500 group-hover:text-primary-400 transition-colors",
@@ -1914,17 +1937,17 @@ const wt = { class: "avatar-manager" }, bt = {
             ], -1)),
             t[16] || (t[16] = e("span", { class: "text-dark-500 group-hover:text-primary-400 transition-colors" }, " Add new avatar ", -1))
           ], 64))
-        ], 8, sa)) : U("", !0),
+        ], 8, sa)) : I("", !0),
         e("div", ua, [
           e("span", null, R(h(u).length) + " of " + R(c.maxAvatars) + " avatars", 1),
-          h(l) ? (d(), p("span", ca, R(h(l)), 1)) : U("", !0)
+          h(o) ? (d(), p("span", ca, R(h(o)), 1)) : I("", !0)
         ])
       ])),
-      s.value ? (d(), p("div", {
+      r.value ? (d(), p("div", {
         key: 4,
         class: "fixed inset-0 z-40",
         onClick: J
-      })) : U("", !0)
+      })) : I("", !0)
     ]));
   }
 }), ga = /* @__PURE__ */ re(da, [["__scopeId", "data-v-9c73c40c"]]);
@@ -1936,9 +1959,9 @@ export {
   pa as ImageViewerProvider,
   ha as configureAvatarManager,
   fa as configureAvatarUpload,
-  Ye as useAvatarCropper,
+  Ve as useAvatarCropper,
   kt as useAvatarManager,
-  Ve as useAvatarUpload,
+  Ye as useAvatarUpload,
   Ce as useImageViewer
 };
 //# sourceMappingURL=index.js.map

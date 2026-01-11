@@ -269,8 +269,13 @@ onUnmounted(() => {
         <img
           :src="sourceUrl || ''"
           alt="Crop preview"
-          class="absolute top-0 left-0 origin-top-left pointer-events-none"
-          :style="{ transform: imageTransform }"
+          class="absolute pointer-events-none"
+          :style="{ 
+            top: '0', 
+            left: '0',
+            transformOrigin: '0 0',
+            transform: imageTransform 
+          }"
           draggable="false"
         />
 

@@ -67,6 +67,44 @@ export function useAvatarCropper(config?: CropperConfig) {
   const sourceUrl = ref<string | null>(null)
   
   /**
+   * Initialize state after image is loaded
+   */
+  function initializeImageState(img: HTMLImageElement) {
+    state.value.image = img
+    state.value.naturalWidth = img.naturalWidth
+    state.value.naturalHeight = img.naturalHeight
+    
+    // Calculate minimum zoom so the image fills the entire crop area
+    // We use the LARGER scale factor to ensure no empty space
+    const { cropSize } = mergedConfig.value
+    const scaleX = cropSize / img.naturalWidth
+    const scaleY = cropSize / img.naturalHeight
+    const minZoom = Math.max(scaleX, scaleY)
+    
+    console.log('[Cropper] Image initialized:', {
+      naturalWidth: img.naturalWidth,
+      naturalHeight: img.naturalHeight,
+      cropSize,
+      scaleX: scaleX.toFixed(4),
+      scaleY: scaleY.toFixed(4),
+      minZoom: minZoom.toFixed(4),
+    })
+    
+    state.value.minZoom = minZoom
+    state.value.maxZoom = minZoom * mergedConfig.value.maxZoom
+    state.value.zoom = minZoom
+    
+    // Center the image in the crop area
+    centerImage()
+    
+    console.log('[Cropper] After centering:', {
+      panX: state.value.panX.toFixed(2),
+      panY: state.value.panY.toFixed(2),
+      zoom: state.value.zoom.toFixed(4),
+    })
+  }
+
+  /**
    * Load an image from a File
    */
   async function loadFile(file: File): Promise<boolean> {
@@ -84,23 +122,7 @@ export function useAvatarCropper(config?: CropperConfig) {
       sourceUrl.value = url
       
       const img = await loadImage(url)
-      
-      state.value.image = img
-      state.value.naturalWidth = img.naturalWidth
-      state.value.naturalHeight = img.naturalHeight
-      
-      // Calculate minimum zoom to fill crop area
-      const { cropSize } = mergedConfig.value
-      const scaleX = cropSize / img.naturalWidth
-      const scaleY = cropSize / img.naturalHeight
-      const minZoom = Math.max(scaleX, scaleY)
-      
-      state.value.minZoom = minZoom
-      state.value.maxZoom = minZoom * mergedConfig.value.maxZoom
-      state.value.zoom = minZoom
-      
-      // Center the image
-      centerImage()
+      initializeImageState(img)
       
       loading.value = false
       return true
@@ -122,24 +144,7 @@ export function useAvatarCropper(config?: CropperConfig) {
     
     try {
       const img = await loadImage(url)
-      
-      state.value.image = img
-      state.value.naturalWidth = img.naturalWidth
-      state.value.naturalHeight = img.naturalHeight
-      
-      // Calculate minimum zoom to fill crop area
-      const { cropSize } = mergedConfig.value
-      const scaleX = cropSize / img.naturalWidth
-      const scaleY = cropSize / img.naturalHeight
-      const minZoom = Math.max(scaleX, scaleY)
-      
-      state.value.minZoom = minZoom
-      state.value.maxZoom = minZoom * mergedConfig.value.maxZoom
-      state.value.zoom = minZoom
-      
-      // Center the image
-      centerImage()
-      
+      initializeImageState(img)
       loading.value = false
       return true
     } catch (e) {
@@ -164,17 +169,21 @@ export function useAvatarCropper(config?: CropperConfig) {
   
   /**
    * Center the image in the crop area
+   * 
+   * The pan values represent the top-left corner of the visible crop region
+   * in the original image's coordinate space.
    */
   function centerImage() {
     const { cropSize } = mergedConfig.value
     const { naturalWidth, naturalHeight, zoom } = state.value
     
-    const scaledWidth = naturalWidth * zoom
-    const scaledHeight = naturalHeight * zoom
+    // The visible area in original image coordinates
+    const visibleWidth = cropSize / zoom
+    const visibleHeight = cropSize / zoom
     
-    // Pan offset to center the image
-    state.value.panX = (scaledWidth - cropSize) / 2 / zoom
-    state.value.panY = (scaledHeight - cropSize) / 2 / zoom
+    // Center the visible area on the image
+    state.value.panX = (naturalWidth - visibleWidth) / 2
+    state.value.panY = (naturalHeight - visibleHeight) / 2
   }
   
   /**
@@ -259,11 +268,27 @@ export function useAvatarCropper(config?: CropperConfig) {
   
   /**
    * Get CSS transform for displaying the image in the crop preview
+   * 
+   * The transform moves the image so that the crop region (starting at panX, panY
+   * in image coordinates) is positioned at the top-left of the viewport, then
+   * scales the image.
    */
   const imageTransform = computed(() => {
     const { zoom, panX, panY } = state.value
     const translateX = -panX * zoom
     const translateY = -panY * zoom
+    
+    // Debug: log transform values occasionally
+    if (Math.random() < 0.01) {
+      console.log('[Cropper] Transform:', {
+        panX: panX.toFixed(2),
+        panY: panY.toFixed(2),
+        zoom: zoom.toFixed(4),
+        translateX: translateX.toFixed(2),
+        translateY: translateY.toFixed(2),
+      })
+    }
+    
     return `translate(${translateX}px, ${translateY}px) scale(${zoom})`
   })
   
