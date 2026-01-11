@@ -34,12 +34,15 @@ const props = withDefaults(defineProps<{
   maxFavorites?: number
   /** Placeholder text for search */
   searchPlaceholder?: string
+  /** API endpoint for server-side emoji search (e.g., '/api/emoji/search') */
+  searchEndpoint?: string
 }>(), {
   favorites: () => [],
   customItems: () => [],
   columns: 8,
   maxFavorites: 16,
   searchPlaceholder: 'Search emoji...',
+  searchEndpoint: undefined,
 })
 
 const emit = defineEmits<{
@@ -51,6 +54,7 @@ const emit = defineEmits<{
 
 // Create picker config from props
 const pickerConfig: EmojiPickerConfig = {
+  searchEndpoint: props.searchEndpoint,
   categories: props.categories,
   customItems: props.customItems,
   getFavorites: () => props.favorites,
@@ -65,6 +69,7 @@ const {
   categories,
   displayItems,
   favorites,
+  isSearching,
   setCategory,
   setSearch,
   selectItem,
@@ -145,7 +150,11 @@ const gridStyle = computed(() => ({
     
     <!-- Emoji grid -->
     <div ref="gridRef" class="nui-picker-grid-container">
-      <div v-if="displayItems.length === 0" class="nui-picker-empty">
+      <div v-if="isSearching" class="nui-picker-loading">
+        <span class="nui-loading-spinner"></span>
+        <span>Searching...</span>
+      </div>
+      <div v-else-if="displayItems.length === 0" class="nui-picker-empty">
         <span v-if="searchQuery">No results for "{{ searchQuery }}"</span>
         <span v-else-if="activeCategory === 'favorites'">No favorites yet</span>
         <span v-else>No items</span>
@@ -324,14 +333,29 @@ const gridStyle = computed(() => ({
   gap: 2px;
 }
 
-.nui-picker-empty {
+.nui-picker-empty,
+.nui-picker-loading {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   height: 100%;
   min-height: 100px;
   color: var(--nui-picker-text-muted, #666);
   font-size: 13px;
+}
+
+.nui-loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--nui-picker-border, #333);
+  border-top-color: var(--nui-picker-accent, #6366f1);
+  border-radius: 50%;
+  animation: nui-spin 0.6s linear infinite;
+}
+
+@keyframes nui-spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Grid items */

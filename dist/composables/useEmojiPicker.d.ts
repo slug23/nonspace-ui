@@ -2,8 +2,8 @@
  * useEmojiPicker - Composable for emoji picker functionality
  *
  * Features:
- * - Emoji data with categories
- * - Search functionality
+ * - Server-side search via API endpoint (recommended)
+ * - Local fallback with embedded emoji data
  * - User favorites (stored externally via callback)
  * - Support for custom items (SVGs, stickers, etc.)
  */
@@ -29,6 +29,8 @@ export interface EmojiCategory {
     icon: string;
 }
 export interface EmojiPickerConfig {
+    /** API endpoint for emoji search (e.g., '/api/emoji/search') */
+    searchEndpoint?: string;
     /** Categories to display (in order) */
     categories?: EmojiCategory[];
     /** Custom items to include */
@@ -41,6 +43,8 @@ export interface EmojiPickerConfig {
     maxFavorites?: number;
     /** Columns in the grid */
     columns?: number;
+    /** Debounce delay for search (ms) */
+    searchDebounceMs?: number;
 }
 export interface EmojiPickerState {
     isOpen: boolean;
@@ -53,11 +57,13 @@ export declare function useEmojiPicker(config?: EmojiPickerConfig): {
     searchQuery: import("vue").Ref<string, string>;
     activeCategory: import("vue").Ref<string, string>;
     selectedSkinTone: import("vue").Ref<number, number>;
+    isSearching: import("vue").Ref<boolean, boolean>;
+    searchError: import("vue").Ref<string | null, string | null>;
     categories: EmojiCategory[];
     allItems: import("vue").ComputedRef<EmojiItem[]>;
     favorites: import("vue").ComputedRef<EmojiItem[]>;
     displayItems: import("vue").ComputedRef<EmojiItem[]>;
-    searchResults: import("vue").ComputedRef<EmojiItem[]>;
+    searchResults: import("vue").ShallowRef<EmojiItem[], EmojiItem[]>;
     columns: number;
     open: () => void;
     close: () => void;

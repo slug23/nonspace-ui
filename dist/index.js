@@ -1,43 +1,43 @@
-import { ref as C, readonly as ce, defineComponent as oe, computed as A, watch as ee, onMounted as se, onUnmounted as me, createBlock as ie, openBlock as s, Teleport as he, createVNode as ne, Transition as ge, withCtx as ye, createElementBlock as i, createCommentVNode as U, withModifiers as te, createElementVNode as e, toDisplayString as P, withDirectives as $e, normalizeStyle as J, vShow as ze, Fragment as Q, renderList as ae, normalizeClass as Y, unref as m, createStaticVNode as Me, createTextVNode as ve, shallowRef as Se, nextTick as Ie } from "vue";
-const re = C(!1), ke = C([]), xe = C(0);
-let be = null;
-function _e() {
-  function f(y) {
-    be = y;
+import { ref as C, readonly as ce, defineComponent as oe, computed as D, watch as Q, onMounted as se, onUnmounted as he, createBlock as ie, openBlock as i, Teleport as ge, createVNode as ne, Transition as ye, withCtx as ke, createElementBlock as u, createCommentVNode as j, withModifiers as te, createElementVNode as e, toDisplayString as T, withDirectives as ze, normalizeStyle as G, vShow as Se, Fragment as ee, renderList as ae, normalizeClass as W, unref as m, createStaticVNode as Me, createTextVNode as pe, shallowRef as de, nextTick as Ee } from "vue";
+const re = C(!1), we = C([]), be = C(0);
+let xe = null;
+function Ce() {
+  function f(k) {
+    xe = k;
   }
-  function M() {
-    return be;
+  function E() {
+    return xe;
   }
-  function a(y, n = 0) {
-    ke.value = y, xe.value = n, re.value = !0;
+  function a(k, o = 0) {
+    we.value = k, be.value = o, re.value = !0;
   }
-  function u() {
+  function c() {
     re.value = !1;
   }
-  function d(y, n) {
-    a([{ url: y, alt: n }], 0);
+  function v(k, o) {
+    a([{ url: k, alt: o }], 0);
   }
   return {
     // State (readonly to prevent external mutation)
     isOpen: ce(re),
-    images: ce(ke),
-    initialIndex: ce(xe),
+    images: ce(we),
+    initialIndex: ce(be),
     // Actions
     openViewer: a,
-    closeViewer: u,
-    openImage: d,
+    closeViewer: c,
+    openImage: v,
     setVariantFetcher: f,
-    getVariantFetcher: M,
+    getVariantFetcher: E,
     // For the provider component
-    _setOpen: (y) => {
-      re.value = y;
+    _setOpen: (k) => {
+      re.value = k;
     }
   };
 }
-const Ee = { class: "viewer-toolbar top" }, Ue = {
+const Ie = { class: "viewer-toolbar top" }, Le = {
   key: 0,
   class: "image-counter"
-}, Le = { class: "image-container" }, je = {
+}, Ue = { class: "image-container" }, je = {
   key: 0,
   class: "loading-spinner"
 }, Ae = {
@@ -49,7 +49,7 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
 }, Re = { class: "viewer-toolbar bottom" }, Oe = { class: "zoom-controls" }, Te = {
   key: 2,
   class: "thumbnail-strip"
-}, De = ["onClick"], Be = ["src", "alt"], He = 0.5, Ze = 5, we = 0.25, Ye = /* @__PURE__ */ oe({
+}, De = ["onClick"], Be = ["src", "alt"], He = 0.5, Ze = 5, _e = 0.25, Ye = /* @__PURE__ */ oe({
   __name: "ImageViewer",
   props: {
     images: {},
@@ -57,99 +57,99 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
     open: { type: Boolean }
   },
   emits: ["close", "indexChange"],
-  setup(f, { emit: M }) {
-    const a = f, u = M, { getVariantFetcher: d } = _e(), y = C(a.initialIndex), n = C(1), j = C(0), E = C(0), O = C(!1), D = C({ x: 0, y: 0 }), H = C(!0), R = C(!1), w = C(!1), S = C(/* @__PURE__ */ new Map()), v = A(() => a.images[y.value]), p = A(() => {
-      const t = v.value;
+  setup(f, { emit: E }) {
+    const a = f, c = E, { getVariantFetcher: v } = Ce(), k = C(a.initialIndex), o = C(1), R = C(0), F = C(0), H = C(!1), O = C({ x: 0, y: 0 }), Z = C(!0), Y = C(!1), z = C(!1), $ = C(/* @__PURE__ */ new Map()), p = D(() => a.images[k.value]), d = D(() => {
+      const t = p.value;
       if (!t) return null;
-      if (t.fileId && S.value.has(t.fileId)) {
-        const $ = S.value.get(t.fileId);
-        return { ...t, variants: $ };
+      if (t.fileId && $.value.has(t.fileId)) {
+        const M = $.value.get(t.fileId);
+        return { ...t, variants: M };
       }
       return t;
-    }), z = A(() => {
-      var $, W, q, Z, ue;
-      const t = p.value;
+    }), S = D(() => {
+      var M, K, q, V, ue;
+      const t = d.value;
       if (!t) return "";
       if (t.variants) {
-        if (($ = t.variants.lg) != null && $.url) return t.variants.lg.url;
-        if ((W = t.variants.original) != null && W.url) return t.variants.original.url;
+        if ((M = t.variants.lg) != null && M.url) return t.variants.lg.url;
+        if ((K = t.variants.original) != null && K.url) return t.variants.original.url;
         if ((q = t.variants.md) != null && q.url) return t.variants.md.url;
-        if ((Z = t.variants.sm) != null && Z.url) return t.variants.sm.url;
+        if ((V = t.variants.sm) != null && V.url) return t.variants.sm.url;
         if ((ue = t.variants.thumb) != null && ue.url) return t.variants.thumb.url;
       }
       return t.url;
-    }), b = A(() => a.images.length > 1), k = A(() => y.value > 0), h = A(() => y.value < a.images.length - 1);
-    ee(y, () => {
-      n.value = 1, j.value = 0, E.value = 0, H.value = !0, R.value = !1, u("indexChange", y.value);
-    }), ee(() => a.open, (t) => {
-      t ? (y.value = a.initialIndex, n.value = 1, j.value = 0, E.value = 0, H.value = !0, R.value = !1, document.body.style.overflow = "hidden", _()) : document.body.style.overflow = "";
-    }), ee(v, () => {
-      _();
+    }), w = D(() => a.images.length > 1), y = D(() => k.value > 0), _ = D(() => k.value < a.images.length - 1);
+    Q(k, () => {
+      o.value = 1, R.value = 0, F.value = 0, Z.value = !0, Y.value = !1, c("indexChange", k.value);
+    }), Q(() => a.open, (t) => {
+      t ? (k.value = a.initialIndex, o.value = 1, R.value = 0, F.value = 0, Z.value = !0, Y.value = !1, document.body.style.overflow = "hidden", b()) : document.body.style.overflow = "";
+    }), Q(p, () => {
+      b();
     });
-    async function _() {
-      var W, q;
-      const t = v.value;
-      if (!(t != null && t.fileId) || S.value.has(t.fileId) || (W = t.variants) != null && W.lg || (q = t.variants) != null && q.original) return;
-      const $ = d();
-      if ($) {
-        w.value = !0;
+    async function b() {
+      var K, q;
+      const t = p.value;
+      if (!(t != null && t.fileId) || $.value.has(t.fileId) || (K = t.variants) != null && K.lg || (q = t.variants) != null && q.original) return;
+      const M = v();
+      if (M) {
+        z.value = !0;
         try {
-          const Z = await $(t.fileId);
-          Z && S.value.set(t.fileId, Z);
-        } catch (Z) {
-          console.error("Failed to fetch variants:", Z);
+          const V = await M(t.fileId);
+          V && $.value.set(t.fileId, V);
+        } catch (V) {
+          console.error("Failed to fetch variants:", V);
         } finally {
-          w.value = !1;
+          z.value = !1;
         }
       }
     }
-    function o() {
-      k.value && y.value--;
+    function r() {
+      y.value && k.value--;
     }
-    function c() {
-      h.value && y.value++;
+    function s() {
+      _.value && k.value++;
     }
     function g(t) {
-      t >= 0 && t < a.images.length && (y.value = t);
+      t >= 0 && t < a.images.length && (k.value = t);
     }
     function x() {
-      n.value = Math.min(Ze, n.value + we);
+      o.value = Math.min(Ze, o.value + _e);
     }
     function L() {
-      n.value = Math.max(He, n.value - we), n.value <= 1 && (j.value = 0, E.value = 0);
+      o.value = Math.max(He, o.value - _e), o.value <= 1 && (R.value = 0, F.value = 0);
     }
-    function T() {
-      n.value = 1, j.value = 0, E.value = 0;
-    }
-    function V(t) {
-      t.preventDefault(), t.deltaY < 0 ? x() : L();
+    function B() {
+      o.value = 1, R.value = 0, F.value = 0;
     }
     function N(t) {
-      if (n.value <= 1) return;
-      O.value = !0;
-      const $ = "touches" in t ? t.touches[0] : t;
-      D.value = { x: $.clientX - j.value, y: $.clientY - E.value };
+      t.preventDefault(), t.deltaY < 0 ? x() : L();
     }
-    function K(t) {
-      if (!O.value) return;
+    function X(t) {
+      if (o.value <= 1) return;
+      H.value = !0;
+      const M = "touches" in t ? t.touches[0] : t;
+      O.value = { x: M.clientX - R.value, y: M.clientY - F.value };
+    }
+    function J(t) {
+      if (!H.value) return;
       t.preventDefault();
-      const $ = "touches" in t ? t.touches[0] : t;
-      j.value = $.clientX - D.value.x, E.value = $.clientY - D.value.y;
+      const M = "touches" in t ? t.touches[0] : t;
+      R.value = M.clientX - O.value.x, F.value = M.clientY - O.value.y;
     }
-    function G() {
-      O.value = !1;
+    function U() {
+      H.value = !1;
     }
-    function I(t) {
+    function h(t) {
       if (a.open)
         switch (t.key) {
           case "Escape":
-            u("close");
+            c("close");
             break;
           case "ArrowLeft":
-            o();
+            r();
             break;
           case "ArrowRight":
-            c();
+            s();
             break;
           case "+":
           case "=":
@@ -159,53 +159,53 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
             L();
             break;
           case "0":
-            T();
+            B();
             break;
         }
     }
-    async function F() {
-      if (p.value)
+    async function I() {
+      if (d.value)
         try {
-          const t = z.value, W = await (await fetch(t)).blob(), q = URL.createObjectURL(W), Z = document.createElement("a");
-          Z.href = q, Z.download = p.value.alt || `image-${y.value + 1}`, document.body.appendChild(Z), Z.click(), document.body.removeChild(Z), URL.revokeObjectURL(q);
+          const t = S.value, K = await (await fetch(t)).blob(), q = URL.createObjectURL(K), V = document.createElement("a");
+          V.href = q, V.download = d.value.alt || `image-${k.value + 1}`, document.body.appendChild(V), V.click(), document.body.removeChild(V), URL.revokeObjectURL(q);
         } catch (t) {
           console.error("Failed to download image:", t);
         }
     }
-    function B() {
-      H.value = !1;
+    function A() {
+      Z.value = !1;
     }
-    function X() {
-      H.value = !1, R.value = !0;
+    function P() {
+      Z.value = !1, Y.value = !0;
     }
-    function r(t) {
-      t.target.classList.contains("viewer-backdrop") && u("close");
+    function l(t) {
+      t.target.classList.contains("viewer-backdrop") && c("close");
     }
     se(() => {
-      window.addEventListener("keydown", I);
-    }), me(() => {
-      window.removeEventListener("keydown", I), document.body.style.overflow = "";
+      window.addEventListener("keydown", h);
+    }), he(() => {
+      window.removeEventListener("keydown", h), document.body.style.overflow = "";
     });
-    const l = A(() => ({
-      transform: `scale(${n.value}) translate(${j.value / n.value}px, ${E.value / n.value}px)`,
-      cursor: n.value > 1 ? O.value ? "grabbing" : "grab" : "default"
+    const n = D(() => ({
+      transform: `scale(${o.value}) translate(${R.value / o.value}px, ${F.value / o.value}px)`,
+      cursor: o.value > 1 ? H.value ? "grabbing" : "grab" : "default"
     }));
-    return (t, $) => (s(), ie(he, { to: "body" }, [
-      ne(ge, { name: "viewer" }, {
-        default: ye(() => {
-          var W;
+    return (t, M) => (i(), ie(ge, { to: "body" }, [
+      ne(ye, { name: "viewer" }, {
+        default: ke(() => {
+          var K;
           return [
-            f.open ? (s(), i("div", {
+            f.open ? (i(), u("div", {
               key: 0,
               class: "viewer-backdrop",
-              onClick: r,
-              onWheel: te(V, ["prevent"])
+              onClick: l,
+              onWheel: te(N, ["prevent"])
             }, [
               e("button", {
                 class: "viewer-btn close-btn",
-                onClick: $[0] || ($[0] = (q) => u("close")),
+                onClick: M[0] || (M[0] = (q) => c("close")),
                 title: "Close (Esc)"
-              }, [...$[1] || ($[1] = [
+              }, [...M[1] || (M[1] = [
                 e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
@@ -215,15 +215,15 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                   e("path", { d: "M18 6L6 18M6 6l12 12" })
                 ], -1)
               ])]),
-              e("div", Ee, [
-                b.value ? (s(), i("span", Ue, P(y.value + 1) + " / " + P(f.images.length), 1)) : U("", !0)
+              e("div", Ie, [
+                w.value ? (i(), u("span", Le, T(k.value + 1) + " / " + T(f.images.length), 1)) : j("", !0)
               ]),
-              b.value && k.value ? (s(), i("button", {
+              w.value && y.value ? (i(), u("button", {
                 key: 0,
                 class: "viewer-btn nav-btn prev",
-                onClick: te(o, ["stop"]),
+                onClick: te(r, ["stop"]),
                 title: "Previous (←)"
-              }, [...$[2] || ($[2] = [
+              }, [...M[2] || (M[2] = [
                 e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
@@ -232,13 +232,13 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                 }, [
                   e("path", { d: "M15 18l-6-6 6-6" })
                 ], -1)
-              ])])) : U("", !0),
-              b.value && h.value ? (s(), i("button", {
+              ])])) : j("", !0),
+              w.value && _.value ? (i(), u("button", {
                 key: 1,
                 class: "viewer-btn nav-btn next",
-                onClick: te(c, ["stop"]),
+                onClick: te(s, ["stop"]),
                 title: "Next (→)"
-              }, [...$[3] || ($[3] = [
+              }, [...M[3] || (M[3] = [
                 e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
@@ -247,12 +247,12 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                 }, [
                   e("path", { d: "M9 18l6-6-6-6" })
                 ], -1)
-              ])])) : U("", !0),
-              e("div", Le, [
-                H.value ? (s(), i("div", je, [...$[4] || ($[4] = [
+              ])])) : j("", !0),
+              e("div", Ue, [
+                Z.value ? (i(), u("div", je, [...M[4] || (M[4] = [
                   e("div", { class: "spinner" }, null, -1)
-                ])])) : U("", !0),
-                R.value ? (s(), i("div", Ae, [...$[5] || ($[5] = [
+                ])])) : j("", !0),
+                Y.value ? (i(), u("div", Ae, [...M[5] || (M[5] = [
                   e("svg", {
                     viewBox: "0 0 24 24",
                     fill: "none",
@@ -267,26 +267,26 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                     e("path", { d: "M12 8v4M12 16h.01" })
                   ], -1),
                   e("span", null, "Failed to load image", -1)
-                ])])) : U("", !0),
-                $e(e("img", {
-                  src: z.value,
-                  alt: ((W = p.value) == null ? void 0 : W.alt) || "Image",
-                  style: J(l.value),
+                ])])) : j("", !0),
+                ze(e("img", {
+                  src: S.value,
+                  alt: ((K = d.value) == null ? void 0 : K.alt) || "Image",
+                  style: G(n.value),
                   class: "viewer-image",
                   draggable: "false",
-                  onLoad: B,
-                  onError: X,
-                  onMousedown: N,
-                  onMousemove: K,
-                  onMouseup: G,
-                  onMouseleave: G,
-                  onTouchstart: N,
-                  onTouchmove: K,
-                  onTouchend: G
+                  onLoad: A,
+                  onError: P,
+                  onMousedown: X,
+                  onMousemove: J,
+                  onMouseup: U,
+                  onMouseleave: U,
+                  onTouchstart: X,
+                  onTouchmove: J,
+                  onTouchend: U
                 }, null, 44, Fe), [
-                  [ze, !R.value]
+                  [Se, !Y.value]
                 ]),
-                w.value ? (s(), i("div", Pe, " Loading full resolution... ")) : U("", !0)
+                z.value ? (i(), u("div", Pe, " Loading full resolution... ")) : j("", !0)
               ]),
               e("div", Re, [
                 e("div", Oe, [
@@ -294,7 +294,7 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                     class: "viewer-btn small",
                     onClick: L,
                     title: "Zoom out (-)"
-                  }, [...$[6] || ($[6] = [
+                  }, [...M[6] || (M[6] = [
                     e("svg", {
                       viewBox: "0 0 24 24",
                       fill: "none",
@@ -311,14 +311,14 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                   ])]),
                   e("span", {
                     class: "zoom-level",
-                    onClick: T,
+                    onClick: B,
                     title: "Reset zoom (0)"
-                  }, P(Math.round(n.value * 100)) + "% ", 1),
+                  }, T(Math.round(o.value * 100)) + "% ", 1),
                   e("button", {
                     class: "viewer-btn small",
                     onClick: x,
                     title: "Zoom in (+)"
-                  }, [...$[7] || ($[7] = [
+                  }, [...M[7] || (M[7] = [
                     e("svg", {
                       viewBox: "0 0 24 24",
                       fill: "none",
@@ -336,9 +336,9 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                 ]),
                 e("button", {
                   class: "viewer-btn small",
-                  onClick: F,
+                  onClick: I,
                   title: "Download"
-                }, [...$[8] || ($[8] = [
+                }, [...M[8] || (M[8] = [
                   e("svg", {
                     viewBox: "0 0 24 24",
                     fill: "none",
@@ -349,196 +349,196 @@ const Ee = { class: "viewer-toolbar top" }, Ue = {
                   ], -1)
                 ])])
               ]),
-              b.value && f.images.length <= 20 ? (s(), i("div", Te, [
-                (s(!0), i(Q, null, ae(f.images, (q, Z) => (s(), i("button", {
-                  key: Z,
-                  class: Y(["thumbnail", { active: Z === y.value }]),
-                  onClick: (ue) => g(Z)
+              w.value && f.images.length <= 20 ? (i(), u("div", Te, [
+                (i(!0), u(ee, null, ae(f.images, (q, V) => (i(), u("button", {
+                  key: V,
+                  class: W(["thumbnail", { active: V === k.value }]),
+                  onClick: (ue) => g(V)
                 }, [
                   e("img", {
                     src: q.thumbnail || q.url,
-                    alt: `Thumbnail ${Z + 1}`
+                    alt: `Thumbnail ${V + 1}`
                   }, null, 8, Be)
                 ], 10, De))), 128))
-              ])) : U("", !0)
-            ], 32)) : U("", !0)
+              ])) : j("", !0)
+            ], 32)) : j("", !0)
           ];
         }),
         _: 1
       })
     ]));
   }
-}), le = (f, M) => {
+}), le = (f, E) => {
   const a = f.__vccOpts || f;
-  for (const [u, d] of M)
-    a[u] = d;
+  for (const [c, v] of E)
+    a[c] = v;
   return a;
-}, Ve = /* @__PURE__ */ le(Ye, [["__scopeId", "data-v-1fa5ee85"]]), Oa = /* @__PURE__ */ oe({
+}, Ve = /* @__PURE__ */ le(Ye, [["__scopeId", "data-v-1fa5ee85"]]), Ta = /* @__PURE__ */ oe({
   __name: "ImageViewerProvider",
   setup(f) {
-    const { isOpen: M, images: a, initialIndex: u, _setOpen: d } = _e(), y = A(() => [...a.value]);
-    function n() {
-      d(!1);
+    const { isOpen: E, images: a, initialIndex: c, _setOpen: v } = Ce(), k = D(() => [...a.value]);
+    function o() {
+      v(!1);
     }
-    return (j, E) => (s(), ie(Ve, {
-      images: y.value,
-      "initial-index": m(u),
-      open: m(M),
-      onClose: n
+    return (R, F) => (i(), ie(Ve, {
+      images: k.value,
+      "initial-index": m(c),
+      open: m(E),
+      onClose: o
     }, null, 8, ["images", "initial-index", "open"]));
   }
-}), pe = C({});
-function Ta(f) {
-  pe.value = { ...pe.value, ...f };
+}), fe = C({});
+function Da(f) {
+  fe.value = { ...fe.value, ...f };
 }
 function Ne(f) {
-  const M = C(!1), a = C(0), u = C(null), d = C(null), y = C(null), n = A(() => ({
+  const E = C(!1), a = C(0), c = C(null), v = C(null), k = C(null), o = D(() => ({
     uploadUrl: "/api/v1/upload",
     profile: "avatar",
     maxFileSize: 10 * 1024 * 1024,
     // 10MB
     acceptedTypes: ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"],
-    ...pe.value,
+    ...fe.value,
     ...f
   }));
-  function j(w) {
-    var S;
-    return (S = n.value.acceptedTypes) != null && S.some((v) => w.type === v || w.type.startsWith(v.replace("/*", "/"))) ? n.value.maxFileSize && w.size > n.value.maxFileSize ? {
-      message: `File too large. Maximum size is ${Math.round(n.value.maxFileSize / 1048576)}MB.`,
+  function R(z) {
+    var $;
+    return ($ = o.value.acceptedTypes) != null && $.some((p) => z.type === p || z.type.startsWith(p.replace("/*", "/"))) ? o.value.maxFileSize && z.size > o.value.maxFileSize ? {
+      message: `File too large. Maximum size is ${Math.round(o.value.maxFileSize / 1048576)}MB.`,
       code: "FILE_TOO_LARGE"
     } : null : {
       message: "Invalid file type. Please select a JPEG, PNG, WebP, or HEIC image.",
       code: "INVALID_TYPE"
     };
   }
-  function E(w) {
-    const S = j(w);
-    return S ? (u.value = S, S) : (d.value && URL.revokeObjectURL(d.value), y.value = w, d.value = URL.createObjectURL(w), u.value = null, null);
+  function F(z) {
+    const $ = R(z);
+    return $ ? (c.value = $, $) : (v.value && URL.revokeObjectURL(v.value), k.value = z, v.value = URL.createObjectURL(z), c.value = null, null);
   }
-  function O() {
-    d.value && URL.revokeObjectURL(d.value), y.value = null, d.value = null, u.value = null, a.value = 0;
+  function H() {
+    v.value && URL.revokeObjectURL(v.value), k.value = null, v.value = null, c.value = null, a.value = 0;
   }
-  async function D() {
-    if (!y.value)
-      return u.value = { message: "No file selected", code: "NO_FILE" }, null;
-    M.value = !0, a.value = 0, u.value = null;
+  async function O() {
+    if (!k.value)
+      return c.value = { message: "No file selected", code: "NO_FILE" }, null;
+    E.value = !0, a.value = 0, c.value = null;
     try {
-      const w = new FormData();
-      w.append("file", y.value), w.append("profile", n.value.profile || "avatar"), n.value.projectId && w.append("project_id", n.value.projectId);
-      const S = {};
-      n.value.apiKey && (S.Authorization = `Bearer ${n.value.apiKey}`), n.value.headers && Object.assign(S, n.value.headers);
-      const v = await new Promise((p, z) => {
-        const b = new XMLHttpRequest();
-        b.upload.addEventListener("progress", (k) => {
-          k.lengthComputable && (a.value = Math.round(k.loaded / k.total * 100));
-        }), b.addEventListener("load", () => {
-          if (b.status >= 200 && b.status < 300)
+      const z = new FormData();
+      z.append("file", k.value), z.append("profile", o.value.profile || "avatar"), o.value.projectId && z.append("project_id", o.value.projectId);
+      const $ = {};
+      o.value.apiKey && ($.Authorization = `Bearer ${o.value.apiKey}`), o.value.headers && Object.assign($, o.value.headers);
+      const p = await new Promise((d, S) => {
+        const w = new XMLHttpRequest();
+        w.upload.addEventListener("progress", (y) => {
+          y.lengthComputable && (a.value = Math.round(y.loaded / y.total * 100));
+        }), w.addEventListener("load", () => {
+          if (w.status >= 200 && w.status < 300)
             try {
-              const k = JSON.parse(b.responseText), h = k.data || k;
-              p({
-                id: h.id,
-                url: h.url || h.signed_url,
-                variants: h.variants || {}
-              });
-            } catch {
-              z({ message: "Invalid response from server", code: "PARSE_ERROR" });
-            }
-          else {
-            let k = "Upload failed";
-            try {
-              const h = JSON.parse(b.responseText);
-              k = h.error || h.message || k;
-            } catch {
-            }
-            z({ message: k, code: `HTTP_${b.status}` });
-          }
-        }), b.addEventListener("error", () => {
-          z({ message: "Network error during upload", code: "NETWORK_ERROR" });
-        }), b.addEventListener("abort", () => {
-          z({ message: "Upload cancelled", code: "ABORTED" });
-        }), b.open("POST", n.value.uploadUrl);
-        for (const [k, h] of Object.entries(S))
-          b.setRequestHeader(k, h);
-        b.send(w);
-      });
-      return a.value = 100, v;
-    } catch (w) {
-      return u.value = w, null;
-    } finally {
-      M.value = !1;
-    }
-  }
-  async function H(w) {
-    return E(w) ? null : D();
-  }
-  async function R(w) {
-    if (!y.value)
-      return u.value = { message: "No file selected", code: "NO_FILE" }, null;
-    M.value = !0, a.value = 0, u.value = null;
-    try {
-      const S = new FormData();
-      S.append("file", y.value), S.append("profile", n.value.profile || "avatar"), S.append("crop_x", String(w.x)), S.append("crop_y", String(w.y)), S.append("crop_width", String(w.width)), S.append("crop_height", String(w.height)), w.zoom !== void 0 && S.append("crop_zoom", String(w.zoom)), n.value.projectId && S.append("project_id", n.value.projectId);
-      const v = {};
-      n.value.apiKey && (v.Authorization = `Bearer ${n.value.apiKey}`), n.value.headers && Object.assign(v, n.value.headers);
-      const p = await new Promise((z, b) => {
-        const k = new XMLHttpRequest();
-        k.upload.addEventListener("progress", (h) => {
-          h.lengthComputable && (a.value = Math.round(h.loaded / h.total * 100));
-        }), k.addEventListener("load", () => {
-          if (k.status >= 200 && k.status < 300)
-            try {
-              const h = JSON.parse(k.responseText), _ = h.data || h;
-              z({
+              const y = JSON.parse(w.responseText), _ = y.data || y;
+              d({
                 id: _.id,
                 url: _.url || _.signed_url,
                 variants: _.variants || {}
               });
             } catch {
-              b({ message: "Invalid response from server", code: "PARSE_ERROR" });
+              S({ message: "Invalid response from server", code: "PARSE_ERROR" });
             }
           else {
-            let h = "Upload failed";
+            let y = "Upload failed";
             try {
-              const _ = JSON.parse(k.responseText);
-              h = _.error || _.message || h;
+              const _ = JSON.parse(w.responseText);
+              y = _.error || _.message || y;
             } catch {
             }
-            b({ message: h, code: `HTTP_${k.status}` });
+            S({ message: y, code: `HTTP_${w.status}` });
           }
-        }), k.addEventListener("error", () => {
-          b({ message: "Network error during upload", code: "NETWORK_ERROR" });
-        }), k.addEventListener("abort", () => {
-          b({ message: "Upload cancelled", code: "ABORTED" });
-        }), k.open("POST", n.value.uploadUrl);
-        for (const [h, _] of Object.entries(v))
-          k.setRequestHeader(h, _);
-        k.send(S);
+        }), w.addEventListener("error", () => {
+          S({ message: "Network error during upload", code: "NETWORK_ERROR" });
+        }), w.addEventListener("abort", () => {
+          S({ message: "Upload cancelled", code: "ABORTED" });
+        }), w.open("POST", o.value.uploadUrl);
+        for (const [y, _] of Object.entries($))
+          w.setRequestHeader(y, _);
+        w.send(z);
       });
       return a.value = 100, p;
-    } catch (S) {
-      return u.value = S, null;
+    } catch (z) {
+      return c.value = z, null;
     } finally {
-      M.value = !1;
+      E.value = !1;
+    }
+  }
+  async function Z(z) {
+    return F(z) ? null : O();
+  }
+  async function Y(z) {
+    if (!k.value)
+      return c.value = { message: "No file selected", code: "NO_FILE" }, null;
+    E.value = !0, a.value = 0, c.value = null;
+    try {
+      const $ = new FormData();
+      $.append("file", k.value), $.append("profile", o.value.profile || "avatar"), $.append("crop_x", String(z.x)), $.append("crop_y", String(z.y)), $.append("crop_width", String(z.width)), $.append("crop_height", String(z.height)), z.zoom !== void 0 && $.append("crop_zoom", String(z.zoom)), o.value.projectId && $.append("project_id", o.value.projectId);
+      const p = {};
+      o.value.apiKey && (p.Authorization = `Bearer ${o.value.apiKey}`), o.value.headers && Object.assign(p, o.value.headers);
+      const d = await new Promise((S, w) => {
+        const y = new XMLHttpRequest();
+        y.upload.addEventListener("progress", (_) => {
+          _.lengthComputable && (a.value = Math.round(_.loaded / _.total * 100));
+        }), y.addEventListener("load", () => {
+          if (y.status >= 200 && y.status < 300)
+            try {
+              const _ = JSON.parse(y.responseText), b = _.data || _;
+              S({
+                id: b.id,
+                url: b.url || b.signed_url,
+                variants: b.variants || {}
+              });
+            } catch {
+              w({ message: "Invalid response from server", code: "PARSE_ERROR" });
+            }
+          else {
+            let _ = "Upload failed";
+            try {
+              const b = JSON.parse(y.responseText);
+              _ = b.error || b.message || _;
+            } catch {
+            }
+            w({ message: _, code: `HTTP_${y.status}` });
+          }
+        }), y.addEventListener("error", () => {
+          w({ message: "Network error during upload", code: "NETWORK_ERROR" });
+        }), y.addEventListener("abort", () => {
+          w({ message: "Upload cancelled", code: "ABORTED" });
+        }), y.open("POST", o.value.uploadUrl);
+        for (const [_, b] of Object.entries(p))
+          y.setRequestHeader(_, b);
+        y.send($);
+      });
+      return a.value = 100, d;
+    } catch ($) {
+      return c.value = $, null;
+    } finally {
+      E.value = !1;
     }
   }
   return {
     // State
-    uploading: M,
+    uploading: E,
     progress: a,
-    error: u,
-    previewUrl: d,
-    selectedFile: y,
-    config: n,
+    error: c,
+    previewUrl: v,
+    selectedFile: k,
+    config: o,
     // Methods
-    validateFile: j,
-    selectFile: E,
-    clearSelection: O,
-    upload: D,
-    selectAndUpload: H,
-    uploadWithCrop: R
+    validateFile: R,
+    selectFile: F,
+    clearSelection: H,
+    upload: O,
+    selectAndUpload: Z,
+    uploadWithCrop: Y
   };
 }
-const de = {
+const ve = {
   shape: "circle",
   cropSize: 280,
   outputSize: 512,
@@ -548,7 +548,7 @@ const de = {
   mediaProxyUrl: void 0
 };
 function Xe(f) {
-  const M = A(() => ({ ...de, ...f })), a = C({
+  const E = D(() => ({ ...ve, ...f })), a = C({
     image: null,
     naturalWidth: 0,
     naturalHeight: 0,
@@ -556,102 +556,102 @@ function Xe(f) {
     panY: 0,
     zoom: 1,
     minZoom: 1,
-    maxZoom: de.maxZoom
-  }), u = C(!1), d = C(null), y = C(null), n = C(null);
-  function j(o) {
-    a.value.image = o, a.value.naturalWidth = o.naturalWidth, a.value.naturalHeight = o.naturalHeight;
-    const { cropSize: c } = M.value, g = c / o.naturalWidth, x = c / o.naturalHeight, L = Math.max(g, x);
+    maxZoom: ve.maxZoom
+  }), c = C(!1), v = C(null), k = C(null), o = C(null);
+  function R(r) {
+    a.value.image = r, a.value.naturalWidth = r.naturalWidth, a.value.naturalHeight = r.naturalHeight;
+    const { cropSize: s } = E.value, g = s / r.naturalWidth, x = s / r.naturalHeight, L = Math.max(g, x);
     console.log("[Cropper] Image initialized:", {
-      naturalWidth: o.naturalWidth,
-      naturalHeight: o.naturalHeight,
-      cropSize: c,
+      naturalWidth: r.naturalWidth,
+      naturalHeight: r.naturalHeight,
+      cropSize: s,
       scaleX: g.toFixed(4),
       scaleY: x.toFixed(4),
       minZoom: L.toFixed(4)
-    }), a.value.minZoom = L, a.value.maxZoom = L * M.value.maxZoom, a.value.zoom = L, R(), console.log("[Cropper] After centering:", {
+    }), a.value.minZoom = L, a.value.maxZoom = L * E.value.maxZoom, a.value.zoom = L, Y(), console.log("[Cropper] After centering:", {
       panX: a.value.panX.toFixed(2),
       panY: a.value.panY.toFixed(2),
       zoom: a.value.zoom.toFixed(4)
     });
   }
-  async function E(o) {
-    u.value = !0, d.value = null, y.value = o, n.value && URL.revokeObjectURL(n.value);
+  async function F(r) {
+    c.value = !0, v.value = null, k.value = r, o.value && URL.revokeObjectURL(o.value);
     try {
-      const c = URL.createObjectURL(o);
-      n.value = c;
-      const g = await H(c);
-      return j(g), u.value = !1, !0;
+      const s = URL.createObjectURL(r);
+      o.value = s;
+      const g = await Z(s);
+      return R(g), c.value = !1, !0;
     } catch {
-      return d.value = "Failed to load image", u.value = !1, !1;
+      return v.value = "Failed to load image", c.value = !1, !1;
     }
   }
-  async function O(o) {
-    u.value = !0, d.value = null, y.value = null;
+  async function H(r) {
+    c.value = !0, v.value = null, k.value = null;
     try {
-      let c = o;
-      const { mediaProxyUrl: g } = M.value;
-      g && D(o) && (c = `${g}?url=${encodeURIComponent(o)}`, console.log("[Cropper] Using proxy for external URL:", c)), n.value = c;
-      const x = await H(c);
-      return j(x), u.value = !1, !0;
-    } catch (c) {
-      return console.error("[Cropper] Failed to load image:", c), d.value = "Failed to load image", u.value = !1, !1;
+      let s = r;
+      const { mediaProxyUrl: g } = E.value;
+      g && O(r) && (s = `${g}?url=${encodeURIComponent(r)}`, console.log("[Cropper] Using proxy for external URL:", s)), o.value = s;
+      const x = await Z(s);
+      return R(x), c.value = !1, !0;
+    } catch (s) {
+      return console.error("[Cropper] Failed to load image:", s), v.value = "Failed to load image", c.value = !1, !1;
     }
   }
-  function D(o) {
+  function O(r) {
     try {
-      return new URL(o).origin !== window.location.origin;
+      return new URL(r).origin !== window.location.origin;
     } catch {
       return !1;
     }
   }
-  function H(o) {
-    return new Promise((c, g) => {
+  function Z(r) {
+    return new Promise((s, g) => {
       const x = new Image();
-      x.crossOrigin = "anonymous", x.onload = () => c(x), x.onerror = () => g(new Error("Failed to load image")), x.src = o;
+      x.crossOrigin = "anonymous", x.onload = () => s(x), x.onerror = () => g(new Error("Failed to load image")), x.src = r;
     });
   }
-  function R() {
-    const { cropSize: o } = M.value, { naturalWidth: c, naturalHeight: g, zoom: x } = a.value, L = o / x, T = o / x;
-    a.value.panX = (c - L) / 2, a.value.panY = (g - T) / 2;
+  function Y() {
+    const { cropSize: r } = E.value, { naturalWidth: s, naturalHeight: g, zoom: x } = a.value, L = r / x, B = r / x;
+    a.value.panX = (s - L) / 2, a.value.panY = (g - B) / 2;
   }
-  function w(o) {
-    const { minZoom: c, maxZoom: g } = a.value, x = Math.max(c, Math.min(g, o)), L = a.value.zoom, { cropSize: T } = M.value, V = a.value.panX + T / (2 * L), N = a.value.panY + T / (2 * L);
-    a.value.zoom = x, a.value.panX = V - T / (2 * x), a.value.panY = N - T / (2 * x), v();
+  function z(r) {
+    const { minZoom: s, maxZoom: g } = a.value, x = Math.max(s, Math.min(g, r)), L = a.value.zoom, { cropSize: B } = E.value, N = a.value.panX + B / (2 * L), X = a.value.panY + B / (2 * L);
+    a.value.zoom = x, a.value.panX = N - B / (2 * x), a.value.panY = X - B / (2 * x), p();
   }
-  function S(o, c) {
+  function $(r, s) {
     const { zoom: g } = a.value;
-    a.value.panX -= o / g, a.value.panY -= c / g, v();
+    a.value.panX -= r / g, a.value.panY -= s / g, p();
   }
-  function v() {
-    const { cropSize: o } = M.value, { naturalWidth: c, naturalHeight: g, zoom: x } = a.value, L = o / x, T = o / x, V = c - L, N = g - T;
-    a.value.panX = Math.max(0, Math.min(V, a.value.panX)), a.value.panY = Math.max(0, Math.min(N, a.value.panY));
+  function p() {
+    const { cropSize: r } = E.value, { naturalWidth: s, naturalHeight: g, zoom: x } = a.value, L = r / x, B = r / x, N = s - L, X = g - B;
+    a.value.panX = Math.max(0, Math.min(N, a.value.panX)), a.value.panY = Math.max(0, Math.min(X, a.value.panY));
   }
-  const p = A(() => {
+  const d = D(() => {
     if (!a.value.image) return null;
-    const { cropSize: o } = M.value, { panX: c, panY: g, zoom: x } = a.value, L = o / x, T = o / x;
+    const { cropSize: r } = E.value, { panX: s, panY: g, zoom: x } = a.value, L = r / x, B = r / x;
     return {
-      x: Math.round(c),
+      x: Math.round(s),
       y: Math.round(g),
       width: Math.round(L),
-      height: Math.round(T),
+      height: Math.round(B),
       zoom: x
     };
-  }), z = A(() => {
-    const { zoom: o, panX: c, panY: g } = a.value, x = -c * o, L = -g * o;
+  }), S = D(() => {
+    const { zoom: r, panX: s, panY: g } = a.value, x = -s * r, L = -g * r;
     return Math.random() < 0.01 && console.log("[Cropper] Transform:", {
-      panX: c.toFixed(2),
+      panX: s.toFixed(2),
       panY: g.toFixed(2),
-      zoom: o.toFixed(4),
+      zoom: r.toFixed(4),
       translateX: x.toFixed(2),
       translateY: L.toFixed(2)
-    }), `translate(${x}px, ${L}px) scale(${o})`;
+    }), `translate(${x}px, ${L}px) scale(${r})`;
   });
-  async function b() {
-    if (!a.value.image || !p.value) return null;
-    const { outputSize: o, format: c, quality: g } = M.value, x = p.value, L = document.createElement("canvas");
-    L.width = o, L.height = o;
-    const T = L.getContext("2d");
-    return T ? (T.drawImage(
+  async function w() {
+    if (!a.value.image || !d.value) return null;
+    const { outputSize: r, format: s, quality: g } = E.value, x = d.value, L = document.createElement("canvas");
+    L.width = r, L.height = r;
+    const B = L.getContext("2d");
+    return B ? (B.drawImage(
       a.value.image,
       x.x,
       x.y,
@@ -659,24 +659,24 @@ function Xe(f) {
       x.height,
       0,
       0,
-      o,
-      o
-    ), new Promise((V) => {
+      r,
+      r
+    ), new Promise((N) => {
       L.toBlob(
-        (N) => V(N),
-        c,
+        (X) => N(X),
+        s,
         g
       );
     })) : null;
   }
-  async function k(o) {
-    const c = await b();
-    if (!c) return null;
-    const { format: g } = M.value, x = g.split("/")[1], L = o || `avatar-cropped.${x}`;
-    return new File([c], L, { type: g });
+  async function y(r) {
+    const s = await w();
+    if (!s) return null;
+    const { format: g } = E.value, x = g.split("/")[1], L = r || `avatar-cropped.${x}`;
+    return new File([s], L, { type: g });
   }
-  function h() {
-    n.value && y.value && URL.revokeObjectURL(n.value), a.value = {
+  function _() {
+    o.value && k.value && URL.revokeObjectURL(o.value), a.value = {
       image: null,
       naturalWidth: 0,
       naturalHeight: 0,
@@ -684,37 +684,37 @@ function Xe(f) {
       panY: 0,
       zoom: 1,
       minZoom: 1,
-      maxZoom: de.maxZoom
-    }, y.value = null, n.value = null, d.value = null;
+      maxZoom: ve.maxZoom
+    }, k.value = null, o.value = null, v.value = null;
   }
-  function _() {
+  function b() {
     if (!a.value.image) return;
-    const { cropSize: o } = M.value, c = o / a.value.naturalWidth, g = o / a.value.naturalHeight, x = Math.max(c, g);
-    a.value.zoom = x, R();
+    const { cropSize: r } = E.value, s = r / a.value.naturalWidth, g = r / a.value.naturalHeight, x = Math.max(s, g);
+    a.value.zoom = x, Y();
   }
   return {
     // State
     state: a,
-    loading: u,
-    error: d,
-    sourceFile: y,
-    sourceUrl: n,
-    cropRegion: p,
-    imageTransform: z,
-    config: M,
+    loading: c,
+    error: v,
+    sourceFile: k,
+    sourceUrl: o,
+    cropRegion: d,
+    imageTransform: S,
+    config: E,
     // Methods
-    loadFile: E,
-    loadUrl: O,
-    setZoom: w,
-    pan: S,
-    centerImage: R,
-    reset: _,
-    exportCrop: b,
-    exportCropAsFile: k,
-    cleanup: h
+    loadFile: F,
+    loadUrl: H,
+    setZoom: z,
+    pan: $,
+    centerImage: Y,
+    reset: b,
+    exportCrop: w,
+    exportCropAsFile: y,
+    cleanup: _
   };
 }
-const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { class: "relative" }, Je = { class: "text-sm" }, Ge = ["src"], Ke = {
+const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ke = { class: "relative" }, qe = { class: "text-sm" }, Je = ["src"], Ge = {
   key: 0,
   class: "absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity pointer-events-none"
 }, Qe = {
@@ -735,45 +735,45 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
     config: {}
   },
   emits: ["confirm", "cancel", "crop-change"],
-  setup(f, { emit: M }) {
-    const a = f, u = M, {
-      state: d,
-      loading: y,
-      error: n,
-      sourceUrl: j,
-      cropRegion: E,
-      imageTransform: O,
-      config: D,
-      loadFile: H,
-      loadUrl: R,
-      setZoom: w,
-      pan: S,
-      reset: v,
-      exportCropAsFile: p,
-      cleanup: z
+  setup(f, { emit: E }) {
+    const a = f, c = E, {
+      state: v,
+      loading: k,
+      error: o,
+      sourceUrl: R,
+      cropRegion: F,
+      imageTransform: H,
+      config: O,
+      loadFile: Z,
+      loadUrl: Y,
+      setZoom: z,
+      pan: $,
+      reset: p,
+      exportCropAsFile: d,
+      cleanup: S
     } = Xe({
       shape: a.shape,
       cropSize: a.cropSize,
       outputSize: a.outputSize,
       ...a.config
-    }), b = C(null), k = C(!1), h = C({ x: 0, y: 0 });
-    ee(() => a.file, async (r) => {
-      r && await H(r);
-    }, { immediate: !0 }), ee(() => a.url, async (r) => {
-      r && !a.file && await R(r);
-    }, { immediate: !0 }), ee(E, (r) => {
-      r && u("crop-change", r);
+    }), w = C(null), y = C(!1), _ = C({ x: 0, y: 0 });
+    Q(() => a.file, async (l) => {
+      l && await Z(l);
+    }, { immediate: !0 }), Q(() => a.url, async (l) => {
+      l && !a.file && await Y(l);
+    }, { immediate: !0 }), Q(F, (l) => {
+      l && c("crop-change", l);
     });
-    const _ = A(() => d.value.minZoom ? Math.round(d.value.zoom / d.value.minZoom * 100) : 100), o = A({
+    const b = D(() => v.value.minZoom ? Math.round(v.value.zoom / v.value.minZoom * 100) : 100), r = D({
       get: () => {
-        const { zoom: r, minZoom: l, maxZoom: t } = d.value;
-        return t === l ? 0 : (r - l) / (t - l);
+        const { zoom: l, minZoom: n, maxZoom: t } = v.value;
+        return t === n ? 0 : (l - n) / (t - n);
       },
-      set: (r) => {
-        const { minZoom: l, maxZoom: t } = d.value, $ = l + r * (t - l);
-        w($);
+      set: (l) => {
+        const { minZoom: n, maxZoom: t } = v.value, M = n + l * (t - n);
+        z(M);
       }
-    }), c = A(() => {
+    }), s = D(() => {
       switch (a.shape) {
         case "circle":
           return "rounded-full";
@@ -783,70 +783,70 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
           return "";
       }
     });
-    function g(r) {
-      if (y.value) return;
-      k.value = !0, h.value = { x: r.clientX, y: r.clientY }, r.target.setPointerCapture(r.pointerId);
+    function g(l) {
+      if (k.value) return;
+      y.value = !0, _.value = { x: l.clientX, y: l.clientY }, l.target.setPointerCapture(l.pointerId);
     }
-    function x(r) {
-      if (!k.value) return;
-      const l = r.clientX - h.value.x, t = r.clientY - h.value.y;
-      S(l, t), h.value = { x: r.clientX, y: r.clientY };
+    function x(l) {
+      if (!y.value) return;
+      const n = l.clientX - _.value.x, t = l.clientY - _.value.y;
+      $(n, t), _.value = { x: l.clientX, y: l.clientY };
     }
-    function L(r) {
-      k.value = !1, r.target.releasePointerCapture(r.pointerId);
+    function L(l) {
+      y.value = !1, l.target.releasePointerCapture(l.pointerId);
     }
-    function T(r) {
-      r.preventDefault();
-      const l = r.deltaY > 0 ? -0.1 : 0.1, { zoom: t, minZoom: $, maxZoom: W } = d.value, q = W - $, Z = t + l * q * 0.3;
-      w(Z);
+    function B(l) {
+      l.preventDefault();
+      const n = l.deltaY > 0 ? -0.1 : 0.1, { zoom: t, minZoom: M, maxZoom: K } = v.value, q = K - M, V = t + n * q * 0.3;
+      z(V);
     }
-    let V = 0;
-    function N(r) {
-      r.touches.length === 2 && (V = G(r.touches));
+    let N = 0;
+    function X(l) {
+      l.touches.length === 2 && (N = U(l.touches));
     }
-    function K(r) {
-      if (r.touches.length === 2) {
-        r.preventDefault();
-        const l = G(r.touches), t = l / V;
-        w(d.value.zoom * t), V = l;
+    function J(l) {
+      if (l.touches.length === 2) {
+        l.preventDefault();
+        const n = U(l.touches), t = n / N;
+        z(v.value.zoom * t), N = n;
       }
     }
-    function G(r) {
-      const l = r[0].clientX - r[1].clientX, t = r[0].clientY - r[1].clientY;
-      return Math.sqrt(l * l + t * t);
+    function U(l) {
+      const n = l[0].clientX - l[1].clientX, t = l[0].clientY - l[1].clientY;
+      return Math.sqrt(n * n + t * t);
     }
-    async function I() {
-      if (!E.value) return;
-      const r = await p();
-      r && u("confirm", { file: r, crop: E.value });
+    async function h() {
+      if (!F.value) return;
+      const l = await d();
+      l && c("confirm", { file: l, crop: F.value });
     }
-    function F() {
-      z(), u("cancel");
+    function I() {
+      S(), c("cancel");
     }
-    function B() {
-      v();
+    function A() {
+      p();
     }
-    function X(r) {
-      r.key === "Escape" ? F() : r.key === "Enter" && I();
+    function P(l) {
+      l.key === "Escape" ? I() : l.key === "Enter" && h();
     }
     return se(() => {
-      document.addEventListener("keydown", X);
-    }), me(() => {
-      document.removeEventListener("keydown", X), z();
-    }), (r, l) => (s(), i("div", We, [
-      e("div", qe, [
-        m(y) ? (s(), i("div", {
+      document.addEventListener("keydown", P);
+    }), he(() => {
+      document.removeEventListener("keydown", P), S();
+    }), (l, n) => (i(), u("div", We, [
+      e("div", Ke, [
+        m(k) ? (i(), u("div", {
           key: 0,
-          class: Y(["flex items-center justify-center bg-dark-800", c.value]),
-          style: J({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
-        }, [...l[3] || (l[3] = [
+          class: W(["flex items-center justify-center bg-dark-800", s.value]),
+          style: G({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
+        }, [...n[3] || (n[3] = [
           e("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
-        ])], 6)) : m(n) ? (s(), i("div", {
+        ])], 6)) : m(o) ? (i(), u("div", {
           key: 1,
-          class: Y(["flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400", c.value]),
-          style: J({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
+          class: W(["flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400", s.value]),
+          style: G({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
         }, [
-          l[4] || (l[4] = e("svg", {
+          n[4] || (n[4] = e("svg", {
             class: "w-8 h-8",
             fill: "none",
             stroke: "currentColor",
@@ -859,44 +859,44 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
               d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             })
           ], -1)),
-          e("span", Je, P(m(n)), 1)
-        ], 6)) : m(d).image ? (s(), i("div", {
+          e("span", qe, T(m(o)), 1)
+        ], 6)) : m(v).image ? (i(), u("div", {
           key: 2,
           ref_key: "cropAreaRef",
-          ref: b,
-          class: Y(["relative overflow-hidden bg-dark-900 select-none touch-none", c.value]),
-          style: J({
+          ref: w,
+          class: W(["relative overflow-hidden bg-dark-900 select-none touch-none", s.value]),
+          style: G({
             width: `${f.cropSize}px`,
             height: `${f.cropSize}px`,
-            cursor: k.value ? "grabbing" : "grab"
+            cursor: y.value ? "grabbing" : "grab"
           }),
           onPointerdown: g,
           onPointermove: x,
           onPointerup: L,
           onPointercancel: L,
-          onWheel: T,
-          onTouchstart: N,
-          onTouchmove: K
+          onWheel: B,
+          onTouchstart: X,
+          onTouchmove: J
         }, [
           e("img", {
-            src: m(j) || "",
+            src: m(R) || "",
             alt: "Crop preview",
             class: "pointer-events-none",
-            style: J({
+            style: G({
               position: "absolute",
               top: "0",
               left: "0",
-              width: `${m(d).naturalWidth}px`,
-              height: `${m(d).naturalHeight}px`,
+              width: `${m(v).naturalWidth}px`,
+              height: `${m(v).naturalHeight}px`,
               maxWidth: "none",
               maxHeight: "none",
               transformOrigin: "0 0",
-              transform: m(O)
+              transform: m(H)
             }),
             draggable: "false"
-          }, null, 12, Ge),
-          l[6] || (l[6] = Me('<div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity" data-v-235e5b45><div class="absolute inset-0 border border-white/20" data-v-235e5b45></div><div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute top-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6" data-v-235e5b45><div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2" data-v-235e5b45></div><div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2" data-v-235e5b45></div></div></div>', 1)),
-          k.value ? U("", !0) : (s(), i("div", Ke, [...l[5] || (l[5] = [
+          }, null, 12, Je),
+          n[6] || (n[6] = Me('<div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity" data-v-235e5b45><div class="absolute inset-0 border border-white/20" data-v-235e5b45></div><div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute top-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6" data-v-235e5b45><div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2" data-v-235e5b45></div><div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2" data-v-235e5b45></div></div></div>', 1)),
+          y.value ? j("", !0) : (i(), u("div", Ge, [...n[5] || (n[5] = [
             e("div", { class: "flex items-center gap-2 px-3 py-1.5 bg-black/60 rounded-full text-white text-sm" }, [
               e("svg", {
                 class: "w-4 h-4",
@@ -911,14 +911,14 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
                   d: "M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
                 })
               ]),
-              ve(" Drag to reposition ")
+              pe(" Drag to reposition ")
             ], -1)
           ])]))
-        ], 38)) : (s(), i("div", {
+        ], 38)) : (i(), u("div", {
           key: 3,
-          class: Y(["flex items-center justify-center bg-dark-800 text-dark-500", c.value]),
-          style: J({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
-        }, [...l[7] || (l[7] = [
+          class: W(["flex items-center justify-center bg-dark-800 text-dark-500", s.value]),
+          style: G({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
+        }, [...n[7] || (n[7] = [
           e("svg", {
             class: "w-12 h-12",
             fill: "none",
@@ -933,19 +933,19 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
             })
           ], -1)
         ])], 6)),
-        a.shape !== "circle" && m(d).image ? (s(), i("div", {
+        a.shape !== "circle" && m(v).image ? (i(), u("div", {
           key: 4,
-          class: Y(["absolute inset-0 pointer-events-none border-2 border-white/20", c.value])
-        }, null, 2)) : U("", !0)
+          class: W(["absolute inset-0 pointer-events-none border-2 border-white/20", s.value])
+        }, null, 2)) : j("", !0)
       ]),
-      f.showZoomSlider && m(d).image ? (s(), i("div", Qe, [
+      f.showZoomSlider && m(v).image ? (i(), u("div", Qe, [
         e("div", et, [
           e("button", {
             type: "button",
             class: "p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-            onClick: l[0] || (l[0] = (t) => m(w)(m(d).zoom - (m(d).maxZoom - m(d).minZoom) * 0.1)),
-            disabled: m(d).zoom <= m(d).minZoom
-          }, [...l[8] || (l[8] = [
+            onClick: n[0] || (n[0] = (t) => m(z)(m(v).zoom - (m(v).maxZoom - m(v).minZoom) * 0.1)),
+            disabled: m(v).zoom <= m(v).minZoom
+          }, [...n[8] || (n[8] = [
             e("svg", {
               class: "w-4 h-4",
               fill: "none",
@@ -963,20 +963,20 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
           e("div", at, [
             e("input", {
               type: "range",
-              value: o.value,
+              value: r.value,
               min: "0",
               max: "1",
               step: "0.01",
               class: "zoom-slider w-full h-2 bg-dark-700 rounded-full appearance-none cursor-pointer",
-              onInput: l[1] || (l[1] = (t) => o.value = parseFloat(t.target.value))
+              onInput: n[1] || (n[1] = (t) => r.value = parseFloat(t.target.value))
             }, null, 40, ot)
           ]),
           e("button", {
             type: "button",
             class: "p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-            onClick: l[2] || (l[2] = (t) => m(w)(m(d).zoom + (m(d).maxZoom - m(d).minZoom) * 0.1)),
-            disabled: m(d).zoom >= m(d).maxZoom
-          }, [...l[9] || (l[9] = [
+            onClick: n[2] || (n[2] = (t) => m(z)(m(v).zoom + (m(v).maxZoom - m(v).minZoom) * 0.1)),
+            disabled: m(v).zoom >= m(v).maxZoom
+          }, [...n[9] || (n[9] = [
             e("svg", {
               class: "w-4 h-4",
               fill: "none",
@@ -991,31 +991,31 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
               })
             ], -1)
           ])], 8, nt),
-          e("span", lt, P(_.value) + "% ", 1)
+          e("span", lt, T(b.value) + "% ", 1)
         ])
-      ])) : U("", !0),
+      ])) : j("", !0),
       e("div", rt, [
-        f.showReset && m(d).image ? (s(), i("button", {
+        f.showReset && m(v).image ? (i(), u("button", {
           key: 0,
           type: "button",
           class: "px-4 py-2 text-sm text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-          onClick: B
-        }, " Reset ")) : U("", !0),
+          onClick: A
+        }, " Reset ")) : j("", !0),
         e("button", {
           type: "button",
           class: "px-4 py-2 text-sm text-dark-300 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors",
-          onClick: F
-        }, P(f.cancelLabel), 1),
+          onClick: I
+        }, T(f.cancelLabel), 1),
         e("button", {
           type: "button",
           class: "px-6 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-500 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-          disabled: !m(d).image || m(y),
-          onClick: I
-        }, P(f.confirmLabel), 9, st)
+          disabled: !m(v).image || m(k),
+          onClick: h
+        }, T(f.confirmLabel), 9, st)
       ])
     ]));
   }
-}), Ce = /* @__PURE__ */ le(it, [["__scopeId", "data-v-235e5b45"]]), ut = {
+}), $e = /* @__PURE__ */ le(it, [["__scopeId", "data-v-235e5b45"]]), ut = {
   key: 0,
   class: "fixed inset-0 z-50 flex items-center justify-center p-4"
 }, ct = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, dt = ["src"], vt = {
@@ -1036,7 +1036,7 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
 }, gt = ["stroke-dasharray", "stroke-dashoffset"], yt = { class: "absolute text-white font-medium text-sm" }, kt = {
   key: 0,
   class: "absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs text-red-400"
-}, xt = /* @__PURE__ */ oe({
+}, wt = /* @__PURE__ */ oe({
   __name: "AvatarUpload",
   props: {
     modelValue: {},
@@ -1052,18 +1052,18 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
     cropOutputSize: { default: 512 }
   },
   emits: ["update:modelValue", "upload-start", "upload-progress", "upload-success", "upload-error", "file-selected", "crop-applied"],
-  setup(f, { emit: M }) {
-    const a = f, u = M, {
-      uploading: d,
-      progress: y,
-      error: n,
-      previewUrl: j,
-      selectedFile: E,
-      selectFile: O,
-      clearSelection: D,
-      upload: H,
-      uploadWithCrop: R
-    } = Ne(a.config), w = C(null), S = C(!1), v = C(!1), p = C(null), z = C(null), b = A(() => j.value || a.modelValue || null), k = A(() => {
+  setup(f, { emit: E }) {
+    const a = f, c = E, {
+      uploading: v,
+      progress: k,
+      error: o,
+      previewUrl: R,
+      selectedFile: F,
+      selectFile: H,
+      clearSelection: O,
+      upload: Z,
+      uploadWithCrop: Y
+    } = Ne(a.config), z = C(null), $ = C(!1), p = C(!1), d = C(null), S = C(null), w = D(() => R.value || a.modelValue || null), y = D(() => {
       switch (a.shape) {
         case "rounded":
           return "rounded-2xl";
@@ -1072,153 +1072,153 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
         default:
           return "rounded-full";
       }
-    }), h = A(() => 2 * Math.PI * 45), _ = A(() => h.value - y.value / 100 * h.value);
-    ee(y, (I) => {
-      u("upload-progress", I);
-    }), ee(n, (I) => {
-      I && u("upload-error", I);
+    }), _ = D(() => 2 * Math.PI * 45), b = D(() => _.value - k.value / 100 * _.value);
+    Q(k, (h) => {
+      c("upload-progress", h);
+    }), Q(o, (h) => {
+      h && c("upload-error", h);
     });
-    function o() {
-      var I;
-      !a.editable || d.value || (I = w.value) == null || I.click();
+    function r() {
+      var h;
+      !a.editable || v.value || (h = z.value) == null || h.click();
     }
-    function c(I) {
-      var X;
-      const F = I.target, B = (X = F.files) == null ? void 0 : X[0];
-      B && g(B), F.value = "";
+    function s(h) {
+      var P;
+      const I = h.target, A = (P = I.files) == null ? void 0 : P[0];
+      A && g(A), I.value = "";
     }
-    function g(I) {
-      if (!["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"].some((B) => I.type === B)) {
-        u("upload-error", {
+    function g(h) {
+      if (!["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"].some((A) => h.type === A)) {
+        c("upload-error", {
           message: "Invalid file type. Please select a JPEG, PNG, WebP, or HEIC image.",
           code: "INVALID_TYPE"
         });
         return;
       }
-      if (u("file-selected", I), a.enableCrop)
-        p.value = I, v.value = !0;
+      if (c("file-selected", h), a.enableCrop)
+        d.value = h, p.value = !0;
       else {
-        if (O(I))
+        if (H(h))
           return;
         x();
       }
     }
     async function x() {
-      var F, B, X, r;
-      if (!E.value) return;
-      u("upload-start", E.value);
-      const I = await H();
-      if (I) {
-        u("upload-success", I);
-        const l = ((B = (F = I.variants) == null ? void 0 : F.lg) == null ? void 0 : B.url) || ((r = (X = I.variants) == null ? void 0 : X.md) == null ? void 0 : r.url) || I.url;
-        u("update:modelValue", l), D();
+      var I, A, P, l;
+      if (!F.value) return;
+      c("upload-start", F.value);
+      const h = await Z();
+      if (h) {
+        c("upload-success", h);
+        const n = ((A = (I = h.variants) == null ? void 0 : I.lg) == null ? void 0 : A.url) || ((l = (P = h.variants) == null ? void 0 : P.md) == null ? void 0 : l.url) || h.url;
+        c("update:modelValue", n), O();
       }
     }
-    async function L(I) {
-      var X, r, l, t;
-      if (v.value = !1, p.value = null, z.value = I.crop, u("crop-applied", I), O(I.file))
+    async function L(h) {
+      var P, l, n, t;
+      if (p.value = !1, d.value = null, S.value = h.crop, c("crop-applied", h), H(h.file))
         return;
-      u("upload-start", I.file);
-      const B = await R(I.crop);
-      if (B) {
-        u("upload-success", { ...B, crop: I.crop });
-        const $ = ((r = (X = B.variants) == null ? void 0 : X.lg) == null ? void 0 : r.url) || ((t = (l = B.variants) == null ? void 0 : l.md) == null ? void 0 : t.url) || B.url;
-        u("update:modelValue", $), D();
+      c("upload-start", h.file);
+      const A = await Y(h.crop);
+      if (A) {
+        c("upload-success", { ...A, crop: h.crop });
+        const M = ((l = (P = A.variants) == null ? void 0 : P.lg) == null ? void 0 : l.url) || ((t = (n = A.variants) == null ? void 0 : n.md) == null ? void 0 : t.url) || A.url;
+        c("update:modelValue", M), O();
       }
     }
-    function T() {
-      v.value = !1, p.value = null;
+    function B() {
+      p.value = !1, d.value = null;
     }
-    function V(I) {
-      I.preventDefault(), a.editable && !d.value && (S.value = !0);
+    function N(h) {
+      h.preventDefault(), a.editable && !v.value && ($.value = !0);
     }
-    function N(I) {
-      I.preventDefault(), S.value = !1;
+    function X(h) {
+      h.preventDefault(), $.value = !1;
     }
-    function K(I) {
-      I.preventDefault();
+    function J(h) {
+      h.preventDefault();
     }
-    function G(I) {
-      var B;
-      if (I.preventDefault(), S.value = !1, !a.editable || d.value) return;
-      const F = (B = I.dataTransfer) == null ? void 0 : B.files[0];
-      F && F.type.startsWith("image/") && g(F);
+    function U(h) {
+      var A;
+      if (h.preventDefault(), $.value = !1, !a.editable || v.value) return;
+      const I = (A = h.dataTransfer) == null ? void 0 : A.files[0];
+      I && I.type.startsWith("image/") && g(I);
     }
-    return me(() => {
-      D();
-    }), (I, F) => (s(), i("div", null, [
-      (s(), ie(he, { to: "body" }, [
-        ne(ge, { name: "fade" }, {
-          default: ye(() => [
-            v.value && p.value ? (s(), i("div", ut, [
+    return he(() => {
+      O();
+    }), (h, I) => (i(), u("div", null, [
+      (i(), ie(ge, { to: "body" }, [
+        ne(ye, { name: "fade" }, {
+          default: ke(() => [
+            p.value && d.value ? (i(), u("div", ut, [
               e("div", {
                 class: "absolute inset-0 bg-black/80 backdrop-blur-sm",
-                onClick: T
+                onClick: B
               }),
               e("div", ct, [
-                F[0] || (F[0] = e("h3", { class: "text-lg font-semibold text-white mb-4 text-center" }, " Adjust your photo ", -1)),
-                ne(Ce, {
-                  file: p.value,
+                I[0] || (I[0] = e("h3", { class: "text-lg font-semibold text-white mb-4 text-center" }, " Adjust your photo ", -1)),
+                ne($e, {
+                  file: d.value,
                   shape: f.shape,
                   "crop-size": f.cropSize,
                   "output-size": f.cropOutputSize,
                   "confirm-label": "Save",
                   onConfirm: L,
-                  onCancel: T
+                  onCancel: B
                 }, null, 8, ["file", "shape", "crop-size", "output-size"])
               ])
-            ])) : U("", !0)
+            ])) : j("", !0)
           ]),
           _: 1
         })
       ])),
       e("div", {
-        class: Y(["avatar-upload-container relative inline-block", f.containerClass]),
-        style: J({ width: `${f.size}px`, height: `${f.size}px` })
+        class: W(["avatar-upload-container relative inline-block", f.containerClass]),
+        style: G({ width: `${f.size}px`, height: `${f.size}px` })
       }, [
         e("input", {
           ref_key: "fileInput",
-          ref: w,
+          ref: z,
           type: "file",
           accept: "image/jpeg,image/png,image/webp,image/heic,image/heif",
           class: "hidden",
-          onChange: c
+          onChange: s
         }, null, 544),
         e("div", {
-          class: Y(["avatar-upload relative w-full h-full overflow-hidden transition-all duration-200", [
-            k.value,
-            f.editable && !m(d) ? "cursor-pointer hover:ring-4 hover:ring-primary-500/30" : "",
-            S.value ? "ring-4 ring-primary-500 scale-105" : "",
-            m(n) ? "ring-2 ring-red-500" : ""
+          class: W(["avatar-upload relative w-full h-full overflow-hidden transition-all duration-200", [
+            y.value,
+            f.editable && !m(v) ? "cursor-pointer hover:ring-4 hover:ring-primary-500/30" : "",
+            $.value ? "ring-4 ring-primary-500 scale-105" : "",
+            m(o) ? "ring-2 ring-red-500" : ""
           ]]),
-          onClick: o,
-          onDragenter: V,
-          onDragleave: N,
-          onDragover: K,
-          onDrop: G
+          onClick: r,
+          onDragenter: N,
+          onDragleave: X,
+          onDragover: J,
+          onDrop: U
         }, [
-          b.value ? (s(), i("img", {
+          w.value ? (i(), u("img", {
             key: 0,
-            src: b.value,
+            src: w.value,
             alt: "Avatar",
             class: "w-full h-full object-cover"
-          }, null, 8, dt)) : (s(), i("div", vt, [
-            f.placeholder ? (s(), i("span", {
+          }, null, 8, dt)) : (i(), u("div", vt, [
+            f.placeholder ? (i(), u("span", {
               key: 0,
               class: "text-white font-semibold",
-              style: J({ fontSize: `${f.size / 3}px` })
-            }, P(f.placeholder), 5)) : (s(), i("svg", {
+              style: G({ fontSize: `${f.size / 3}px` })
+            }, T(f.placeholder), 5)) : (i(), u("svg", {
               key: 1,
               class: "text-slate-400",
               width: f.size / 2.5,
               height: f.size / 2.5,
               fill: "currentColor",
               viewBox: "0 0 24 24"
-            }, [...F[1] || (F[1] = [
+            }, [...I[1] || (I[1] = [
               e("path", { d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" }, null, -1)
             ])], 8, pt))
           ])),
-          f.editable && !m(d) ? (s(), i("div", ft, [...F[2] || (F[2] = [
+          f.editable && !m(v) ? (i(), u("div", ft, [...I[2] || (I[2] = [
             e("svg", {
               class: "text-white",
               width: "24",
@@ -1240,10 +1240,10 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
                 d: "M15 13a3 3 0 11-6 0 3 3 0 016 0z"
               })
             ], -1)
-          ])])) : U("", !0),
-          m(d) ? (s(), i("div", mt, [
-            f.showProgress ? (s(), i("svg", ht, [
-              F[3] || (F[3] = e("circle", {
+          ])])) : j("", !0),
+          m(v) ? (i(), u("div", mt, [
+            f.showProgress ? (i(), u("svg", ht, [
+              I[3] || (I[3] = e("circle", {
                 cx: "50",
                 cy: "50",
                 r: "45",
@@ -1261,220 +1261,220 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { 
                 "stroke-width": "6",
                 "stroke-linecap": "round",
                 class: "text-primary-500 transition-all duration-200",
-                "stroke-dasharray": h.value,
-                "stroke-dashoffset": _.value
+                "stroke-dasharray": _.value,
+                "stroke-dashoffset": b.value
               }, null, 8, gt)
-            ])) : U("", !0),
-            e("span", yt, P(m(y)) + "%", 1)
-          ])) : U("", !0)
+            ])) : j("", !0),
+            e("span", yt, T(m(k)) + "%", 1)
+          ])) : j("", !0)
         ], 34),
-        m(n) && !m(d) ? (s(), i("div", kt, P(m(n).message), 1)) : U("", !0)
+        m(o) && !m(v) ? (i(), u("div", kt, T(m(o).message), 1)) : j("", !0)
       ], 6)
     ]));
   }
-}), Da = /* @__PURE__ */ le(xt, [["__scopeId", "data-v-36262731"]]), fe = C({});
-function Ba(f) {
-  fe.value = { ...fe.value, ...f };
+}), Ba = /* @__PURE__ */ le(wt, [["__scopeId", "data-v-36262731"]]), me = C({});
+function Ha(f) {
+  me.value = { ...me.value, ...f };
 }
 function bt(f) {
-  const M = C([]), a = C(!1), u = C(null), d = C(!1), y = C(0), n = A(() => ({
+  const E = C([]), a = C(!1), c = C(null), v = C(!1), k = C(0), o = D(() => ({
     apiBaseUrl: "/api",
     getHeaders: () => ({}),
-    ...fe.value,
+    ...me.value,
     ...f
-  })), j = A(() => M.value.find((v) => v.is_primary));
-  async function E() {
-    a.value = !0, u.value = null;
+  })), R = D(() => E.value.find((p) => p.is_primary));
+  async function F() {
+    a.value = !0, c.value = null;
     try {
-      let v = `${n.value.apiBaseUrl}/avatars`;
-      const p = new URLSearchParams();
-      n.value.projectId && p.set("project_id", n.value.projectId), n.value.entityType && p.set("entity_type", n.value.entityType), n.value.entityId && p.set("entity_id", n.value.entityId), p.toString() && (v += `?${p.toString()}`);
-      const z = await fetch(v, {
-        headers: n.value.getHeaders()
+      let p = `${o.value.apiBaseUrl}/avatars`;
+      const d = new URLSearchParams();
+      o.value.projectId && d.set("project_id", o.value.projectId), o.value.entityType && d.set("entity_type", o.value.entityType), o.value.entityId && d.set("entity_id", o.value.entityId), d.toString() && (p += `?${d.toString()}`);
+      const S = await fetch(p, {
+        headers: o.value.getHeaders()
       });
-      if (!z.ok)
-        throw new Error(await z.text());
-      const b = await z.json();
-      M.value = b.avatars || [];
-    } catch (v) {
-      u.value = v.message || "Failed to fetch avatars";
+      if (!S.ok)
+        throw new Error(await S.text());
+      const w = await S.json();
+      E.value = w.avatars || [];
+    } catch (p) {
+      c.value = p.message || "Failed to fetch avatars";
     } finally {
       a.value = !1;
     }
   }
-  async function O(v) {
-    u.value = null;
+  async function H(p) {
+    c.value = null;
     try {
-      const p = await fetch(`${n.value.apiBaseUrl}/avatars`, {
+      const d = await fetch(`${o.value.apiBaseUrl}/avatars`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...n.value.getHeaders()
+          ...o.value.getHeaders()
         },
         body: JSON.stringify({
-          original_url: v.original_url,
-          file_id: v.file_id,
-          name: v.name,
-          is_primary: v.is_primary ?? !1,
+          original_url: p.original_url,
+          file_id: p.file_id,
+          name: p.name,
+          is_primary: p.is_primary ?? !1,
           source: "upload",
           format: "static",
-          variants: v.variants,
-          blurhash: v.blurhash,
-          dominant_color: v.dominant_color,
-          alt_text: v.alt_text,
-          fallback_type: v.fallback_initials ? "initials" : "default",
-          fallback_data: v.fallback_initials ? { initials: v.fallback_initials } : void 0
+          variants: p.variants,
+          blurhash: p.blurhash,
+          dominant_color: p.dominant_color,
+          alt_text: p.alt_text,
+          fallback_type: p.fallback_initials ? "initials" : "default",
+          fallback_data: p.fallback_initials ? { initials: p.fallback_initials } : void 0
         })
       });
-      if (!p.ok)
-        throw new Error(await p.text());
-      const z = await p.json();
-      return await E(), z;
-    } catch (p) {
-      return u.value = p.message || "Failed to create avatar", null;
+      if (!d.ok)
+        throw new Error(await d.text());
+      const S = await d.json();
+      return await F(), S;
+    } catch (d) {
+      return c.value = d.message || "Failed to create avatar", null;
     }
   }
-  async function D(v) {
-    u.value = null;
+  async function O(p) {
+    c.value = null;
     try {
-      const p = await fetch(`${n.value.apiBaseUrl}/avatars/${v}/primary`, {
+      const d = await fetch(`${o.value.apiBaseUrl}/avatars/${p}/primary`, {
         method: "POST",
-        headers: n.value.getHeaders()
+        headers: o.value.getHeaders()
       });
-      if (!p.ok)
-        throw new Error(await p.text());
-      return M.value = M.value.map((z) => ({
-        ...z,
-        is_primary: z.id === v
+      if (!d.ok)
+        throw new Error(await d.text());
+      return E.value = E.value.map((S) => ({
+        ...S,
+        is_primary: S.id === p
       })), !0;
-    } catch (p) {
-      return u.value = p.message || "Failed to set primary avatar", !1;
+    } catch (d) {
+      return c.value = d.message || "Failed to set primary avatar", !1;
     }
   }
-  async function H(v) {
-    u.value = null;
+  async function Z(p) {
+    c.value = null;
     try {
-      const p = await fetch(`${n.value.apiBaseUrl}/avatars/${v}`, {
+      const d = await fetch(`${o.value.apiBaseUrl}/avatars/${p}`, {
         method: "DELETE",
-        headers: n.value.getHeaders()
+        headers: o.value.getHeaders()
       });
-      if (!p.ok)
-        throw new Error(await p.text());
-      return M.value = M.value.filter((z) => z.id !== v), !0;
-    } catch (p) {
-      return u.value = p.message || "Failed to delete avatar", !1;
+      if (!d.ok)
+        throw new Error(await d.text());
+      return E.value = E.value.filter((S) => S.id !== p), !0;
+    } catch (d) {
+      return c.value = d.message || "Failed to delete avatar", !1;
     }
   }
-  async function R(v, p) {
-    u.value = null;
+  async function Y(p, d) {
+    c.value = null;
     try {
-      const z = await fetch(`${n.value.apiBaseUrl}/avatars/${v}`, {
+      const S = await fetch(`${o.value.apiBaseUrl}/avatars/${p}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          ...n.value.getHeaders()
+          ...o.value.getHeaders()
         },
-        body: JSON.stringify(p)
+        body: JSON.stringify(d)
       });
-      if (!z.ok)
-        throw new Error(await z.text());
-      const b = await z.json();
-      return M.value = M.value.map(
-        (k) => k.id === v ? b : k
-      ), b;
-    } catch (z) {
-      return u.value = z.message || "Failed to update avatar", null;
+      if (!S.ok)
+        throw new Error(await S.text());
+      const w = await S.json();
+      return E.value = E.value.map(
+        (y) => y.id === p ? w : y
+      ), w;
+    } catch (S) {
+      return c.value = S.message || "Failed to update avatar", null;
     }
   }
-  async function w(v, p) {
-    if (!n.value.uploadUrl)
-      return u.value = "Upload URL not configured", null;
-    d.value = !0, y.value = 0, u.value = null;
+  async function z(p, d) {
+    if (!o.value.uploadUrl)
+      return c.value = "Upload URL not configured", null;
+    v.value = !0, k.value = 0, c.value = null;
     try {
-      const z = new FormData();
-      z.append("file", v), z.append("profile", "avatar");
-      const b = await new Promise((h, _) => {
-        const o = new XMLHttpRequest();
-        o.upload.addEventListener("progress", (g) => {
-          g.lengthComputable && (y.value = Math.round(g.loaded / g.total * 100));
-        }), o.addEventListener("load", () => {
-          if (o.status >= 200 && o.status < 300)
+      const S = new FormData();
+      S.append("file", p), S.append("profile", "avatar");
+      const w = await new Promise((_, b) => {
+        const r = new XMLHttpRequest();
+        r.upload.addEventListener("progress", (g) => {
+          g.lengthComputable && (k.value = Math.round(g.loaded / g.total * 100));
+        }), r.addEventListener("load", () => {
+          if (r.status >= 200 && r.status < 300)
             try {
-              const g = JSON.parse(o.responseText);
-              h(g.data || g);
+              const g = JSON.parse(r.responseText);
+              _(g.data || g);
             } catch {
-              _(new Error("Invalid response from server"));
+              b(new Error("Invalid response from server"));
             }
           else {
             let g = "Upload failed";
             try {
-              const x = JSON.parse(o.responseText);
+              const x = JSON.parse(r.responseText);
               g = x.error || x.message || g;
             } catch {
             }
-            _(new Error(g));
+            b(new Error(g));
           }
-        }), o.addEventListener("error", () => _(new Error("Network error"))), o.addEventListener("abort", () => _(new Error("Upload cancelled"))), o.open("POST", n.value.uploadUrl);
-        const c = n.value.getHeaders();
-        for (const [g, x] of Object.entries(c))
-          o.setRequestHeader(g, x);
-        o.send(z);
+        }), r.addEventListener("error", () => b(new Error("Network error"))), r.addEventListener("abort", () => b(new Error("Upload cancelled"))), r.open("POST", o.value.uploadUrl);
+        const s = o.value.getHeaders();
+        for (const [g, x] of Object.entries(s))
+          r.setRequestHeader(g, x);
+        r.send(S);
       });
-      return y.value = 100, await O({
-        original_url: b.url || b.signed_url,
-        file_id: b.id,
-        name: p == null ? void 0 : p.name,
-        is_primary: p == null ? void 0 : p.is_primary,
-        variants: b.variants,
-        fallback_initials: p == null ? void 0 : p.fallback_initials
+      return k.value = 100, await H({
+        original_url: w.url || w.signed_url,
+        file_id: w.id,
+        name: d == null ? void 0 : d.name,
+        is_primary: d == null ? void 0 : d.is_primary,
+        variants: w.variants,
+        fallback_initials: d == null ? void 0 : d.fallback_initials
       });
-    } catch (z) {
-      return u.value = z.message || "Failed to upload avatar", null;
+    } catch (S) {
+      return c.value = S.message || "Failed to upload avatar", null;
     } finally {
-      d.value = !1;
+      v.value = !1;
     }
   }
-  function S(v, p = "md") {
-    var b, k, h, _, o, c, g;
-    if (p === "original")
-      return v.original_url;
-    if (p === "source")
-      return ((b = v.variants.source) == null ? void 0 : b.url) || v.original_url;
-    const z = v.variants[p];
-    return z ? z.url : p === "sm" ? ((k = v.variants.md) == null ? void 0 : k.url) || ((h = v.variants.lg) == null ? void 0 : h.url) || v.original_url : p === "md" ? ((_ = v.variants.lg) == null ? void 0 : _.url) || ((o = v.variants.sm) == null ? void 0 : o.url) || v.original_url : p === "lg" && (((c = v.variants.md) == null ? void 0 : c.url) || ((g = v.variants.sm) == null ? void 0 : g.url)) || v.original_url;
+  function $(p, d = "md") {
+    var w, y, _, b, r, s, g;
+    if (d === "original")
+      return p.original_url;
+    if (d === "source")
+      return ((w = p.variants.source) == null ? void 0 : w.url) || p.original_url;
+    const S = p.variants[d];
+    return S ? S.url : d === "sm" ? ((y = p.variants.md) == null ? void 0 : y.url) || ((_ = p.variants.lg) == null ? void 0 : _.url) || p.original_url : d === "md" ? ((b = p.variants.lg) == null ? void 0 : b.url) || ((r = p.variants.sm) == null ? void 0 : r.url) || p.original_url : d === "lg" && (((s = p.variants.md) == null ? void 0 : s.url) || ((g = p.variants.sm) == null ? void 0 : g.url)) || p.original_url;
   }
   return {
     // State
-    avatars: M,
+    avatars: E,
     loading: a,
-    error: u,
-    uploading: d,
-    uploadProgress: y,
-    primaryAvatar: j,
-    config: n,
+    error: c,
+    uploading: v,
+    uploadProgress: k,
+    primaryAvatar: R,
+    config: o,
     // Methods
-    fetchAvatars: E,
-    createAvatar: O,
-    setPrimary: D,
-    deleteAvatar: H,
-    updateAvatar: R,
-    uploadAndCreateAvatar: w,
-    getAvatarUrl: S
+    fetchAvatars: F,
+    createAvatar: H,
+    setPrimary: O,
+    deleteAvatar: Z,
+    updateAvatar: Y,
+    uploadAndCreateAvatar: z,
+    getAvatarUrl: $
   };
 }
-const wt = { class: "avatar-manager" }, _t = {
+const xt = { class: "avatar-manager" }, _t = {
   key: 0,
   class: "fixed inset-0 z-50 flex items-center justify-center p-4"
 }, Ct = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, $t = { class: "text-lg font-semibold text-white mb-4 text-center" }, zt = {
   key: 0,
   class: "flex items-center justify-center py-8"
-}, Mt = {
+}, St = {
   key: 1,
   class: "text-center py-8"
-}, St = { class: "text-red-400 mb-2" }, It = {
+}, Mt = { class: "text-red-400 mb-2" }, Et = {
   key: 2,
   class: "space-y-3"
-}, Et = { class: "flex flex-wrap gap-3" }, Ut = ["onClick"], Lt = ["src", "alt"], jt = {
+}, It = { class: "flex flex-wrap gap-3" }, Lt = ["onClick"], Ut = ["src", "alt"], jt = {
   key: 0,
   class: "absolute -top-1 -right-1 w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg",
   title: "Pending moderation"
@@ -1493,7 +1493,7 @@ const wt = { class: "avatar-manager" }, _t = {
 }, Xt = {
   key: 3,
   class: "space-y-3"
-}, Wt = { class: "space-y-2" }, qt = ["onClick"], Jt = ["src", "alt"], Gt = { class: "flex-1 min-w-0" }, Kt = { class: "flex items-center gap-2" }, Qt = { class: "font-medium text-white truncate" }, ea = {
+}, Wt = { class: "space-y-2" }, Kt = ["onClick"], qt = ["src", "alt"], Jt = { class: "flex-1 min-w-0" }, Gt = { class: "flex items-center gap-2" }, Qt = { class: "font-medium text-white truncate" }, ea = {
   key: 0,
   class: "px-2 py-0.5 text-xs font-medium bg-emerald-500/20 text-emerald-400 rounded-full"
 }, ta = {
@@ -1521,20 +1521,20 @@ const wt = { class: "avatar-manager" }, _t = {
     config: {}
   },
   emits: ["select", "primary-changed", "upload-success", "upload-error", "delete", "crop-updated"],
-  setup(f, { emit: M }) {
-    const a = f, u = M, {
-      avatars: d,
-      loading: y,
-      error: n,
-      uploading: j,
-      uploadProgress: E,
-      config: O,
-      fetchAvatars: D,
-      setPrimary: H,
-      deleteAvatar: R,
-      uploadAndCreateAvatar: w,
-      getAvatarUrl: S
-    } = bt(a.config), v = C(null), p = C(null), z = C(null), b = C(!1), k = C("upload"), h = C(null), _ = C(null), o = A(() => a.allowUpload && d.value.length < a.maxAvatars), c = A(() => {
+  setup(f, { emit: E }) {
+    const a = f, c = E, {
+      avatars: v,
+      loading: k,
+      error: o,
+      uploading: R,
+      uploadProgress: F,
+      config: H,
+      fetchAvatars: O,
+      setPrimary: Z,
+      deleteAvatar: Y,
+      uploadAndCreateAvatar: z,
+      getAvatarUrl: $
+    } = bt(a.config), p = C(null), d = C(null), S = C(null), w = C(!1), y = C("upload"), _ = C(null), b = C(null), r = D(() => a.allowUpload && v.value.length < a.maxAvatars), s = D(() => {
       switch (a.shape) {
         case "circle":
           return "rounded-full";
@@ -1545,155 +1545,155 @@ const wt = { class: "avatar-manager" }, _t = {
         default:
           return "rounded-full";
       }
-    }), g = A(() => _.value ? _.value.original_url : null);
+    }), g = D(() => b.value ? b.value.original_url : null);
     se(() => {
-      D();
+      O();
     });
     function x() {
-      var r;
-      (r = v.value) == null || r.click();
+      var l;
+      (l = p.value) == null || l.click();
     }
-    async function L(r) {
-      var $;
-      const l = r.target, t = ($ = l.files) == null ? void 0 : $[0];
+    async function L(l) {
+      var M;
+      const n = l.target, t = (M = n.files) == null ? void 0 : M[0];
       if (t)
-        if (l.value = "", a.enableCropOnUpload)
-          h.value = t, k.value = "upload", b.value = !0;
+        if (n.value = "", a.enableCropOnUpload)
+          _.value = t, y.value = "upload", w.value = !0;
         else {
-          const W = await w(t, {
-            name: `Avatar ${d.value.length + 1}`,
-            is_primary: d.value.length === 0,
+          const K = await z(t, {
+            name: `Avatar ${v.value.length + 1}`,
+            is_primary: v.value.length === 0,
             fallback_initials: a.initials
           });
-          W ? u("upload-success", W) : n.value && u("upload-error", n.value);
+          K ? c("upload-success", K) : o.value && c("upload-error", o.value);
         }
     }
-    function T(r) {
-      _.value = r, k.value = "edit", b.value = !0;
+    function B(l) {
+      b.value = l, y.value = "edit", w.value = !0;
     }
-    async function V(r) {
-      if (b.value = !1, k.value === "upload" && h.value) {
-        const l = await w(r.file, {
-          name: `Avatar ${d.value.length + 1}`,
-          is_primary: d.value.length === 0,
+    async function N(l) {
+      if (w.value = !1, y.value === "upload" && _.value) {
+        const n = await z(l.file, {
+          name: `Avatar ${v.value.length + 1}`,
+          is_primary: v.value.length === 0,
           fallback_initials: a.initials,
-          crop: r.crop
+          crop: l.crop
         });
-        l ? u("upload-success", l) : n.value && u("upload-error", n.value);
-      } else if (k.value === "edit" && _.value) {
-        const l = await w(r.file, {
-          name: _.value.name,
-          is_primary: _.value.is_primary,
+        n ? c("upload-success", n) : o.value && c("upload-error", o.value);
+      } else if (y.value === "edit" && b.value) {
+        const n = await z(l.file, {
+          name: b.value.name,
+          is_primary: b.value.is_primary,
           fallback_initials: a.initials,
-          crop: r.crop
+          crop: l.crop
         });
-        l ? (await R(_.value.id), u("crop-updated", l, r.crop)) : n.value && u("upload-error", n.value);
+        n ? (await Y(b.value.id), c("crop-updated", n, l.crop)) : o.value && c("upload-error", o.value);
       }
-      h.value = null, _.value = null;
+      _.value = null, b.value = null;
     }
-    function N() {
-      b.value = !1, h.value = null, _.value = null;
+    function X() {
+      w.value = !1, _.value = null, b.value = null;
     }
-    async function K(r) {
-      if (r.is_primary) return;
-      await H(r.id) && u("primary-changed", r);
+    async function J(l) {
+      if (l.is_primary) return;
+      await Z(l.id) && c("primary-changed", l);
     }
-    async function G(r) {
-      if (p.value !== r.id) {
-        p.value = r.id;
+    async function U(l) {
+      if (d.value !== l.id) {
+        d.value = l.id;
         return;
       }
-      await R(r.id) && (u("delete", r), p.value = null);
+      await Y(l.id) && (c("delete", l), d.value = null);
     }
-    function I() {
-      p.value = null;
+    function h() {
+      d.value = null;
     }
-    function F(r) {
-      z.value = r.id, u("select", r);
+    function I(l) {
+      S.value = l.id, c("select", l);
     }
-    function B(r) {
-      const l = new Date(r);
-      return l.toLocaleDateString(void 0, {
+    function A(l) {
+      const n = new Date(l);
+      return n.toLocaleDateString(void 0, {
         month: "short",
         day: "numeric",
-        year: l.getFullYear() !== (/* @__PURE__ */ new Date()).getFullYear() ? "numeric" : void 0
+        year: n.getFullYear() !== (/* @__PURE__ */ new Date()).getFullYear() ? "numeric" : void 0
       });
     }
-    function X(r) {
+    function P(l) {
       return {
         upload: "Uploaded",
         gravatar: "Gravatar",
         oauth: "OAuth",
         generated: "Generated",
         ai: "AI Generated"
-      }[r] || r;
+      }[l] || l;
     }
-    return (r, l) => (s(), i("div", wt, [
+    return (l, n) => (i(), u("div", xt, [
       e("input", {
         ref_key: "fileInputRef",
-        ref: v,
+        ref: p,
         type: "file",
         accept: "image/*",
         class: "hidden",
         onChange: L
       }, null, 544),
-      (s(), ie(he, { to: "body" }, [
-        ne(ge, { name: "fade" }, {
-          default: ye(() => [
-            b.value && (h.value || _.value) ? (s(), i("div", _t, [
+      (i(), ie(ge, { to: "body" }, [
+        ne(ye, { name: "fade" }, {
+          default: ke(() => [
+            w.value && (_.value || b.value) ? (i(), u("div", _t, [
               e("div", {
                 class: "absolute inset-0 bg-black/80 backdrop-blur-sm",
-                onClick: N
+                onClick: X
               }),
               e("div", Ct, [
-                e("h3", $t, P(k.value === "edit" ? "Adjust your photo" : "Position your photo"), 1),
-                ne(Ce, {
-                  file: h.value,
+                e("h3", $t, T(y.value === "edit" ? "Adjust your photo" : "Position your photo"), 1),
+                ne($e, {
+                  file: _.value,
                   url: g.value,
                   shape: f.shape,
                   "crop-size": f.cropSize,
-                  config: { mediaProxyUrl: m(O).mediaProxyUrl },
-                  "confirm-label": k.value === "edit" ? "Save changes" : "Upload",
-                  onConfirm: V,
-                  onCancel: N
+                  config: { mediaProxyUrl: m(H).mediaProxyUrl },
+                  "confirm-label": y.value === "edit" ? "Save changes" : "Upload",
+                  onConfirm: N,
+                  onCancel: X
                 }, null, 8, ["file", "url", "shape", "crop-size", "config", "confirm-label"])
               ])
-            ])) : U("", !0)
+            ])) : j("", !0)
           ]),
           _: 1
         })
       ])),
-      m(y) && m(d).length === 0 ? (s(), i("div", zt, [...l[1] || (l[1] = [
+      m(k) && m(v).length === 0 ? (i(), u("div", zt, [...n[1] || (n[1] = [
         e("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
-      ])])) : m(n) && m(d).length === 0 ? (s(), i("div", Mt, [
-        e("div", St, P(m(n)), 1),
+      ])])) : m(o) && m(v).length === 0 ? (i(), u("div", St, [
+        e("div", Mt, T(m(o)), 1),
         e("button", {
-          onClick: l[0] || (l[0] = //@ts-ignore
-          (...t) => m(D) && m(D)(...t)),
+          onClick: n[0] || (n[0] = //@ts-ignore
+          (...t) => m(O) && m(O)(...t)),
           class: "text-sm text-primary-400 hover:text-primary-300 underline"
         }, " Try again ")
-      ])) : f.mode === "compact" ? (s(), i("div", It, [
-        e("div", Et, [
-          (s(!0), i(Q, null, ae(m(d), (t) => (s(), i("div", {
+      ])) : f.mode === "compact" ? (i(), u("div", Et, [
+        e("div", It, [
+          (i(!0), u(ee, null, ae(m(v), (t) => (i(), u("div", {
             key: t.id,
             class: "relative group",
-            style: J({ width: `${f.avatarSize}px`, height: `${f.avatarSize}px` })
+            style: G({ width: `${f.avatarSize}px`, height: `${f.avatarSize}px` })
           }, [
             e("button", {
-              onClick: ($) => F(t),
-              class: Y(["w-full h-full overflow-hidden transition-all duration-200", [
-                c.value,
-                t.is_primary ? "ring-[3px] ring-emerald-500 ring-offset-2 ring-offset-dark-900" : z.value === t.id ? "ring-2 ring-dark-400 ring-offset-2 ring-offset-dark-900" : "ring-2 ring-transparent hover:ring-dark-500 ring-offset-2 ring-offset-dark-900"
+              onClick: (M) => I(t),
+              class: W(["w-full h-full overflow-hidden transition-all duration-200", [
+                s.value,
+                t.is_primary ? "ring-[3px] ring-emerald-500 ring-offset-2 ring-offset-dark-900" : S.value === t.id ? "ring-2 ring-dark-400 ring-offset-2 ring-offset-dark-900" : "ring-2 ring-transparent hover:ring-dark-500 ring-offset-2 ring-offset-dark-900"
               ]])
             }, [
               e("img", {
-                src: m(S)(t, "md"),
+                src: m($)(t, "md"),
                 alt: t.alt_text || t.name || "Avatar",
                 class: "w-full h-full object-cover",
-                style: J(t.dominant_color ? { backgroundColor: t.dominant_color } : {})
-              }, null, 12, Lt)
-            ], 10, Ut),
-            t.moderation_status === "pending" ? (s(), i("div", jt, [...l[2] || (l[2] = [
+                style: G(t.dominant_color ? { backgroundColor: t.dominant_color } : {})
+              }, null, 12, Ut)
+            ], 10, Lt),
+            t.moderation_status === "pending" ? (i(), u("div", jt, [...n[2] || (n[2] = [
               e("svg", {
                 class: "w-3 h-3 text-white",
                 fill: "currentColor",
@@ -1705,20 +1705,20 @@ const wt = { class: "avatar-manager" }, _t = {
                   "clip-rule": "evenodd"
                 })
               ], -1)
-            ])])) : U("", !0),
+            ])])) : j("", !0),
             e("div", {
-              class: Y(["absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1", [
-                c.value,
-                p.value === t.id ? "z-50 opacity-100" : "z-10"
+              class: W(["absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1", [
+                s.value,
+                d.value === t.id ? "z-50 opacity-100" : "z-10"
               ]])
             }, [
-              f.allowEdit ? (s(), i("button", {
+              f.allowEdit ? (i(), u("button", {
                 key: 0,
                 type: "button",
-                onClick: te(($) => T(t), ["stop"]),
+                onClick: te((M) => B(t), ["stop"]),
                 class: "p-1.5 bg-dark-700 hover:bg-primary-600 rounded-lg transition-colors",
                 title: "Edit crop"
-              }, [...l[3] || (l[3] = [
+              }, [...n[3] || (n[3] = [
                 e("svg", {
                   class: "w-4 h-4 text-white",
                   fill: "none",
@@ -1732,14 +1732,14 @@ const wt = { class: "avatar-manager" }, _t = {
                     d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   })
                 ], -1)
-              ])], 8, At)) : U("", !0),
-              t.is_primary ? U("", !0) : (s(), i("button", {
+              ])], 8, At)) : j("", !0),
+              t.is_primary ? j("", !0) : (i(), u("button", {
                 key: 1,
                 type: "button",
-                onClick: te(($) => K(t), ["stop"]),
+                onClick: te((M) => J(t), ["stop"]),
                 class: "p-1.5 bg-dark-700 hover:bg-emerald-600 rounded-lg transition-colors",
                 title: "Set as primary"
-              }, [...l[4] || (l[4] = [
+              }, [...n[4] || (n[4] = [
                 e("svg", {
                   class: "w-4 h-4 text-white",
                   fill: "none",
@@ -1754,13 +1754,13 @@ const wt = { class: "avatar-manager" }, _t = {
                   })
                 ], -1)
               ])], 8, Ft)),
-              f.allowDelete ? (s(), i("button", {
+              f.allowDelete ? (i(), u("button", {
                 key: 2,
                 type: "button",
-                onClick: te(($) => G(t), ["stop"]),
-                class: Y(["p-1.5 rounded-lg transition-colors", p.value === t.id ? "bg-red-600 hover:bg-red-700" : "bg-dark-700 hover:bg-red-600"]),
-                title: p.value === t.id ? "Click again to confirm" : "Delete"
-              }, [...l[5] || (l[5] = [
+                onClick: te((M) => U(t), ["stop"]),
+                class: W(["p-1.5 rounded-lg transition-colors", d.value === t.id ? "bg-red-600 hover:bg-red-700" : "bg-dark-700 hover:bg-red-600"]),
+                title: d.value === t.id ? "Click again to confirm" : "Delete"
+              }, [...n[5] || (n[5] = [
                 e("svg", {
                   class: "w-4 h-4 text-white",
                   fill: "none",
@@ -1774,20 +1774,20 @@ const wt = { class: "avatar-manager" }, _t = {
                     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                   })
                 ], -1)
-              ])], 10, Pt)) : U("", !0)
+              ])], 10, Pt)) : j("", !0)
             ], 2)
           ], 4))), 128)),
-          o.value ? (s(), i("button", {
+          r.value ? (i(), u("button", {
             key: 0,
             type: "button",
             onClick: x,
-            disabled: m(j),
-            class: Y(["flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors", c.value]),
-            style: J({ width: `${f.avatarSize}px`, height: `${f.avatarSize}px` })
+            disabled: m(R),
+            class: W(["flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors", s.value]),
+            style: G({ width: `${f.avatarSize}px`, height: `${f.avatarSize}px` })
           }, [
-            m(j) ? (s(), i("div", Ot, [
-              (s(), i("svg", Tt, [
-                l[6] || (l[6] = e("path", {
+            m(R) ? (i(), u("div", Ot, [
+              (i(), u("svg", Tt, [
+                n[6] || (n[6] = e("path", {
                   class: "text-dark-700",
                   stroke: "currentColor",
                   "stroke-width": "3",
@@ -1800,12 +1800,12 @@ const wt = { class: "avatar-manager" }, _t = {
                   "stroke-width": "3",
                   fill: "none",
                   "stroke-linecap": "round",
-                  "stroke-dasharray": `${m(E)}, 100`,
+                  "stroke-dasharray": `${m(F)}, 100`,
                   d: "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 }, null, 8, Dt)
               ])),
-              e("span", Bt, P(m(E)) + "%", 1)
-            ])) : (s(), i("div", Ht, [...l[7] || (l[7] = [
+              e("span", Bt, T(m(F)) + "%", 1)
+            ])) : (i(), u("div", Ht, [...n[7] || (n[7] = [
               e("svg", {
                 class: "w-6 h-6",
                 fill: "none",
@@ -1820,56 +1820,56 @@ const wt = { class: "avatar-manager" }, _t = {
                 })
               ], -1)
             ])]))
-          ], 14, Rt)) : U("", !0)
+          ], 14, Rt)) : j("", !0)
         ]),
         e("p", Zt, [
-          m(d).length === 0 ? (s(), i("span", Yt, "Upload your first avatar")) : (s(), i("span", Vt, [
-            ve(P(m(d).length) + "/" + P(f.maxAvatars) + " · ", 1),
-            l[8] || (l[8] = e("span", { class: "text-emerald-500" }, "Green ring", -1)),
-            l[9] || (l[9] = ve(" = primary · Hover for options ", -1))
+          m(v).length === 0 ? (i(), u("span", Yt, "Upload your first avatar")) : (i(), u("span", Vt, [
+            pe(T(m(v).length) + "/" + T(f.maxAvatars) + " · ", 1),
+            n[8] || (n[8] = e("span", { class: "text-emerald-500" }, "Green ring", -1)),
+            n[9] || (n[9] = pe(" = primary · Hover for options ", -1))
           ]))
         ]),
-        m(n) ? (s(), i("div", Nt, P(m(n)), 1)) : U("", !0)
-      ])) : (s(), i("div", Xt, [
+        m(o) ? (i(), u("div", Nt, T(m(o)), 1)) : j("", !0)
+      ])) : (i(), u("div", Xt, [
         e("div", Wt, [
-          (s(!0), i(Q, null, ae(m(d), (t) => (s(), i("div", {
+          (i(!0), u(ee, null, ae(m(v), (t) => (i(), u("div", {
             key: t.id,
-            class: Y(["flex items-center gap-4 p-3 rounded-xl transition-colors", [
+            class: W(["flex items-center gap-4 p-3 rounded-xl transition-colors", [
               t.is_primary ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-dark-800 border border-dark-700 hover:border-dark-600"
             ]])
           }, [
             e("button", {
-              onClick: ($) => F(t),
-              class: Y(["flex-shrink-0 w-14 h-14 overflow-hidden transition-transform hover:scale-105", c.value])
+              onClick: (M) => I(t),
+              class: W(["flex-shrink-0 w-14 h-14 overflow-hidden transition-transform hover:scale-105", s.value])
             }, [
               e("img", {
-                src: m(S)(t, "sm"),
+                src: m($)(t, "sm"),
                 alt: t.alt_text || t.name || "Avatar",
                 class: "w-full h-full object-cover"
-              }, null, 8, Jt)
-            ], 10, qt),
-            e("div", Gt, [
-              e("div", Kt, [
-                e("span", Qt, P(t.name || "Unnamed avatar"), 1),
-                t.is_primary ? (s(), i("span", ea, " Primary ")) : U("", !0),
-                t.moderation_status === "pending" ? (s(), i("span", ta, " Pending ")) : U("", !0)
+              }, null, 8, qt)
+            ], 10, Kt),
+            e("div", Jt, [
+              e("div", Gt, [
+                e("span", Qt, T(t.name || "Unnamed avatar"), 1),
+                t.is_primary ? (i(), u("span", ea, " Primary ")) : j("", !0),
+                t.moderation_status === "pending" ? (i(), u("span", ta, " Pending ")) : j("", !0)
               ]),
               e("div", aa, [
-                e("span", null, P(X(t.source)), 1),
-                l[10] || (l[10] = e("span", null, "·", -1)),
-                e("span", null, P(B(t.created_at)), 1),
-                t.format === "animated" ? (s(), i("span", oa, "·")) : U("", !0),
-                t.format === "animated" ? (s(), i("span", na, "Animated")) : U("", !0)
+                e("span", null, T(P(t.source)), 1),
+                n[10] || (n[10] = e("span", null, "·", -1)),
+                e("span", null, T(A(t.created_at)), 1),
+                t.format === "animated" ? (i(), u("span", oa, "·")) : j("", !0),
+                t.format === "animated" ? (i(), u("span", na, "Animated")) : j("", !0)
               ])
             ]),
             e("div", la, [
-              f.allowEdit ? (s(), i("button", {
+              f.allowEdit ? (i(), u("button", {
                 key: 0,
                 type: "button",
-                onClick: ($) => T(t),
+                onClick: (M) => B(t),
                 class: "p-2 text-dark-400 hover:text-primary-400 hover:bg-dark-700 rounded-lg transition-colors",
                 title: "Edit crop"
-              }, [...l[11] || (l[11] = [
+              }, [...n[11] || (n[11] = [
                 e("svg", {
                   class: "w-5 h-5",
                   fill: "none",
@@ -1883,14 +1883,14 @@ const wt = { class: "avatar-manager" }, _t = {
                     d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   })
                 ], -1)
-              ])], 8, ra)) : U("", !0),
-              t.is_primary ? U("", !0) : (s(), i("button", {
+              ])], 8, ra)) : j("", !0),
+              t.is_primary ? j("", !0) : (i(), u("button", {
                 key: 1,
                 type: "button",
-                onClick: ($) => K(t),
+                onClick: (M) => J(t),
                 class: "p-2 text-dark-400 hover:text-emerald-400 hover:bg-dark-700 rounded-lg transition-colors",
                 title: "Set as primary"
-              }, [...l[12] || (l[12] = [
+              }, [...n[12] || (n[12] = [
                 e("svg", {
                   class: "w-5 h-5",
                   fill: "none",
@@ -1905,13 +1905,13 @@ const wt = { class: "avatar-manager" }, _t = {
                   })
                 ], -1)
               ])], 8, sa)),
-              f.allowDelete ? (s(), i("button", {
+              f.allowDelete ? (i(), u("button", {
                 key: 2,
                 type: "button",
-                onClick: ($) => G(t),
-                class: Y(["p-2 rounded-lg transition-colors", p.value === t.id ? "text-white bg-red-600 hover:bg-red-700" : "text-dark-400 hover:text-red-400 hover:bg-dark-700"]),
-                title: p.value === t.id ? "Click again to confirm" : "Delete"
-              }, [...l[13] || (l[13] = [
+                onClick: (M) => U(t),
+                class: W(["p-2 rounded-lg transition-colors", d.value === t.id ? "text-white bg-red-600 hover:bg-red-700" : "text-dark-400 hover:text-red-400 hover:bg-dark-700"]),
+                title: d.value === t.id ? "Click again to confirm" : "Delete"
+              }, [...n[13] || (n[13] = [
                 e("svg", {
                   class: "w-5 h-5",
                   fill: "none",
@@ -1925,22 +1925,22 @@ const wt = { class: "avatar-manager" }, _t = {
                     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                   })
                 ], -1)
-              ])], 10, ia)) : U("", !0)
+              ])], 10, ia)) : j("", !0)
             ])
           ], 2))), 128))
         ]),
-        o.value ? (s(), i("button", {
+        r.value ? (i(), u("button", {
           key: 0,
           type: "button",
           onClick: x,
-          disabled: m(j),
+          disabled: m(R),
           class: "w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-dark-600 hover:border-primary-500 rounded-xl transition-colors group"
         }, [
-          m(j) ? (s(), i(Q, { key: 0 }, [
-            l[14] || (l[14] = e("div", { class: "w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)),
-            e("span", ca, "Uploading... " + P(m(E)) + "%", 1)
-          ], 64)) : (s(), i(Q, { key: 1 }, [
-            l[15] || (l[15] = e("svg", {
+          m(R) ? (i(), u(ee, { key: 0 }, [
+            n[14] || (n[14] = e("div", { class: "w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)),
+            e("span", ca, "Uploading... " + T(m(F)) + "%", 1)
+          ], 64)) : (i(), u(ee, { key: 1 }, [
+            n[15] || (n[15] = e("svg", {
               class: "w-5 h-5 text-dark-500 group-hover:text-primary-400 transition-colors",
               fill: "none",
               stroke: "currentColor",
@@ -1953,22 +1953,22 @@ const wt = { class: "avatar-manager" }, _t = {
                 d: "M12 4v16m8-8H4"
               })
             ], -1)),
-            l[16] || (l[16] = e("span", { class: "text-dark-500 group-hover:text-primary-400 transition-colors" }, " Add new avatar ", -1))
+            n[16] || (n[16] = e("span", { class: "text-dark-500 group-hover:text-primary-400 transition-colors" }, " Add new avatar ", -1))
           ], 64))
-        ], 8, ua)) : U("", !0),
+        ], 8, ua)) : j("", !0),
         e("div", da, [
-          e("span", null, P(m(d).length) + " of " + P(f.maxAvatars) + " avatars", 1),
-          m(n) ? (s(), i("span", va, P(m(n)), 1)) : U("", !0)
+          e("span", null, T(m(v).length) + " of " + T(f.maxAvatars) + " avatars", 1),
+          m(o) ? (i(), u("span", va, T(m(o)), 1)) : j("", !0)
         ])
       ])),
-      p.value ? (s(), i("div", {
+      d.value ? (i(), u("div", {
         key: 4,
         class: "fixed inset-0 z-40",
-        onClick: I
-      })) : U("", !0)
+        onClick: h
+      })) : j("", !0)
     ]));
   }
-}), Ha = /* @__PURE__ */ le(pa, [["__scopeId", "data-v-52a5c188"]]), fa = [
+}), Za = /* @__PURE__ */ le(pa, [["__scopeId", "data-v-52a5c188"]]), fa = [
   { id: "favorites", name: "Favorites", icon: "⭐" },
   { id: "smileys", name: "Smileys", icon: "😀" },
   { id: "people", name: "People", icon: "👋" },
@@ -1980,1362 +1980,163 @@ const wt = { class: "avatar-manager" }, _t = {
   { id: "symbols", name: "Symbols", icon: "❤️" },
   { id: "flags", name: "Flags", icon: "🏳️" }
 ], ma = {
-  smileys: [
-    "😀",
-    "😃",
-    "😄",
-    "😁",
-    "😅",
-    "😂",
-    "🤣",
-    "😊",
-    "😇",
-    "🙂",
-    "🙃",
-    "😉",
-    "😌",
-    "😍",
-    "🥰",
-    "😘",
-    "😗",
-    "😙",
-    "😚",
-    "😋",
-    "😛",
-    "😜",
-    "🤪",
-    "😝",
-    "🤑",
-    "🤗",
-    "🤭",
-    "🤫",
-    "🤔",
-    "🤐",
-    "🤨",
-    "😐",
-    "😑",
-    "😶",
-    "😏",
-    "😒",
-    "🙄",
-    "😬",
-    "🤥",
-    "😌",
-    "😔",
-    "😪",
-    "🤤",
-    "😴",
-    "😷",
-    "🤒",
-    "🤕",
-    "🤢",
-    "🤮",
-    "🤧",
-    "🥵",
-    "🥶",
-    "🥴",
-    "😵",
-    "🤯",
-    "🤠",
-    "🥳",
-    "🥸",
-    "😎",
-    "🤓",
-    "🧐",
-    "😕",
-    "😟",
-    "🙁",
-    "☹️",
-    "😮",
-    "😯",
-    "😲",
-    "😳",
-    "🥺",
-    "😦",
-    "😧",
-    "😨",
-    "😰",
-    "😥",
-    "😢",
-    "😭",
-    "😱",
-    "😖",
-    "😣",
-    "😞",
-    "😓",
-    "😩",
-    "😫",
-    "🥱",
-    "😤",
-    "😡",
-    "😠",
-    "🤬",
-    "😈",
-    "👿",
-    "💀",
-    "☠️",
-    "💩",
-    "🤡",
-    "👹",
-    "👺",
-    "👻",
-    "👽",
-    "👾",
-    "🤖"
-  ],
-  people: [
-    "👋",
-    "🤚",
-    "🖐️",
-    "✋",
-    "🖖",
-    "👌",
-    "🤌",
-    "🤏",
-    "✌️",
-    "🤞",
-    "🤟",
-    "🤘",
-    "🤙",
-    "👈",
-    "👉",
-    "👆",
-    "🖕",
-    "👇",
-    "☝️",
-    "👍",
-    "👎",
-    "✊",
-    "👊",
-    "🤛",
-    "🤜",
-    "👏",
-    "🙌",
-    "👐",
-    "🤲",
-    "🤝",
-    "🙏",
-    "✍️",
-    "💅",
-    "🤳",
-    "💪",
-    "🦾",
-    "🦿",
-    "🦵",
-    "🦶",
-    "👂",
-    "🦻",
-    "👃",
-    "🧠",
-    "🫀",
-    "🫁",
-    "🦷",
-    "🦴",
-    "👀",
-    "👁️",
-    "👅",
-    "👄",
-    "💋",
-    "👶",
-    "🧒",
-    "👦",
-    "👧",
-    "🧑",
-    "👱",
-    "👨",
-    "🧔",
-    "👩",
-    "🧓",
-    "👴",
-    "👵"
-  ],
-  animals: [
-    "🐶",
-    "🐱",
-    "🐭",
-    "🐹",
-    "🐰",
-    "🦊",
-    "🐻",
-    "🐼",
-    "🐨",
-    "🐯",
-    "🦁",
-    "🐮",
-    "🐷",
-    "🐸",
-    "🐵",
-    "🙈",
-    "🙉",
-    "🙊",
-    "🐒",
-    "🐔",
-    "🐧",
-    "🐦",
-    "🐤",
-    "🐣",
-    "🐥",
-    "🦆",
-    "🦅",
-    "🦉",
-    "🦇",
-    "🐺",
-    "🐗",
-    "🐴",
-    "🦄",
-    "🐝",
-    "🪱",
-    "🐛",
-    "🦋",
-    "🐌",
-    "🐞",
-    "🐜",
-    "🪰",
-    "🪲",
-    "🪳",
-    "🦟",
-    "🦗",
-    "🕷️",
-    "🦂",
-    "🐢",
-    "🐍",
-    "🦎",
-    "🦖",
-    "🦕",
-    "🐙",
-    "🦑",
-    "🦐",
-    "🦞",
-    "🦀",
-    "🐡",
-    "🐠",
-    "🐟",
-    "🐬",
-    "🐳",
-    "🐋",
-    "🦈",
-    "🐊"
-  ],
-  food: [
-    "🍏",
-    "🍎",
-    "🍐",
-    "🍊",
-    "🍋",
-    "🍌",
-    "🍉",
-    "🍇",
-    "🍓",
-    "🫐",
-    "🍈",
-    "🍒",
-    "🍑",
-    "🥭",
-    "🍍",
-    "🥥",
-    "🥝",
-    "🍅",
-    "🍆",
-    "🥑",
-    "🥦",
-    "🥬",
-    "🥒",
-    "🌶️",
-    "🫑",
-    "🌽",
-    "🥕",
-    "🫒",
-    "🧄",
-    "🧅",
-    "🥔",
-    "🍠",
-    "🥐",
-    "🥯",
-    "🍞",
-    "🥖",
-    "🥨",
-    "🧀",
-    "🥚",
-    "🍳",
-    "🧈",
-    "🥞",
-    "🧇",
-    "🥓",
-    "🥩",
-    "🍗",
-    "🍖",
-    "🦴",
-    "🌭",
-    "🍔",
-    "🍟",
-    "🍕",
-    "🫓",
-    "🥪",
-    "🥙",
-    "🧆",
-    "🌮",
-    "🌯",
-    "🫔",
-    "🥗",
-    "🥘",
-    "🫕",
-    "🍝",
-    "🍜",
-    "🍲",
-    "🍛",
-    "🍣",
-    "🍱",
-    "🥟",
-    "🦪",
-    "🍤",
-    "🍙",
-    "🍚",
-    "🍘",
-    "🍥",
-    "🥠",
-    "🥮",
-    "🍢",
-    "🍡",
-    "🍧",
-    "🍨",
-    "🍦",
-    "🥧",
-    "🧁",
-    "🍰",
-    "🎂",
-    "🍮",
-    "🍭",
-    "🍬",
-    "🍫",
-    "🍿",
-    "🍩",
-    "🍪",
-    "🌰",
-    "🥜",
-    "🍯",
-    "🥛",
-    "🍼",
-    "☕",
-    "🍵",
-    "🧃",
-    "🥤",
-    "🧋",
-    "🍶",
-    "🍺",
-    "🍻",
-    "🥂",
-    "🍷",
-    "🥃",
-    "🍸",
-    "🍹",
-    "🧉",
-    "🍾",
-    "🧊"
-  ],
-  travel: [
-    "🚗",
-    "🚕",
-    "🚙",
-    "🚌",
-    "🚎",
-    "🏎️",
-    "🚓",
-    "🚑",
-    "🚒",
-    "🚐",
-    "🛻",
-    "🚚",
-    "🚛",
-    "🚜",
-    "🏍️",
-    "🛵",
-    "🚲",
-    "🛴",
-    "🛹",
-    "🛼",
-    "🚁",
-    "🛸",
-    "✈️",
-    "🛩️",
-    "🛫",
-    "🛬",
-    "🚀",
-    "🛰️",
-    "🚢",
-    "⛵",
-    "🛥️",
-    "🚤",
-    "⛴️",
-    "🛳️",
-    "🚂",
-    "🚃",
-    "🚄",
-    "🚅",
-    "🚆",
-    "🚇",
-    "🚈",
-    "🚉",
-    "🚊",
-    "🚝",
-    "🚞",
-    "🏠",
-    "🏡",
-    "🏢",
-    "🏣",
-    "🏤",
-    "🏥",
-    "🏦",
-    "🏨",
-    "🏩",
-    "🏪",
-    "🏫",
-    "🏬",
-    "🏭",
-    "🏯",
-    "🏰",
-    "💒",
-    "🗼",
-    "🗽",
-    "⛪",
-    "🕌",
-    "🛕",
-    "🕍",
-    "⛩️",
-    "🕋",
-    "⛲",
-    "⛺",
-    "🌁",
-    "🌃",
-    "🏙️",
-    "🌄",
-    "🌅",
-    "🌆",
-    "🌇",
-    "🌉",
-    "🎠",
-    "🎡",
-    "🎢",
-    "🚣",
-    "🗾",
-    "🏔️",
-    "⛰️",
-    "🌋",
-    "🗻",
-    "🏕️",
-    "🏖️",
-    "🏜️",
-    "🏝️",
-    "🏞️"
-  ],
-  activities: [
-    "⚽",
-    "🏀",
-    "🏈",
-    "⚾",
-    "🥎",
-    "🎾",
-    "🏐",
-    "🏉",
-    "🥏",
-    "🎱",
-    "🪀",
-    "🏓",
-    "🏸",
-    "🏒",
-    "🏑",
-    "🥍",
-    "🏏",
-    "🪃",
-    "🥅",
-    "⛳",
-    "🪁",
-    "🏹",
-    "🎣",
-    "🤿",
-    "🥊",
-    "🥋",
-    "🎽",
-    "🛹",
-    "🛼",
-    "🛷",
-    "⛸️",
-    "🥌",
-    "🎿",
-    "⛷️",
-    "🏂",
-    "🪂",
-    "🏋️",
-    "🤼",
-    "🤸",
-    "🤺",
-    "⛹️",
-    "🤾",
-    "🏌️",
-    "🏇",
-    "🧘",
-    "🏄",
-    "🏊",
-    "🤽",
-    "🚣",
-    "🧗",
-    "🚴",
-    "🚵",
-    "🎪",
-    "🎭",
-    "🎨",
-    "🎬",
-    "🎤",
-    "🎧",
-    "🎼",
-    "🎹",
-    "🥁",
-    "🪘",
-    "🎷",
-    "🎺",
-    "🪗",
-    "🎸",
-    "🪕",
-    "🎻",
-    "🎲",
-    "♟️",
-    "🎯",
-    "🎳",
-    "🎮",
-    "🎰",
-    "🧩"
-  ],
-  objects: [
-    "💡",
-    "🔦",
-    "🏮",
-    "🪔",
-    "📱",
-    "📲",
-    "💻",
-    "🖥️",
-    "🖨️",
-    "⌨️",
-    "🖱️",
-    "🖲️",
-    "💽",
-    "💾",
-    "💿",
-    "📀",
-    "🧮",
-    "🎥",
-    "🎞️",
-    "📽️",
-    "📺",
-    "📷",
-    "📸",
-    "📹",
-    "📼",
-    "🔍",
-    "🔎",
-    "🕯️",
-    "💰",
-    "💴",
-    "💵",
-    "💶",
-    "💷",
-    "💸",
-    "💳",
-    "🧾",
-    "💎",
-    "⚖️",
-    "🪜",
-    "🧰",
-    "🪛",
-    "🔧",
-    "🔨",
-    "⚒️",
-    "🛠️",
-    "⛏️",
-    "🪚",
-    "🔩",
-    "⚙️",
-    "🪤",
-    "🧱",
-    "⛓️",
-    "🧲",
-    "🔫",
-    "💣",
-    "🧨",
-    "🪓",
-    "🔪",
-    "🗡️",
-    "⚔️",
-    "🛡️",
-    "🚬",
-    "⚰️",
-    "🪦",
-    "⚱️",
-    "🏺",
-    "🔮",
-    "📿",
-    "🧿",
-    "💈",
-    "⚗️",
-    "🔭",
-    "🔬",
-    "🕳️",
-    "🩹",
-    "🩺",
-    "💊",
-    "💉",
-    "🩸",
-    "🧬",
-    "🦠",
-    "🧫",
-    "🧪",
-    "🌡️",
-    "🧹",
-    "🪠",
-    "🧺",
-    "🧻",
-    "🚽",
-    "🚿",
-    "🛁",
-    "🛀",
-    "🧼",
-    "🪥",
-    "🪒",
-    "🧽",
-    "🪣",
-    "🧴",
-    "🛎️",
-    "🔑",
-    "🗝️",
-    "🚪",
-    "🪑",
-    "🛋️",
-    "🛏️",
-    "🛌",
-    "🧸",
-    "🪆",
-    "🖼️",
-    "🪞",
-    "🪟",
-    "🛍️",
-    "🛒",
-    "🎁",
-    "🎈",
-    "🎏",
-    "🎀",
-    "🪄",
-    "🪅",
-    "🎊",
-    "🎉",
-    "🎎",
-    "🏮",
-    "🎐",
-    "🧧",
-    "✉️",
-    "📩",
-    "📨",
-    "📧",
-    "💌",
-    "📥",
-    "📤",
-    "📦",
-    "🏷️",
-    "📪",
-    "📫",
-    "📬",
-    "📭",
-    "📮",
-    "📯",
-    "📜",
-    "📃",
-    "📄",
-    "📑",
-    "🧾",
-    "📊",
-    "📈",
-    "📉",
-    "🗒️",
-    "🗓️",
-    "📆",
-    "📅",
-    "🗑️",
-    "📇",
-    "🗃️",
-    "🗳️",
-    "🗄️",
-    "📋",
-    "📁",
-    "📂",
-    "🗂️",
-    "🗞️",
-    "📰",
-    "📓",
-    "📔",
-    "📒",
-    "📕",
-    "📗",
-    "📘",
-    "📙",
-    "📚",
-    "📖",
-    "🔖",
-    "🧷",
-    "🔗",
-    "📎",
-    "🖇️",
-    "📐",
-    "📏",
-    "🧮",
-    "📌",
-    "📍",
-    "✂️",
-    "🖊️",
-    "🖋️",
-    "✒️",
-    "🖌️",
-    "🖍️",
-    "📝",
-    "✏️",
-    "🔍",
-    "🔎",
-    "🔏",
-    "🔐",
-    "🔒",
-    "🔓"
-  ],
-  symbols: [
-    "❤️",
-    "🧡",
-    "💛",
-    "💚",
-    "💙",
-    "💜",
-    "🖤",
-    "🤍",
-    "🤎",
-    "💔",
-    "❣️",
-    "💕",
-    "💞",
-    "💓",
-    "💗",
-    "💖",
-    "💘",
-    "💝",
-    "💟",
-    "☮️",
-    "✝️",
-    "☪️",
-    "🕉️",
-    "☸️",
-    "✡️",
-    "🔯",
-    "🕎",
-    "☯️",
-    "☦️",
-    "🛐",
-    "⛎",
-    "♈",
-    "♉",
-    "♊",
-    "♋",
-    "♌",
-    "♍",
-    "♎",
-    "♏",
-    "♐",
-    "♑",
-    "♒",
-    "♓",
-    "🆔",
-    "⚛️",
-    "🉑",
-    "☢️",
-    "☣️",
-    "📴",
-    "📳",
-    "🈶",
-    "🈚",
-    "🈸",
-    "🈺",
-    "🈷️",
-    "✴️",
-    "🆚",
-    "💮",
-    "🉐",
-    "㊙️",
-    "㊗️",
-    "🈴",
-    "🈵",
-    "🈹",
-    "🈲",
-    "🅰️",
-    "🅱️",
-    "🆎",
-    "🆑",
-    "🅾️",
-    "🆘",
-    "❌",
-    "⭕",
-    "🛑",
-    "⛔",
-    "📛",
-    "🚫",
-    "💯",
-    "💢",
-    "♨️",
-    "🚷",
-    "🚯",
-    "🚳",
-    "🚱",
-    "🔞",
-    "📵",
-    "🚭",
-    "❗",
-    "❕",
-    "❓",
-    "❔",
-    "‼️",
-    "⁉️",
-    "🔅",
-    "🔆",
-    "〽️",
-    "⚠️",
-    "🚸",
-    "🔱",
-    "⚜️",
-    "🔰",
-    "♻️",
-    "✅",
-    "🈯",
-    "💹",
-    "❇️",
-    "✳️",
-    "❎",
-    "🌐",
-    "💠",
-    "Ⓜ️",
-    "🌀",
-    "💤",
-    "🏧",
-    "🚾",
-    "♿",
-    "🅿️",
-    "🛗",
-    "🈳",
-    "🈂️",
-    "🛂",
-    "🛃",
-    "🛄",
-    "🛅",
-    "🚹",
-    "🚺",
-    "🚼",
-    "⚧️",
-    "🚻",
-    "🚮",
-    "🎦",
-    "📶",
-    "🈁",
-    "🔣",
-    "ℹ️",
-    "🔤",
-    "🔡",
-    "🔠",
-    "🆖",
-    "🆗",
-    "🆙",
-    "🆒",
-    "🆕",
-    "🆓",
-    "0️⃣",
-    "1️⃣",
-    "2️⃣",
-    "3️⃣",
-    "4️⃣",
-    "5️⃣",
-    "6️⃣",
-    "7️⃣",
-    "8️⃣",
-    "9️⃣",
-    "🔟",
-    "🔢",
-    "#️⃣",
-    "*️⃣",
-    "⏏️",
-    "▶️",
-    "⏸️",
-    "⏯️",
-    "⏹️",
-    "⏺️",
-    "⏭️",
-    "⏮️",
-    "⏩",
-    "⏪",
-    "⏫",
-    "⏬",
-    "◀️",
-    "🔼",
-    "🔽",
-    "➡️",
-    "⬅️",
-    "⬆️",
-    "⬇️",
-    "↗️",
-    "↘️",
-    "↙️",
-    "↖️",
-    "↕️",
-    "↔️",
-    "↪️",
-    "↩️",
-    "⤴️",
-    "⤵️",
-    "🔀",
-    "🔁",
-    "🔂",
-    "🔄",
-    "🔃",
-    "🎵",
-    "🎶",
-    "➕",
-    "➖",
-    "➗",
-    "✖️",
-    "♾️",
-    "💲",
-    "💱",
-    "™️",
-    "©️",
-    "®️",
-    "〰️",
-    "➰",
-    "➿",
-    "🔚",
-    "🔙",
-    "🔛",
-    "🔝",
-    "🔜",
-    "✔️",
-    "☑️",
-    "🔘",
-    "🔴",
-    "🟠",
-    "🟡",
-    "🟢",
-    "🔵",
-    "🟣",
-    "⚫",
-    "⚪",
-    "🟤",
-    "🔺",
-    "🔻",
-    "🔸",
-    "🔹",
-    "🔶",
-    "🔷",
-    "🔳",
-    "🔲",
-    "▪️",
-    "▫️",
-    "◾",
-    "◽",
-    "◼️",
-    "◻️",
-    "🟥",
-    "🟧",
-    "🟨",
-    "🟩",
-    "🟦",
-    "🟪",
-    "⬛",
-    "⬜",
-    "🟫",
-    "🔈",
-    "🔇",
-    "🔉",
-    "🔊",
-    "🔔",
-    "🔕",
-    "📣",
-    "📢",
-    "👁️‍🗨️",
-    "💬",
-    "💭",
-    "🗯️",
-    "♠️",
-    "♣️",
-    "♥️",
-    "♦️",
-    "🃏",
-    "🎴",
-    "🀄",
-    "🕐",
-    "🕑",
-    "🕒",
-    "🕓",
-    "🕔",
-    "🕕",
-    "🕖",
-    "🕗",
-    "🕘",
-    "🕙",
-    "🕚",
-    "🕛",
-    "🕜",
-    "🕝",
-    "🕞",
-    "🕟",
-    "🕠",
-    "🕡",
-    "🕢",
-    "🕣",
-    "🕤",
-    "🕥",
-    "🕦",
-    "🕧"
-  ],
-  flags: [
-    "🏳️",
-    "🏴",
-    "🏁",
-    "🚩",
-    "🏳️‍🌈",
-    "🏳️‍⚧️",
-    "🏴‍☠️",
-    "🇦🇫",
-    "🇦🇱",
-    "🇩🇿",
-    "🇦🇸",
-    "🇦🇩",
-    "🇦🇴",
-    "🇦🇮",
-    "🇦🇶",
-    "🇦🇬",
-    "🇦🇷",
-    "🇦🇲",
-    "🇦🇼",
-    "🇦🇺",
-    "🇦🇹",
-    "🇦🇿",
-    "🇧🇸",
-    "🇧🇭",
-    "🇧🇩",
-    "🇧🇧",
-    "🇧🇾",
-    "🇧🇪",
-    "🇧🇿",
-    "🇧🇯",
-    "🇧🇲",
-    "🇧🇹",
-    "🇧🇴",
-    "🇧🇦",
-    "🇧🇼",
-    "🇧🇷",
-    "🇮🇴",
-    "🇻🇬",
-    "🇧🇳",
-    "🇧🇬",
-    "🇧🇫",
-    "🇧🇮",
-    "🇰🇭",
-    "🇨🇲",
-    "🇨🇦",
-    "🇮🇨",
-    "🇨🇻",
-    "🇧🇶",
-    "🇰🇾",
-    "🇨🇫",
-    "🇹🇩",
-    "🇨🇱",
-    "🇨🇳",
-    "🇨🇽",
-    "🇨🇨",
-    "🇨🇴",
-    "🇰🇲",
-    "🇨🇬",
-    "🇨🇩",
-    "🇨🇰",
-    "🇨🇷",
-    "🇨🇮",
-    "🇭🇷",
-    "🇨🇺",
-    "🇨🇼",
-    "🇨🇾",
-    "🇨🇿",
-    "🇩🇰",
-    "🇩🇯",
-    "🇩🇲",
-    "🇩🇴",
-    "🇪🇨",
-    "🇪🇬",
-    "🇸🇻",
-    "🇬🇶",
-    "🇪🇷",
-    "🇪🇪",
-    "🇸🇿",
-    "🇪🇹",
-    "🇪🇺",
-    "🇫🇰",
-    "🇫🇴",
-    "🇫🇯",
-    "🇫🇮",
-    "🇫🇷",
-    "🇬🇫",
-    "🇵🇫",
-    "🇹🇫",
-    "🇬🇦",
-    "🇬🇲",
-    "🇬🇪",
-    "🇩🇪",
-    "🇬🇭",
-    "🇬🇮",
-    "🇬🇷",
-    "🇬🇱",
-    "🇬🇩",
-    "🇬🇵",
-    "🇬🇺",
-    "🇬🇹",
-    "🇬🇬",
-    "🇬🇳",
-    "🇬🇼",
-    "🇬🇾",
-    "🇭🇹",
-    "🇭🇳",
-    "🇭🇰",
-    "🇭🇺",
-    "🇮🇸",
-    "🇮🇳",
-    "🇮🇩",
-    "🇮🇷",
-    "🇮🇶",
-    "🇮🇪",
-    "🇮🇲",
-    "🇮🇱",
-    "🇮🇹",
-    "🇯🇲",
-    "🇯🇵",
-    "🎌",
-    "🇯🇪",
-    "🇯🇴",
-    "🇰🇿",
-    "🇰🇪",
-    "🇰🇮",
-    "🇽🇰",
-    "🇰🇼",
-    "🇰🇬",
-    "🇱🇦",
-    "🇱🇻",
-    "🇱🇧",
-    "🇱🇸",
-    "🇱🇷",
-    "🇱🇾",
-    "🇱🇮",
-    "🇱🇹",
-    "🇱🇺",
-    "🇲🇴",
-    "🇲🇬",
-    "🇲🇼",
-    "🇲🇾",
-    "🇲🇻",
-    "🇲🇱",
-    "🇲🇹",
-    "🇲🇭",
-    "🇲🇶",
-    "🇲🇷",
-    "🇲🇺",
-    "🇾🇹",
-    "🇲🇽",
-    "🇫🇲",
-    "🇲🇩",
-    "🇲🇨",
-    "🇲🇳",
-    "🇲🇪",
-    "🇲🇸",
-    "🇲🇦",
-    "🇲🇿",
-    "🇲🇲",
-    "🇳🇦",
-    "🇳🇷",
-    "🇳🇵",
-    "🇳🇱",
-    "🇳🇨",
-    "🇳🇿",
-    "🇳🇮",
-    "🇳🇪",
-    "🇳🇬",
-    "🇳🇺",
-    "🇳🇫",
-    "🇰🇵",
-    "🇲🇰",
-    "🇲🇵",
-    "🇳🇴",
-    "🇴🇲",
-    "🇵🇰",
-    "🇵🇼",
-    "🇵🇸",
-    "🇵🇦",
-    "🇵🇬",
-    "🇵🇾",
-    "🇵🇪",
-    "🇵🇭",
-    "🇵🇳",
-    "🇵🇱",
-    "🇵🇹",
-    "🇵🇷",
-    "🇶🇦",
-    "🇷🇪",
-    "🇷🇴",
-    "🇷🇺",
-    "🇷🇼",
-    "🇼🇸",
-    "🇸🇲",
-    "🇸🇹",
-    "🇸🇦",
-    "🇸🇳",
-    "🇷🇸",
-    "🇸🇨",
-    "🇸🇱",
-    "🇸🇬",
-    "🇸🇽",
-    "🇸🇰",
-    "🇸🇮",
-    "🇬🇸",
-    "🇸🇧",
-    "🇸🇴",
-    "🇿🇦",
-    "🇰🇷",
-    "🇸🇸",
-    "🇪🇸",
-    "🇱🇰",
-    "🇧🇱",
-    "🇸🇭",
-    "🇰🇳",
-    "🇱🇨",
-    "🇵🇲",
-    "🇻🇨",
-    "🇸🇩",
-    "🇸🇷",
-    "🇸🇪",
-    "🇨🇭",
-    "🇸🇾",
-    "🇹🇼",
-    "🇹🇯",
-    "🇹🇿",
-    "🇹🇭",
-    "🇹🇱",
-    "🇹🇬",
-    "🇹🇰",
-    "🇹🇴",
-    "🇹🇹",
-    "🇹🇳",
-    "🇹🇷",
-    "🇹🇲",
-    "🇹🇨",
-    "🇹🇻",
-    "🇻🇮",
-    "🇺🇬",
-    "🇺🇦",
-    "🇦🇪",
-    "🇬🇧",
-    "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-    "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-    "🇺🇸",
-    "🇺🇾",
-    "🇺🇿",
-    "🇻🇺",
-    "🇻🇦",
-    "🇻🇪",
-    "🇻🇳",
-    "🇼🇫",
-    "🇪🇭",
-    "🇾🇪",
-    "🇿🇲",
-    "🇿🇼"
-  ]
+  smileys: ["😀", "😃", "😄", "😁", "😅", "😂", "🤣", "😊", "😇", "🙂", "😉", "😍", "🥰", "😘", "😎", "🤔", "😴", "🥳"],
+  people: ["👋", "👌", "✌️", "👍", "👎", "👏", "🙌", "🤝", "🙏", "💪", "🤘", "🖕"],
+  animals: ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐸", "🦁", "🐮", "🐷", "🐵", "🦄", "🐝", "🦋", "🐢", "🦈"],
+  food: ["🍏", "🍎", "🍌", "🍕", "🍔", "🍟", "🌮", "🍣", "🍩", "🍪", "🎂", "🍺", "☕", "🍷"],
+  travel: ["🚗", "✈️", "🚀", "🏠", "🏖️", "🌅", "🏔️", "🗽"],
+  activities: ["⚽", "🏀", "🎾", "🎮", "🎬", "🎤", "🎸", "🎲"],
+  objects: ["💡", "📱", "💻", "🔧", "💰", "🎁", "🔑", "📚"],
+  symbols: ["❤️", "💔", "💯", "✅", "❌", "⚠️", "🔔", "💬"],
+  flags: ["🏳️", "🏴", "🏁", "🚩", "🏳️‍🌈", "🇺🇸", "🇬🇧", "🇯🇵"]
 };
 function ha() {
   const f = [];
-  for (const [M, a] of Object.entries(ma))
-    for (const u of a)
+  for (const [E, a] of Object.entries(ma))
+    for (const c of a)
       f.push({
-        id: u,
-        value: u,
+        id: c,
+        value: c,
         type: "emoji",
-        keywords: [u],
-        // Basic - could be enhanced with actual keyword data
-        category: M
+        keywords: [c],
+        category: E
       });
   return f;
 }
 function ga(f = {}) {
-  var o;
+  var J;
   const {
-    categories: M = fa,
-    customItems: a = [],
-    getFavorites: u = () => [],
-    saveFavorite: d,
-    maxFavorites: y = 16,
-    columns: n = 8
-  } = f, j = C(!1), E = C(""), O = C(((o = M[0]) == null ? void 0 : o.id) || "smileys"), D = C(0), H = Se(ha()), R = A(() => [...H.value, ...a]), w = A(() => {
-    const c = u();
-    return R.value.filter((g) => c.includes(g.id)).slice(0, y);
-  }), S = A(() => {
-    const c = E.value.toLowerCase().trim();
-    return c ? R.value.filter((g) => g.value.includes(c) ? !0 : g.keywords.some((x) => x.toLowerCase().includes(c))) : [];
-  }), v = A(() => O.value === "favorites" ? w.value : R.value.filter((c) => c.category === O.value)), p = A(() => E.value.trim() ? S.value : v.value);
-  function z() {
-    j.value = !0, E.value = "";
+    searchEndpoint: E,
+    categories: a = fa,
+    customItems: c = [],
+    getFavorites: v = () => [],
+    saveFavorite: k,
+    maxFavorites: o = 16,
+    columns: R = 8,
+    searchDebounceMs: F = 150
+  } = f, H = C(!1), O = C(""), Z = C(((J = a[0]) == null ? void 0 : J.id) || "smileys"), Y = C(0), z = C(!1), $ = de([]), p = C(null), d = de(ha()), S = /* @__PURE__ */ new Map(), w = de([]), y = D(() => [...d.value, ...c]), _ = D(() => {
+    const U = v(), h = [...$.value, ...w.value, ...y.value], I = /* @__PURE__ */ new Set(), A = [];
+    for (const P of U) {
+      if (I.has(P)) continue;
+      I.add(P);
+      const l = h.find((n) => n.id === P);
+      l ? A.push(l) : A.push({
+        id: P,
+        value: P,
+        type: "emoji",
+        keywords: [P],
+        category: "favorites"
+      });
+    }
+    return A.slice(0, o);
+  });
+  let b = null;
+  async function r(U) {
+    if (!E) {
+      const h = U.toLowerCase();
+      return y.value.filter(
+        (I) => I.value.includes(h) || I.keywords.some((A) => A.toLowerCase().includes(h))
+      );
+    }
+    try {
+      const h = `${E}?q=${encodeURIComponent(U)}&limit=50`, I = await fetch(h);
+      if (!I.ok)
+        throw new Error(`Search failed: ${I.status}`);
+      const A = await I.json();
+      return A.success && Array.isArray(A.results) ? A.results.map((P) => ({
+        id: P.id || P.value,
+        value: P.value,
+        type: P.type || "emoji",
+        keywords: P.keywords || [],
+        category: P.category || "search",
+        url: P.url
+      })) : [];
+    } catch (h) {
+      return p.value = h instanceof Error ? h.message : "Search failed", console.error("[EmojiPicker] Search error:", h), [];
+    }
   }
-  function b() {
-    j.value = !1;
+  async function s(U) {
+    if (!E || U === "favorites")
+      return y.value.filter((h) => h.category === U);
+    if (S.has(U))
+      return S.get(U);
+    try {
+      const h = y.value.filter((I) => I.category === U);
+      return S.set(U, h), h;
+    } catch (h) {
+      return console.error("[EmojiPicker] Category fetch error:", h), y.value.filter((I) => I.category === U);
+    }
   }
-  function k(c) {
-    return d && d(c.id), c;
+  Q(O, (U) => {
+    if (b && clearTimeout(b), !U.trim()) {
+      $.value = [], z.value = !1;
+      return;
+    }
+    z.value = !0, b = setTimeout(async () => {
+      const h = await r(U);
+      $.value = h, z.value = !1;
+    }, F);
+  }), Q(Z, async (U) => {
+    O.value.trim() || (w.value = await s(U));
+  }, { immediate: !0 });
+  const g = D(() => O.value.trim() ? $.value : Z.value === "favorites" ? _.value : w.value);
+  function x() {
+    H.value = !0, O.value = "";
   }
-  function h(c) {
-    O.value = c, E.value = "";
+  function L() {
+    H.value = !1;
   }
-  function _(c) {
-    E.value = c;
+  function B(U) {
+    return k && k(U.id), U;
+  }
+  function N(U) {
+    Z.value = U, O.value = "";
+  }
+  function X(U) {
+    O.value = U;
   }
   return {
     // State
-    isOpen: j,
-    searchQuery: E,
-    activeCategory: O,
-    selectedSkinTone: D,
+    isOpen: H,
+    searchQuery: O,
+    activeCategory: Z,
+    selectedSkinTone: Y,
+    isSearching: z,
+    searchError: p,
     // Data
-    categories: M,
-    allItems: R,
-    favorites: w,
-    displayItems: p,
-    searchResults: S,
-    columns: n,
+    categories: a,
+    allItems: y,
+    favorites: _,
+    displayItems: g,
+    searchResults: $,
+    columns: R,
     // Actions
-    open: z,
-    close: b,
-    selectItem: k,
-    setCategory: h,
-    setSearch: _
+    open: x,
+    close: L,
+    selectItem: B,
+    setCategory: N,
+    setSearch: X
   };
 }
-const ya = { class: "nui-picker-search" }, ka = ["value", "placeholder"], xa = { class: "nui-picker-categories" }, ba = ["title", "onClick"], wa = { class: "nui-category-icon" }, _a = {
+const ya = { class: "nui-picker-search" }, ka = ["value", "placeholder"], wa = { class: "nui-picker-categories" }, ba = ["title", "onClick"], xa = { class: "nui-category-icon" }, _a = {
   key: 0,
+  class: "nui-picker-loading"
+}, Ca = {
+  key: 1,
   class: "nui-picker-empty"
-}, Ca = { key: 0 }, $a = { key: 1 }, za = { key: 2 }, Ma = ["title", "onClick"], Sa = {
+}, $a = { key: 0 }, za = { key: 1 }, Sa = { key: 2 }, Ma = ["title", "onClick"], Ea = {
   key: 0,
   class: "nui-item-emoji"
-}, Ia = ["src", "alt"], Ea = {
+}, Ia = ["src", "alt"], La = {
   key: 2,
   class: "nui-item-fallback"
 }, Ua = {
   key: 0,
   class: "nui-picker-favorites"
-}, La = { class: "nui-favorites-grid" }, ja = ["title", "onClick"], Aa = {
+}, ja = { class: "nui-favorites-grid" }, Aa = ["title", "onClick"], Fa = {
   key: 0,
   class: "nui-item-emoji"
-}, Fa = ["src", "alt"], Pa = /* @__PURE__ */ oe({
+}, Pa = ["src", "alt"], Ra = /* @__PURE__ */ oe({
   __name: "EmojiPicker",
   props: {
     favorites: { default: () => [] },
@@ -3343,66 +2144,69 @@ const ya = { class: "nui-picker-search" }, ka = ["value", "placeholder"], xa = {
     categories: {},
     columns: { default: 8 },
     maxFavorites: { default: 16 },
-    searchPlaceholder: { default: "Search emoji..." }
+    searchPlaceholder: { default: "Search emoji..." },
+    searchEndpoint: { default: void 0 }
   },
   emits: ["select", "favorite"],
-  setup(f, { emit: M }) {
-    const a = f, u = M, d = {
+  setup(f, { emit: E }) {
+    const a = f, c = E, v = {
+      searchEndpoint: a.searchEndpoint,
       categories: a.categories,
       customItems: a.customItems,
       getFavorites: () => a.favorites,
-      saveFavorite: (h) => u("favorite", h),
+      saveFavorite: (b) => c("favorite", b),
       maxFavorites: a.maxFavorites,
       columns: a.columns
     }, {
-      searchQuery: y,
-      activeCategory: n,
-      categories: j,
-      displayItems: E,
-      favorites: O,
-      setCategory: D,
-      setSearch: H,
-      selectItem: R
-    } = ga(d), w = C(null), S = C(null);
+      searchQuery: k,
+      activeCategory: o,
+      categories: R,
+      displayItems: F,
+      favorites: H,
+      isSearching: O,
+      setCategory: Z,
+      setSearch: Y,
+      selectItem: z
+    } = ga(v), $ = C(null), p = C(null);
     se(() => {
-      Ie(() => {
-        var h;
-        (h = w.value) == null || h.focus();
+      Ee(() => {
+        var b;
+        (b = $.value) == null || b.focus();
       });
     });
-    function v(h) {
-      const _ = R(h);
-      u("select", _);
+    function d(b) {
+      const r = z(b);
+      c("select", r);
     }
-    function p(h) {
-      const _ = h.target.value;
-      H(_);
+    function S(b) {
+      const r = b.target.value;
+      Y(r);
     }
-    function z(h) {
-      D(h);
+    function w(b) {
+      Z(b);
     }
-    function b(h) {
-      var _;
-      h.key === "Escape" && ((_ = w.value) == null || _.blur());
+    function y(b) {
+      var r;
+      b.key === "Escape" && ((r = $.value) == null || r.blur());
     }
-    const k = A(() => ({
+    const _ = D(() => ({
       gridTemplateColumns: `repeat(${a.columns}, 1fr)`
     }));
-    return (h, _) => (s(), i("div", {
+    return (b, r) => (i(), u("div", {
       class: "nui-emoji-picker",
-      onKeydown: b
+      onKeydown: y
     }, [
       e("div", ya, [
         e("input", {
           ref_key: "searchInputRef",
-          ref: w,
+          ref: $,
           type: "text",
-          value: m(y),
+          value: m(k),
           placeholder: f.searchPlaceholder,
           class: "nui-picker-search-input",
-          onInput: p
+          onInput: S
         }, null, 40, ka),
-        _[0] || (_[0] = e("svg", {
+        r[0] || (r[0] = e("svg", {
           class: "nui-picker-search-icon",
           viewBox: "0 0 24 24",
           fill: "none",
@@ -3417,80 +2221,83 @@ const ya = { class: "nui-picker-search" }, ka = ["value", "placeholder"], xa = {
           e("path", { d: "M21 21l-4.35-4.35" })
         ], -1))
       ]),
-      e("div", xa, [
-        (s(!0), i(Q, null, ae(m(j), (o) => (s(), i("button", {
-          key: o.id,
-          class: Y(["nui-picker-category-tab", { active: m(n) === o.id }]),
-          title: o.name,
-          onClick: (c) => z(o.id)
+      e("div", wa, [
+        (i(!0), u(ee, null, ae(m(R), (s) => (i(), u("button", {
+          key: s.id,
+          class: W(["nui-picker-category-tab", { active: m(o) === s.id }]),
+          title: s.name,
+          onClick: (g) => w(s.id)
         }, [
-          e("span", wa, P(o.icon), 1)
+          e("span", xa, T(s.icon), 1)
         ], 10, ba))), 128))
       ]),
       e("div", {
         ref_key: "gridRef",
-        ref: S,
+        ref: p,
         class: "nui-picker-grid-container"
       }, [
-        m(E).length === 0 ? (s(), i("div", _a, [
-          m(y) ? (s(), i("span", Ca, 'No results for "' + P(m(y)) + '"', 1)) : m(n) === "favorites" ? (s(), i("span", $a, "No favorites yet")) : (s(), i("span", za, "No items"))
-        ])) : (s(), i("div", {
-          key: 1,
+        m(O) ? (i(), u("div", _a, [...r[1] || (r[1] = [
+          e("span", { class: "nui-loading-spinner" }, null, -1),
+          e("span", null, "Searching...", -1)
+        ])])) : m(F).length === 0 ? (i(), u("div", Ca, [
+          m(k) ? (i(), u("span", $a, 'No results for "' + T(m(k)) + '"', 1)) : m(o) === "favorites" ? (i(), u("span", za, "No favorites yet")) : (i(), u("span", Sa, "No items"))
+        ])) : (i(), u("div", {
+          key: 2,
           class: "nui-picker-grid",
-          style: J(k.value)
+          style: G(_.value)
         }, [
-          (s(!0), i(Q, null, ae(m(E), (o) => {
-            var c;
-            return s(), i("button", {
-              key: o.id,
-              class: Y(["nui-picker-item", { "is-custom": o.type !== "emoji" }]),
-              title: ((c = o.keywords) == null ? void 0 : c[0]) || o.value,
-              onClick: (g) => v(o)
+          (i(!0), u(ee, null, ae(m(F), (s) => {
+            var g;
+            return i(), u("button", {
+              key: s.id,
+              class: W(["nui-picker-item", { "is-custom": s.type !== "emoji" }]),
+              title: ((g = s.keywords) == null ? void 0 : g[0]) || s.value,
+              onClick: (x) => d(s)
             }, [
-              o.type === "emoji" ? (s(), i("span", Sa, P(o.value), 1)) : o.url ? (s(), i("img", {
+              s.type === "emoji" ? (i(), u("span", Ea, T(s.value), 1)) : s.url ? (i(), u("img", {
                 key: 1,
-                src: o.url,
-                alt: o.value,
+                src: s.url,
+                alt: s.value,
                 class: "nui-item-image"
-              }, null, 8, Ia)) : (s(), i("span", Ea, P(o.value), 1))
+              }, null, 8, Ia)) : (i(), u("span", La, T(s.value), 1))
             ], 10, Ma);
           }), 128))
         ], 4))
       ], 512),
-      m(O).length > 0 ? (s(), i("div", Ua, [
-        _[1] || (_[1] = e("div", { class: "nui-favorites-label" }, "⭐ Favorites", -1)),
-        e("div", La, [
-          (s(!0), i(Q, null, ae(m(O), (o) => (s(), i("button", {
-            key: "fav-" + o.id,
+      m(H).length > 0 ? (i(), u("div", Ua, [
+        r[2] || (r[2] = e("div", { class: "nui-favorites-label" }, "⭐ Favorites", -1)),
+        e("div", ja, [
+          (i(!0), u(ee, null, ae(m(H), (s) => (i(), u("button", {
+            key: "fav-" + s.id,
             class: "nui-picker-item nui-favorite-item",
-            title: o.value,
-            onClick: (c) => v(o)
+            title: s.value,
+            onClick: (g) => d(s)
           }, [
-            o.type === "emoji" ? (s(), i("span", Aa, P(o.value), 1)) : o.url ? (s(), i("img", {
+            s.type === "emoji" ? (i(), u("span", Fa, T(s.value), 1)) : s.url ? (i(), u("img", {
               key: 1,
-              src: o.url,
-              alt: o.value,
+              src: s.url,
+              alt: s.value,
               class: "nui-item-image"
-            }, null, 8, Fa)) : U("", !0)
-          ], 8, ja))), 128))
+            }, null, 8, Pa)) : j("", !0)
+          ], 8, Aa))), 128))
         ])
-      ])) : U("", !0)
+      ])) : j("", !0)
     ], 32));
   }
-}), Za = /* @__PURE__ */ le(Pa, [["__scopeId", "data-v-4ed80c96"]]);
+}), Ya = /* @__PURE__ */ le(Ra, [["__scopeId", "data-v-d93ce4c3"]]);
 export {
-  Ce as AvatarCropper,
-  Ha as AvatarManager,
-  Da as AvatarUpload,
-  Za as EmojiPicker,
+  $e as AvatarCropper,
+  Za as AvatarManager,
+  Ba as AvatarUpload,
+  Ya as EmojiPicker,
   Ve as ImageViewer,
-  Oa as ImageViewerProvider,
-  Ba as configureAvatarManager,
-  Ta as configureAvatarUpload,
+  Ta as ImageViewerProvider,
+  Ha as configureAvatarManager,
+  Da as configureAvatarUpload,
   Xe as useAvatarCropper,
   bt as useAvatarManager,
   Ne as useAvatarUpload,
   ga as useEmojiPicker,
-  _e as useImageViewer
+  Ce as useImageViewer
 };
 //# sourceMappingURL=index.js.map
