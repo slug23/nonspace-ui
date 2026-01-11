@@ -1,6 +1,6 @@
 # nonspace-ui
 
-Shared Vue 3 UI components for [nonspace](https://github.com/yourusername/nonspace) and [ecos](https://github.com/yourusername/ecos) projects.
+Shared Vue 3 UI components for [nonspace](https://github.com/slug23/nonspace) and [scoutship](https://github.com/slug23/scoutship) projects.
 
 ## Components
 
@@ -33,7 +33,7 @@ npm install
 npm link
 
 # Then in your project:
-cd ~/code/nonspace  # or ~/code/ecos
+cd ~/code/nonspace  # or ~/code/scoutship
 npm link nonspace-ui
 ```
 

@@ -1,7 +1,7 @@
 {
   "name": "nonspace-ui",
   "version": "0.1.0",
-  "description": "Shared Vue 3 UI components for nonspace and ecos projects",
+  "description": "Shared Vue 3 UI components for nonspace and scoutship projects",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
