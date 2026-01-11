@@ -126,6 +126,55 @@ import './style.css'
  *     pan,
  *     exportCropAsFile,
  *   } = useAvatarCropper({ shape: 'circle', cropSize: 300 })
+ * 
+ * ============================================
+ * EMOJI PICKER
+ * ============================================
+ * 
+ * A fully customizable emoji/sticker picker with search, categories, and favorites.
+ * 
+ * Usage:
+ *   import { EmojiPicker } from 'nonspace-ui'
+ *   
+ *   <template>
+ *     <EmojiPicker
+ *       :favorites="userFavorites"
+ *       @select="handleSelect"
+ *       @favorite="saveFavorite"
+ *     />
+ *   </template>
+ * 
+ * Props:
+ *   - favorites: Array of emoji IDs the user has favorited
+ *   - customItems: Array of custom items (stickers, SVGs, etc.)
+ *   - categories: Custom category configuration
+ *   - columns: Number of columns in the grid (default: 8)
+ *   - maxFavorites: Maximum favorites to show (default: 16)
+ *   - searchPlaceholder: Placeholder text for search input
+ * 
+ * Events:
+ *   - select: Emitted with the selected EmojiItem
+ *   - favorite: Emitted with item ID to save to favorites
+ * 
+ * Custom Items:
+ *   const customStickers = [
+ *     {
+ *       id: 'sticker-1',
+ *       value: 'Party',
+ *       type: 'sticker',
+ *       keywords: ['party', 'celebration'],
+ *       category: 'stickers',
+ *       url: 'https://example.com/sticker.gif'
+ *     }
+ *   ]
+ * 
+ * Composable for programmatic control:
+ *   import { useEmojiPicker } from 'nonspace-ui'
+ *   
+ *   const picker = useEmojiPicker({
+ *     getFavorites: () => userFavorites.value,
+ *     saveFavorite: (id) => addToFavorites(id),
+ *   })
  */
 
 // Components
@@ -134,12 +183,14 @@ export { default as ImageViewerProvider } from './components/ImageViewerProvider
 export { default as AvatarUpload } from './components/AvatarUpload.vue'
 export { default as AvatarManager } from './components/AvatarManager.vue'
 export { default as AvatarCropper } from './components/AvatarCropper.vue'
+export { default as EmojiPicker } from './components/EmojiPicker.vue'
 
 // Composables
 export { useImageViewer } from './composables/useImageViewer'
 export { useAvatarUpload, configureAvatarUpload } from './composables/useAvatarUpload'
 export { useAvatarManager, configureAvatarManager } from './composables/useAvatarManager'
 export { useAvatarCropper } from './composables/useAvatarCropper'
+export { useEmojiPicker } from './composables/useEmojiPicker'
 
 // Types - Image Viewer
 export type {
@@ -171,4 +222,12 @@ export type {
   CropperConfig,
   CropperState,
 } from './composables/useAvatarCropper'
+
+// Types - Emoji Picker
+export type {
+  EmojiItem,
+  EmojiCategory,
+  EmojiPickerConfig,
+  EmojiPickerState,
+} from './composables/useEmojiPicker'
 

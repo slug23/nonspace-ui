@@ -1,55 +1,55 @@
-import { ref as z, readonly as ie, defineComponent as oe, computed as F, watch as Q, onMounted as fe, onUnmounted as me, createBlock as le, openBlock as v, Teleport as he, createVNode as ae, Transition as ge, withCtx as ye, createElementBlock as p, createCommentVNode as E, withModifiers as ee, createElementVNode as t, toDisplayString as j, withDirectives as ze, normalizeStyle as G, vShow as $e, Fragment as te, renderList as ce, normalizeClass as W, unref as f, createStaticVNode as Me, createTextVNode as de } from "vue";
-const ne = z(!1), xe = z([]), be = z(0);
-let we = null;
-function Ce() {
-  function d(x) {
-    we = x;
+import { ref as C, readonly as ce, defineComponent as oe, computed as A, watch as ee, onMounted as se, onUnmounted as me, createBlock as ie, openBlock as s, Teleport as he, createVNode as ne, Transition as ge, withCtx as ye, createElementBlock as i, createCommentVNode as U, withModifiers as te, createElementVNode as e, toDisplayString as P, withDirectives as $e, normalizeStyle as J, vShow as ze, Fragment as Q, renderList as ae, normalizeClass as Y, unref as m, createStaticVNode as Me, createTextVNode as ve, shallowRef as Se, nextTick as Ie } from "vue";
+const re = C(!1), ke = C([]), xe = C(0);
+let be = null;
+function _e() {
+  function f(y) {
+    be = y;
   }
-  function S() {
-    return we;
+  function M() {
+    return be;
   }
-  function o(x, n = 0) {
-    xe.value = x, be.value = n, ne.value = !0;
+  function a(y, n = 0) {
+    ke.value = y, xe.value = n, re.value = !0;
   }
-  function c() {
-    ne.value = !1;
+  function u() {
+    re.value = !1;
   }
-  function r(x, n) {
-    o([{ url: x, alt: n }], 0);
+  function d(y, n) {
+    a([{ url: y, alt: n }], 0);
   }
   return {
     // State (readonly to prevent external mutation)
-    isOpen: ie(ne),
-    images: ie(xe),
-    initialIndex: ie(be),
+    isOpen: ce(re),
+    images: ce(ke),
+    initialIndex: ce(xe),
     // Actions
-    openViewer: o,
-    closeViewer: c,
-    openImage: r,
-    setVariantFetcher: d,
-    getVariantFetcher: S,
+    openViewer: a,
+    closeViewer: u,
+    openImage: d,
+    setVariantFetcher: f,
+    getVariantFetcher: M,
     // For the provider component
-    _setOpen: (x) => {
-      ne.value = x;
+    _setOpen: (y) => {
+      re.value = y;
     }
   };
 }
-const Se = { class: "viewer-toolbar top" }, Ue = {
+const Ee = { class: "viewer-toolbar top" }, Ue = {
   key: 0,
   class: "image-counter"
-}, Le = { class: "image-container" }, Ee = {
+}, Le = { class: "image-container" }, je = {
   key: 0,
   class: "loading-spinner"
-}, Ie = {
+}, Ae = {
   key: 1,
   class: "error-state"
-}, Ae = ["src", "alt"], Pe = {
+}, Fe = ["src", "alt"], Pe = {
   key: 2,
   class: "loading-variants"
-}, Re = { class: "viewer-toolbar bottom" }, Fe = { class: "zoom-controls" }, Oe = {
+}, Re = { class: "viewer-toolbar bottom" }, Oe = { class: "zoom-controls" }, Te = {
   key: 2,
   class: "thumbnail-strip"
-}, je = ["onClick"], De = ["src", "alt"], Be = 0.5, Te = 5, ke = 0.25, He = /* @__PURE__ */ oe({
+}, De = ["onClick"], Be = ["src", "alt"], He = 0.5, Ze = 5, we = 0.25, Ye = /* @__PURE__ */ oe({
   __name: "ImageViewer",
   props: {
     images: {},
@@ -57,353 +57,353 @@ const Se = { class: "viewer-toolbar top" }, Ue = {
     open: { type: Boolean }
   },
   emits: ["close", "indexChange"],
-  setup(d, { emit: S }) {
-    const o = d, c = S, { getVariantFetcher: r } = Ce(), x = z(o.initialIndex), n = z(1), P = z(0), A = z(0), H = z(!1), T = z({ x: 0, y: 0 }), Z = z(!0), D = z(!1), $ = z(!1), M = z(/* @__PURE__ */ new Map()), u = F(() => o.images[x.value]), s = F(() => {
-      const e = u.value;
-      if (!e) return null;
-      if (e.fileId && M.value.has(e.fileId)) {
-        const b = M.value.get(e.fileId);
-        return { ...e, variants: b };
+  setup(f, { emit: M }) {
+    const a = f, u = M, { getVariantFetcher: d } = _e(), y = C(a.initialIndex), n = C(1), j = C(0), E = C(0), O = C(!1), D = C({ x: 0, y: 0 }), H = C(!0), R = C(!1), w = C(!1), S = C(/* @__PURE__ */ new Map()), v = A(() => a.images[y.value]), p = A(() => {
+      const t = v.value;
+      if (!t) return null;
+      if (t.fileId && S.value.has(t.fileId)) {
+        const $ = S.value.get(t.fileId);
+        return { ...t, variants: $ };
       }
-      return e;
-    }), C = F(() => {
-      var b, N, q, B, se;
-      const e = s.value;
-      if (!e) return "";
-      if (e.variants) {
-        if ((b = e.variants.lg) != null && b.url) return e.variants.lg.url;
-        if ((N = e.variants.original) != null && N.url) return e.variants.original.url;
-        if ((q = e.variants.md) != null && q.url) return e.variants.md.url;
-        if ((B = e.variants.sm) != null && B.url) return e.variants.sm.url;
-        if ((se = e.variants.thumb) != null && se.url) return e.variants.thumb.url;
+      return t;
+    }), z = A(() => {
+      var $, W, q, Z, ue;
+      const t = p.value;
+      if (!t) return "";
+      if (t.variants) {
+        if (($ = t.variants.lg) != null && $.url) return t.variants.lg.url;
+        if ((W = t.variants.original) != null && W.url) return t.variants.original.url;
+        if ((q = t.variants.md) != null && q.url) return t.variants.md.url;
+        if ((Z = t.variants.sm) != null && Z.url) return t.variants.sm.url;
+        if ((ue = t.variants.thumb) != null && ue.url) return t.variants.thumb.url;
       }
-      return e.url;
-    }), w = F(() => o.images.length > 1), g = F(() => x.value > 0), k = F(() => x.value < o.images.length - 1);
-    Q(x, () => {
-      n.value = 1, P.value = 0, A.value = 0, Z.value = !0, D.value = !1, c("indexChange", x.value);
-    }), Q(() => o.open, (e) => {
-      e ? (x.value = o.initialIndex, n.value = 1, P.value = 0, A.value = 0, Z.value = !0, D.value = !1, document.body.style.overflow = "hidden", U()) : document.body.style.overflow = "";
-    }), Q(u, () => {
-      U();
+      return t.url;
+    }), b = A(() => a.images.length > 1), k = A(() => y.value > 0), h = A(() => y.value < a.images.length - 1);
+    ee(y, () => {
+      n.value = 1, j.value = 0, E.value = 0, H.value = !0, R.value = !1, u("indexChange", y.value);
+    }), ee(() => a.open, (t) => {
+      t ? (y.value = a.initialIndex, n.value = 1, j.value = 0, E.value = 0, H.value = !0, R.value = !1, document.body.style.overflow = "hidden", _()) : document.body.style.overflow = "";
+    }), ee(v, () => {
+      _();
     });
-    async function U() {
-      var N, q;
-      const e = u.value;
-      if (!(e != null && e.fileId) || M.value.has(e.fileId) || (N = e.variants) != null && N.lg || (q = e.variants) != null && q.original) return;
-      const b = r();
-      if (b) {
-        $.value = !0;
+    async function _() {
+      var W, q;
+      const t = v.value;
+      if (!(t != null && t.fileId) || S.value.has(t.fileId) || (W = t.variants) != null && W.lg || (q = t.variants) != null && q.original) return;
+      const $ = d();
+      if ($) {
+        w.value = !0;
         try {
-          const B = await b(e.fileId);
-          B && M.value.set(e.fileId, B);
-        } catch (B) {
-          console.error("Failed to fetch variants:", B);
+          const Z = await $(t.fileId);
+          Z && S.value.set(t.fileId, Z);
+        } catch (Z) {
+          console.error("Failed to fetch variants:", Z);
         } finally {
-          $.value = !1;
+          w.value = !1;
         }
       }
     }
-    function i() {
-      g.value && x.value--;
+    function o() {
+      k.value && y.value--;
     }
-    function m() {
-      k.value && x.value++;
+    function c() {
+      h.value && y.value++;
     }
-    function h(e) {
-      e >= 0 && e < o.images.length && (x.value = e);
+    function g(t) {
+      t >= 0 && t < a.images.length && (y.value = t);
     }
-    function y() {
-      n.value = Math.min(Te, n.value + ke);
+    function x() {
+      n.value = Math.min(Ze, n.value + we);
     }
     function L() {
-      n.value = Math.max(Be, n.value - ke), n.value <= 1 && (P.value = 0, A.value = 0);
+      n.value = Math.max(He, n.value - we), n.value <= 1 && (j.value = 0, E.value = 0);
     }
-    function R() {
-      n.value = 1, P.value = 0, A.value = 0;
+    function T() {
+      n.value = 1, j.value = 0, E.value = 0;
     }
-    function Y(e) {
-      e.preventDefault(), e.deltaY < 0 ? y() : L();
+    function V(t) {
+      t.preventDefault(), t.deltaY < 0 ? x() : L();
     }
-    function V(e) {
+    function N(t) {
       if (n.value <= 1) return;
-      H.value = !0;
-      const b = "touches" in e ? e.touches[0] : e;
-      T.value = { x: b.clientX - P.value, y: b.clientY - A.value };
+      O.value = !0;
+      const $ = "touches" in t ? t.touches[0] : t;
+      D.value = { x: $.clientX - j.value, y: $.clientY - E.value };
     }
-    function K(e) {
-      if (!H.value) return;
-      e.preventDefault();
-      const b = "touches" in e ? e.touches[0] : e;
-      P.value = b.clientX - T.value.x, A.value = b.clientY - T.value.y;
+    function K(t) {
+      if (!O.value) return;
+      t.preventDefault();
+      const $ = "touches" in t ? t.touches[0] : t;
+      j.value = $.clientX - D.value.x, E.value = $.clientY - D.value.y;
     }
-    function J() {
-      H.value = !1;
+    function G() {
+      O.value = !1;
     }
-    function _(e) {
-      if (o.open)
-        switch (e.key) {
+    function I(t) {
+      if (a.open)
+        switch (t.key) {
           case "Escape":
-            c("close");
+            u("close");
             break;
           case "ArrowLeft":
-            i();
+            o();
             break;
           case "ArrowRight":
-            m();
+            c();
             break;
           case "+":
           case "=":
-            y();
+            x();
             break;
           case "-":
             L();
             break;
           case "0":
-            R();
+            T();
             break;
         }
     }
-    async function I() {
-      if (s.value)
+    async function F() {
+      if (p.value)
         try {
-          const e = C.value, N = await (await fetch(e)).blob(), q = URL.createObjectURL(N), B = document.createElement("a");
-          B.href = q, B.download = s.value.alt || `image-${x.value + 1}`, document.body.appendChild(B), B.click(), document.body.removeChild(B), URL.revokeObjectURL(q);
-        } catch (e) {
-          console.error("Failed to download image:", e);
+          const t = z.value, W = await (await fetch(t)).blob(), q = URL.createObjectURL(W), Z = document.createElement("a");
+          Z.href = q, Z.download = p.value.alt || `image-${y.value + 1}`, document.body.appendChild(Z), Z.click(), document.body.removeChild(Z), URL.revokeObjectURL(q);
+        } catch (t) {
+          console.error("Failed to download image:", t);
         }
     }
-    function O() {
-      Z.value = !1;
+    function B() {
+      H.value = !1;
     }
     function X() {
-      Z.value = !1, D.value = !0;
+      H.value = !1, R.value = !0;
     }
-    function l(e) {
-      e.target.classList.contains("viewer-backdrop") && c("close");
+    function r(t) {
+      t.target.classList.contains("viewer-backdrop") && u("close");
     }
-    fe(() => {
-      window.addEventListener("keydown", _);
+    se(() => {
+      window.addEventListener("keydown", I);
     }), me(() => {
-      window.removeEventListener("keydown", _), document.body.style.overflow = "";
+      window.removeEventListener("keydown", I), document.body.style.overflow = "";
     });
-    const a = F(() => ({
-      transform: `scale(${n.value}) translate(${P.value / n.value}px, ${A.value / n.value}px)`,
-      cursor: n.value > 1 ? H.value ? "grabbing" : "grab" : "default"
+    const l = A(() => ({
+      transform: `scale(${n.value}) translate(${j.value / n.value}px, ${E.value / n.value}px)`,
+      cursor: n.value > 1 ? O.value ? "grabbing" : "grab" : "default"
     }));
-    return (e, b) => (v(), le(he, { to: "body" }, [
-      ae(ge, { name: "viewer" }, {
+    return (t, $) => (s(), ie(he, { to: "body" }, [
+      ne(ge, { name: "viewer" }, {
         default: ye(() => {
-          var N;
+          var W;
           return [
-            d.open ? (v(), p("div", {
+            f.open ? (s(), i("div", {
               key: 0,
               class: "viewer-backdrop",
-              onClick: l,
-              onWheel: ee(Y, ["prevent"])
+              onClick: r,
+              onWheel: te(V, ["prevent"])
             }, [
-              t("button", {
+              e("button", {
                 class: "viewer-btn close-btn",
-                onClick: b[0] || (b[0] = (q) => c("close")),
+                onClick: $[0] || ($[0] = (q) => u("close")),
                 title: "Close (Esc)"
-              }, [...b[1] || (b[1] = [
-                t("svg", {
+              }, [...$[1] || ($[1] = [
+                e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
                   stroke: "currentColor",
                   "stroke-width": "2"
                 }, [
-                  t("path", { d: "M18 6L6 18M6 6l12 12" })
+                  e("path", { d: "M18 6L6 18M6 6l12 12" })
                 ], -1)
               ])]),
-              t("div", Se, [
-                w.value ? (v(), p("span", Ue, j(x.value + 1) + " / " + j(d.images.length), 1)) : E("", !0)
+              e("div", Ee, [
+                b.value ? (s(), i("span", Ue, P(y.value + 1) + " / " + P(f.images.length), 1)) : U("", !0)
               ]),
-              w.value && g.value ? (v(), p("button", {
+              b.value && k.value ? (s(), i("button", {
                 key: 0,
                 class: "viewer-btn nav-btn prev",
-                onClick: ee(i, ["stop"]),
+                onClick: te(o, ["stop"]),
                 title: "Previous (←)"
-              }, [...b[2] || (b[2] = [
-                t("svg", {
+              }, [...$[2] || ($[2] = [
+                e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
                   stroke: "currentColor",
                   "stroke-width": "2"
                 }, [
-                  t("path", { d: "M15 18l-6-6 6-6" })
+                  e("path", { d: "M15 18l-6-6 6-6" })
                 ], -1)
-              ])])) : E("", !0),
-              w.value && k.value ? (v(), p("button", {
+              ])])) : U("", !0),
+              b.value && h.value ? (s(), i("button", {
                 key: 1,
                 class: "viewer-btn nav-btn next",
-                onClick: ee(m, ["stop"]),
+                onClick: te(c, ["stop"]),
                 title: "Next (→)"
-              }, [...b[3] || (b[3] = [
-                t("svg", {
+              }, [...$[3] || ($[3] = [
+                e("svg", {
                   viewBox: "0 0 24 24",
                   fill: "none",
                   stroke: "currentColor",
                   "stroke-width": "2"
                 }, [
-                  t("path", { d: "M9 18l6-6-6-6" })
+                  e("path", { d: "M9 18l6-6-6-6" })
                 ], -1)
-              ])])) : E("", !0),
-              t("div", Le, [
-                Z.value ? (v(), p("div", Ee, [...b[4] || (b[4] = [
-                  t("div", { class: "spinner" }, null, -1)
-                ])])) : E("", !0),
-                D.value ? (v(), p("div", Ie, [...b[5] || (b[5] = [
-                  t("svg", {
+              ])])) : U("", !0),
+              e("div", Le, [
+                H.value ? (s(), i("div", je, [...$[4] || ($[4] = [
+                  e("div", { class: "spinner" }, null, -1)
+                ])])) : U("", !0),
+                R.value ? (s(), i("div", Ae, [...$[5] || ($[5] = [
+                  e("svg", {
                     viewBox: "0 0 24 24",
                     fill: "none",
                     stroke: "currentColor",
                     "stroke-width": "2"
                   }, [
-                    t("circle", {
+                    e("circle", {
                       cx: "12",
                       cy: "12",
                       r: "10"
                     }),
-                    t("path", { d: "M12 8v4M12 16h.01" })
+                    e("path", { d: "M12 8v4M12 16h.01" })
                   ], -1),
-                  t("span", null, "Failed to load image", -1)
-                ])])) : E("", !0),
-                ze(t("img", {
-                  src: C.value,
-                  alt: ((N = s.value) == null ? void 0 : N.alt) || "Image",
-                  style: G(a.value),
+                  e("span", null, "Failed to load image", -1)
+                ])])) : U("", !0),
+                $e(e("img", {
+                  src: z.value,
+                  alt: ((W = p.value) == null ? void 0 : W.alt) || "Image",
+                  style: J(l.value),
                   class: "viewer-image",
                   draggable: "false",
-                  onLoad: O,
+                  onLoad: B,
                   onError: X,
-                  onMousedown: V,
+                  onMousedown: N,
                   onMousemove: K,
-                  onMouseup: J,
-                  onMouseleave: J,
-                  onTouchstart: V,
+                  onMouseup: G,
+                  onMouseleave: G,
+                  onTouchstart: N,
                   onTouchmove: K,
-                  onTouchend: J
-                }, null, 44, Ae), [
-                  [$e, !D.value]
+                  onTouchend: G
+                }, null, 44, Fe), [
+                  [ze, !R.value]
                 ]),
-                $.value ? (v(), p("div", Pe, " Loading full resolution... ")) : E("", !0)
+                w.value ? (s(), i("div", Pe, " Loading full resolution... ")) : U("", !0)
               ]),
-              t("div", Re, [
-                t("div", Fe, [
-                  t("button", {
+              e("div", Re, [
+                e("div", Oe, [
+                  e("button", {
                     class: "viewer-btn small",
                     onClick: L,
                     title: "Zoom out (-)"
-                  }, [...b[6] || (b[6] = [
-                    t("svg", {
+                  }, [...$[6] || ($[6] = [
+                    e("svg", {
                       viewBox: "0 0 24 24",
                       fill: "none",
                       stroke: "currentColor",
                       "stroke-width": "2"
                     }, [
-                      t("circle", {
+                      e("circle", {
                         cx: "11",
                         cy: "11",
                         r: "8"
                       }),
-                      t("path", { d: "M21 21l-4.35-4.35M8 11h6" })
+                      e("path", { d: "M21 21l-4.35-4.35M8 11h6" })
                     ], -1)
                   ])]),
-                  t("span", {
+                  e("span", {
                     class: "zoom-level",
-                    onClick: R,
+                    onClick: T,
                     title: "Reset zoom (0)"
-                  }, j(Math.round(n.value * 100)) + "% ", 1),
-                  t("button", {
+                  }, P(Math.round(n.value * 100)) + "% ", 1),
+                  e("button", {
                     class: "viewer-btn small",
-                    onClick: y,
+                    onClick: x,
                     title: "Zoom in (+)"
-                  }, [...b[7] || (b[7] = [
-                    t("svg", {
+                  }, [...$[7] || ($[7] = [
+                    e("svg", {
                       viewBox: "0 0 24 24",
                       fill: "none",
                       stroke: "currentColor",
                       "stroke-width": "2"
                     }, [
-                      t("circle", {
+                      e("circle", {
                         cx: "11",
                         cy: "11",
                         r: "8"
                       }),
-                      t("path", { d: "M21 21l-4.35-4.35M11 8v6M8 11h6" })
+                      e("path", { d: "M21 21l-4.35-4.35M11 8v6M8 11h6" })
                     ], -1)
                   ])])
                 ]),
-                t("button", {
+                e("button", {
                   class: "viewer-btn small",
-                  onClick: I,
+                  onClick: F,
                   title: "Download"
-                }, [...b[8] || (b[8] = [
-                  t("svg", {
+                }, [...$[8] || ($[8] = [
+                  e("svg", {
                     viewBox: "0 0 24 24",
                     fill: "none",
                     stroke: "currentColor",
                     "stroke-width": "2"
                   }, [
-                    t("path", { d: "M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" })
+                    e("path", { d: "M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" })
                   ], -1)
                 ])])
               ]),
-              w.value && d.images.length <= 20 ? (v(), p("div", Oe, [
-                (v(!0), p(te, null, ce(d.images, (q, B) => (v(), p("button", {
-                  key: B,
-                  class: W(["thumbnail", { active: B === x.value }]),
-                  onClick: (se) => h(B)
+              b.value && f.images.length <= 20 ? (s(), i("div", Te, [
+                (s(!0), i(Q, null, ae(f.images, (q, Z) => (s(), i("button", {
+                  key: Z,
+                  class: Y(["thumbnail", { active: Z === y.value }]),
+                  onClick: (ue) => g(Z)
                 }, [
-                  t("img", {
+                  e("img", {
                     src: q.thumbnail || q.url,
-                    alt: `Thumbnail ${B + 1}`
-                  }, null, 8, De)
-                ], 10, je))), 128))
-              ])) : E("", !0)
-            ], 32)) : E("", !0)
+                    alt: `Thumbnail ${Z + 1}`
+                  }, null, 8, Be)
+                ], 10, De))), 128))
+              ])) : U("", !0)
+            ], 32)) : U("", !0)
           ];
         }),
         _: 1
       })
     ]));
   }
-}), re = (d, S) => {
-  const o = d.__vccOpts || d;
-  for (const [c, r] of S)
-    o[c] = r;
-  return o;
-}, Ze = /* @__PURE__ */ re(He, [["__scopeId", "data-v-1fa5ee85"]]), pa = /* @__PURE__ */ oe({
+}), le = (f, M) => {
+  const a = f.__vccOpts || f;
+  for (const [u, d] of M)
+    a[u] = d;
+  return a;
+}, Ve = /* @__PURE__ */ le(Ye, [["__scopeId", "data-v-1fa5ee85"]]), Oa = /* @__PURE__ */ oe({
   __name: "ImageViewerProvider",
-  setup(d) {
-    const { isOpen: S, images: o, initialIndex: c, _setOpen: r } = Ce(), x = F(() => [...o.value]);
+  setup(f) {
+    const { isOpen: M, images: a, initialIndex: u, _setOpen: d } = _e(), y = A(() => [...a.value]);
     function n() {
-      r(!1);
+      d(!1);
     }
-    return (P, A) => (v(), le(Ze, {
-      images: x.value,
-      "initial-index": f(c),
-      open: f(S),
+    return (j, E) => (s(), ie(Ve, {
+      images: y.value,
+      "initial-index": m(u),
+      open: m(M),
       onClose: n
     }, null, 8, ["images", "initial-index", "open"]));
   }
-}), ve = z({});
-function fa(d) {
-  ve.value = { ...ve.value, ...d };
+}), pe = C({});
+function Ta(f) {
+  pe.value = { ...pe.value, ...f };
 }
-function Ye(d) {
-  const S = z(!1), o = z(0), c = z(null), r = z(null), x = z(null), n = F(() => ({
+function Ne(f) {
+  const M = C(!1), a = C(0), u = C(null), d = C(null), y = C(null), n = A(() => ({
     uploadUrl: "/api/v1/upload",
     profile: "avatar",
     maxFileSize: 10 * 1024 * 1024,
     // 10MB
     acceptedTypes: ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"],
-    ...ve.value,
-    ...d
+    ...pe.value,
+    ...f
   }));
-  function P($) {
-    var M;
-    return (M = n.value.acceptedTypes) != null && M.some((u) => $.type === u || $.type.startsWith(u.replace("/*", "/"))) ? n.value.maxFileSize && $.size > n.value.maxFileSize ? {
+  function j(w) {
+    var S;
+    return (S = n.value.acceptedTypes) != null && S.some((v) => w.type === v || w.type.startsWith(v.replace("/*", "/"))) ? n.value.maxFileSize && w.size > n.value.maxFileSize ? {
       message: `File too large. Maximum size is ${Math.round(n.value.maxFileSize / 1048576)}MB.`,
       code: "FILE_TOO_LARGE"
     } : null : {
@@ -411,134 +411,134 @@ function Ye(d) {
       code: "INVALID_TYPE"
     };
   }
-  function A($) {
-    const M = P($);
-    return M ? (c.value = M, M) : (r.value && URL.revokeObjectURL(r.value), x.value = $, r.value = URL.createObjectURL($), c.value = null, null);
+  function E(w) {
+    const S = j(w);
+    return S ? (u.value = S, S) : (d.value && URL.revokeObjectURL(d.value), y.value = w, d.value = URL.createObjectURL(w), u.value = null, null);
   }
-  function H() {
-    r.value && URL.revokeObjectURL(r.value), x.value = null, r.value = null, c.value = null, o.value = 0;
+  function O() {
+    d.value && URL.revokeObjectURL(d.value), y.value = null, d.value = null, u.value = null, a.value = 0;
   }
-  async function T() {
-    if (!x.value)
-      return c.value = { message: "No file selected", code: "NO_FILE" }, null;
-    S.value = !0, o.value = 0, c.value = null;
+  async function D() {
+    if (!y.value)
+      return u.value = { message: "No file selected", code: "NO_FILE" }, null;
+    M.value = !0, a.value = 0, u.value = null;
     try {
-      const $ = new FormData();
-      $.append("file", x.value), $.append("profile", n.value.profile || "avatar"), n.value.projectId && $.append("project_id", n.value.projectId);
-      const M = {};
-      n.value.apiKey && (M.Authorization = `Bearer ${n.value.apiKey}`), n.value.headers && Object.assign(M, n.value.headers);
-      const u = await new Promise((s, C) => {
-        const w = new XMLHttpRequest();
-        w.upload.addEventListener("progress", (g) => {
-          g.lengthComputable && (o.value = Math.round(g.loaded / g.total * 100));
-        }), w.addEventListener("load", () => {
-          if (w.status >= 200 && w.status < 300)
+      const w = new FormData();
+      w.append("file", y.value), w.append("profile", n.value.profile || "avatar"), n.value.projectId && w.append("project_id", n.value.projectId);
+      const S = {};
+      n.value.apiKey && (S.Authorization = `Bearer ${n.value.apiKey}`), n.value.headers && Object.assign(S, n.value.headers);
+      const v = await new Promise((p, z) => {
+        const b = new XMLHttpRequest();
+        b.upload.addEventListener("progress", (k) => {
+          k.lengthComputable && (a.value = Math.round(k.loaded / k.total * 100));
+        }), b.addEventListener("load", () => {
+          if (b.status >= 200 && b.status < 300)
             try {
-              const g = JSON.parse(w.responseText), k = g.data || g;
-              s({
-                id: k.id,
-                url: k.url || k.signed_url,
-                variants: k.variants || {}
+              const k = JSON.parse(b.responseText), h = k.data || k;
+              p({
+                id: h.id,
+                url: h.url || h.signed_url,
+                variants: h.variants || {}
               });
             } catch {
-              C({ message: "Invalid response from server", code: "PARSE_ERROR" });
-            }
-          else {
-            let g = "Upload failed";
-            try {
-              const k = JSON.parse(w.responseText);
-              g = k.error || k.message || g;
-            } catch {
-            }
-            C({ message: g, code: `HTTP_${w.status}` });
-          }
-        }), w.addEventListener("error", () => {
-          C({ message: "Network error during upload", code: "NETWORK_ERROR" });
-        }), w.addEventListener("abort", () => {
-          C({ message: "Upload cancelled", code: "ABORTED" });
-        }), w.open("POST", n.value.uploadUrl);
-        for (const [g, k] of Object.entries(M))
-          w.setRequestHeader(g, k);
-        w.send($);
-      });
-      return o.value = 100, u;
-    } catch ($) {
-      return c.value = $, null;
-    } finally {
-      S.value = !1;
-    }
-  }
-  async function Z($) {
-    return A($) ? null : T();
-  }
-  async function D($) {
-    if (!x.value)
-      return c.value = { message: "No file selected", code: "NO_FILE" }, null;
-    S.value = !0, o.value = 0, c.value = null;
-    try {
-      const M = new FormData();
-      M.append("file", x.value), M.append("profile", n.value.profile || "avatar"), M.append("crop_x", String($.x)), M.append("crop_y", String($.y)), M.append("crop_width", String($.width)), M.append("crop_height", String($.height)), $.zoom !== void 0 && M.append("crop_zoom", String($.zoom)), n.value.projectId && M.append("project_id", n.value.projectId);
-      const u = {};
-      n.value.apiKey && (u.Authorization = `Bearer ${n.value.apiKey}`), n.value.headers && Object.assign(u, n.value.headers);
-      const s = await new Promise((C, w) => {
-        const g = new XMLHttpRequest();
-        g.upload.addEventListener("progress", (k) => {
-          k.lengthComputable && (o.value = Math.round(k.loaded / k.total * 100));
-        }), g.addEventListener("load", () => {
-          if (g.status >= 200 && g.status < 300)
-            try {
-              const k = JSON.parse(g.responseText), U = k.data || k;
-              C({
-                id: U.id,
-                url: U.url || U.signed_url,
-                variants: U.variants || {}
-              });
-            } catch {
-              w({ message: "Invalid response from server", code: "PARSE_ERROR" });
+              z({ message: "Invalid response from server", code: "PARSE_ERROR" });
             }
           else {
             let k = "Upload failed";
             try {
-              const U = JSON.parse(g.responseText);
-              k = U.error || U.message || k;
+              const h = JSON.parse(b.responseText);
+              k = h.error || h.message || k;
             } catch {
             }
-            w({ message: k, code: `HTTP_${g.status}` });
+            z({ message: k, code: `HTTP_${b.status}` });
           }
-        }), g.addEventListener("error", () => {
-          w({ message: "Network error during upload", code: "NETWORK_ERROR" });
-        }), g.addEventListener("abort", () => {
-          w({ message: "Upload cancelled", code: "ABORTED" });
-        }), g.open("POST", n.value.uploadUrl);
-        for (const [k, U] of Object.entries(u))
-          g.setRequestHeader(k, U);
-        g.send(M);
+        }), b.addEventListener("error", () => {
+          z({ message: "Network error during upload", code: "NETWORK_ERROR" });
+        }), b.addEventListener("abort", () => {
+          z({ message: "Upload cancelled", code: "ABORTED" });
+        }), b.open("POST", n.value.uploadUrl);
+        for (const [k, h] of Object.entries(S))
+          b.setRequestHeader(k, h);
+        b.send(w);
       });
-      return o.value = 100, s;
-    } catch (M) {
-      return c.value = M, null;
+      return a.value = 100, v;
+    } catch (w) {
+      return u.value = w, null;
     } finally {
-      S.value = !1;
+      M.value = !1;
+    }
+  }
+  async function H(w) {
+    return E(w) ? null : D();
+  }
+  async function R(w) {
+    if (!y.value)
+      return u.value = { message: "No file selected", code: "NO_FILE" }, null;
+    M.value = !0, a.value = 0, u.value = null;
+    try {
+      const S = new FormData();
+      S.append("file", y.value), S.append("profile", n.value.profile || "avatar"), S.append("crop_x", String(w.x)), S.append("crop_y", String(w.y)), S.append("crop_width", String(w.width)), S.append("crop_height", String(w.height)), w.zoom !== void 0 && S.append("crop_zoom", String(w.zoom)), n.value.projectId && S.append("project_id", n.value.projectId);
+      const v = {};
+      n.value.apiKey && (v.Authorization = `Bearer ${n.value.apiKey}`), n.value.headers && Object.assign(v, n.value.headers);
+      const p = await new Promise((z, b) => {
+        const k = new XMLHttpRequest();
+        k.upload.addEventListener("progress", (h) => {
+          h.lengthComputable && (a.value = Math.round(h.loaded / h.total * 100));
+        }), k.addEventListener("load", () => {
+          if (k.status >= 200 && k.status < 300)
+            try {
+              const h = JSON.parse(k.responseText), _ = h.data || h;
+              z({
+                id: _.id,
+                url: _.url || _.signed_url,
+                variants: _.variants || {}
+              });
+            } catch {
+              b({ message: "Invalid response from server", code: "PARSE_ERROR" });
+            }
+          else {
+            let h = "Upload failed";
+            try {
+              const _ = JSON.parse(k.responseText);
+              h = _.error || _.message || h;
+            } catch {
+            }
+            b({ message: h, code: `HTTP_${k.status}` });
+          }
+        }), k.addEventListener("error", () => {
+          b({ message: "Network error during upload", code: "NETWORK_ERROR" });
+        }), k.addEventListener("abort", () => {
+          b({ message: "Upload cancelled", code: "ABORTED" });
+        }), k.open("POST", n.value.uploadUrl);
+        for (const [h, _] of Object.entries(v))
+          k.setRequestHeader(h, _);
+        k.send(S);
+      });
+      return a.value = 100, p;
+    } catch (S) {
+      return u.value = S, null;
+    } finally {
+      M.value = !1;
     }
   }
   return {
     // State
-    uploading: S,
-    progress: o,
-    error: c,
-    previewUrl: r,
-    selectedFile: x,
+    uploading: M,
+    progress: a,
+    error: u,
+    previewUrl: d,
+    selectedFile: y,
     config: n,
     // Methods
-    validateFile: P,
-    selectFile: A,
-    clearSelection: H,
-    upload: T,
-    selectAndUpload: Z,
-    uploadWithCrop: D
+    validateFile: j,
+    selectFile: E,
+    clearSelection: O,
+    upload: D,
+    selectAndUpload: H,
+    uploadWithCrop: R
   };
 }
-const ue = {
+const de = {
   shape: "circle",
   cropSize: 280,
   outputSize: 512,
@@ -547,8 +547,8 @@ const ue = {
   quality: 0.92,
   mediaProxyUrl: void 0
 };
-function Ve(d) {
-  const S = F(() => ({ ...ue, ...d })), o = z({
+function Xe(f) {
+  const M = A(() => ({ ...de, ...f })), a = C({
     image: null,
     naturalWidth: 0,
     naturalHeight: 0,
@@ -556,127 +556,127 @@ function Ve(d) {
     panY: 0,
     zoom: 1,
     minZoom: 1,
-    maxZoom: ue.maxZoom
-  }), c = z(!1), r = z(null), x = z(null), n = z(null);
-  function P(i) {
-    o.value.image = i, o.value.naturalWidth = i.naturalWidth, o.value.naturalHeight = i.naturalHeight;
-    const { cropSize: m } = S.value, h = m / i.naturalWidth, y = m / i.naturalHeight, L = Math.max(h, y);
+    maxZoom: de.maxZoom
+  }), u = C(!1), d = C(null), y = C(null), n = C(null);
+  function j(o) {
+    a.value.image = o, a.value.naturalWidth = o.naturalWidth, a.value.naturalHeight = o.naturalHeight;
+    const { cropSize: c } = M.value, g = c / o.naturalWidth, x = c / o.naturalHeight, L = Math.max(g, x);
     console.log("[Cropper] Image initialized:", {
-      naturalWidth: i.naturalWidth,
-      naturalHeight: i.naturalHeight,
-      cropSize: m,
-      scaleX: h.toFixed(4),
-      scaleY: y.toFixed(4),
+      naturalWidth: o.naturalWidth,
+      naturalHeight: o.naturalHeight,
+      cropSize: c,
+      scaleX: g.toFixed(4),
+      scaleY: x.toFixed(4),
       minZoom: L.toFixed(4)
-    }), o.value.minZoom = L, o.value.maxZoom = L * S.value.maxZoom, o.value.zoom = L, D(), console.log("[Cropper] After centering:", {
-      panX: o.value.panX.toFixed(2),
-      panY: o.value.panY.toFixed(2),
-      zoom: o.value.zoom.toFixed(4)
+    }), a.value.minZoom = L, a.value.maxZoom = L * M.value.maxZoom, a.value.zoom = L, R(), console.log("[Cropper] After centering:", {
+      panX: a.value.panX.toFixed(2),
+      panY: a.value.panY.toFixed(2),
+      zoom: a.value.zoom.toFixed(4)
     });
   }
-  async function A(i) {
-    c.value = !0, r.value = null, x.value = i, n.value && URL.revokeObjectURL(n.value);
+  async function E(o) {
+    u.value = !0, d.value = null, y.value = o, n.value && URL.revokeObjectURL(n.value);
     try {
-      const m = URL.createObjectURL(i);
-      n.value = m;
-      const h = await Z(m);
-      return P(h), c.value = !1, !0;
+      const c = URL.createObjectURL(o);
+      n.value = c;
+      const g = await H(c);
+      return j(g), u.value = !1, !0;
     } catch {
-      return r.value = "Failed to load image", c.value = !1, !1;
+      return d.value = "Failed to load image", u.value = !1, !1;
     }
   }
-  async function H(i) {
-    c.value = !0, r.value = null, x.value = null;
+  async function O(o) {
+    u.value = !0, d.value = null, y.value = null;
     try {
-      let m = i;
-      const { mediaProxyUrl: h } = S.value;
-      h && T(i) && (m = `${h}?url=${encodeURIComponent(i)}`, console.log("[Cropper] Using proxy for external URL:", m)), n.value = m;
-      const y = await Z(m);
-      return P(y), c.value = !1, !0;
-    } catch (m) {
-      return console.error("[Cropper] Failed to load image:", m), r.value = "Failed to load image", c.value = !1, !1;
+      let c = o;
+      const { mediaProxyUrl: g } = M.value;
+      g && D(o) && (c = `${g}?url=${encodeURIComponent(o)}`, console.log("[Cropper] Using proxy for external URL:", c)), n.value = c;
+      const x = await H(c);
+      return j(x), u.value = !1, !0;
+    } catch (c) {
+      return console.error("[Cropper] Failed to load image:", c), d.value = "Failed to load image", u.value = !1, !1;
     }
   }
-  function T(i) {
+  function D(o) {
     try {
-      return new URL(i).origin !== window.location.origin;
+      return new URL(o).origin !== window.location.origin;
     } catch {
       return !1;
     }
   }
-  function Z(i) {
-    return new Promise((m, h) => {
-      const y = new Image();
-      y.crossOrigin = "anonymous", y.onload = () => m(y), y.onerror = () => h(new Error("Failed to load image")), y.src = i;
+  function H(o) {
+    return new Promise((c, g) => {
+      const x = new Image();
+      x.crossOrigin = "anonymous", x.onload = () => c(x), x.onerror = () => g(new Error("Failed to load image")), x.src = o;
     });
   }
-  function D() {
-    const { cropSize: i } = S.value, { naturalWidth: m, naturalHeight: h, zoom: y } = o.value, L = i / y, R = i / y;
-    o.value.panX = (m - L) / 2, o.value.panY = (h - R) / 2;
+  function R() {
+    const { cropSize: o } = M.value, { naturalWidth: c, naturalHeight: g, zoom: x } = a.value, L = o / x, T = o / x;
+    a.value.panX = (c - L) / 2, a.value.panY = (g - T) / 2;
   }
-  function $(i) {
-    const { minZoom: m, maxZoom: h } = o.value, y = Math.max(m, Math.min(h, i)), L = o.value.zoom, { cropSize: R } = S.value, Y = o.value.panX + R / (2 * L), V = o.value.panY + R / (2 * L);
-    o.value.zoom = y, o.value.panX = Y - R / (2 * y), o.value.panY = V - R / (2 * y), u();
+  function w(o) {
+    const { minZoom: c, maxZoom: g } = a.value, x = Math.max(c, Math.min(g, o)), L = a.value.zoom, { cropSize: T } = M.value, V = a.value.panX + T / (2 * L), N = a.value.panY + T / (2 * L);
+    a.value.zoom = x, a.value.panX = V - T / (2 * x), a.value.panY = N - T / (2 * x), v();
   }
-  function M(i, m) {
-    const { zoom: h } = o.value;
-    o.value.panX -= i / h, o.value.panY -= m / h, u();
+  function S(o, c) {
+    const { zoom: g } = a.value;
+    a.value.panX -= o / g, a.value.panY -= c / g, v();
   }
-  function u() {
-    const { cropSize: i } = S.value, { naturalWidth: m, naturalHeight: h, zoom: y } = o.value, L = i / y, R = i / y, Y = m - L, V = h - R;
-    o.value.panX = Math.max(0, Math.min(Y, o.value.panX)), o.value.panY = Math.max(0, Math.min(V, o.value.panY));
+  function v() {
+    const { cropSize: o } = M.value, { naturalWidth: c, naturalHeight: g, zoom: x } = a.value, L = o / x, T = o / x, V = c - L, N = g - T;
+    a.value.panX = Math.max(0, Math.min(V, a.value.panX)), a.value.panY = Math.max(0, Math.min(N, a.value.panY));
   }
-  const s = F(() => {
-    if (!o.value.image) return null;
-    const { cropSize: i } = S.value, { panX: m, panY: h, zoom: y } = o.value, L = i / y, R = i / y;
+  const p = A(() => {
+    if (!a.value.image) return null;
+    const { cropSize: o } = M.value, { panX: c, panY: g, zoom: x } = a.value, L = o / x, T = o / x;
     return {
-      x: Math.round(m),
-      y: Math.round(h),
+      x: Math.round(c),
+      y: Math.round(g),
       width: Math.round(L),
-      height: Math.round(R),
-      zoom: y
+      height: Math.round(T),
+      zoom: x
     };
-  }), C = F(() => {
-    const { zoom: i, panX: m, panY: h } = o.value, y = -m * i, L = -h * i;
+  }), z = A(() => {
+    const { zoom: o, panX: c, panY: g } = a.value, x = -c * o, L = -g * o;
     return Math.random() < 0.01 && console.log("[Cropper] Transform:", {
-      panX: m.toFixed(2),
-      panY: h.toFixed(2),
-      zoom: i.toFixed(4),
-      translateX: y.toFixed(2),
+      panX: c.toFixed(2),
+      panY: g.toFixed(2),
+      zoom: o.toFixed(4),
+      translateX: x.toFixed(2),
       translateY: L.toFixed(2)
-    }), `translate(${y}px, ${L}px) scale(${i})`;
+    }), `translate(${x}px, ${L}px) scale(${o})`;
   });
-  async function w() {
-    if (!o.value.image || !s.value) return null;
-    const { outputSize: i, format: m, quality: h } = S.value, y = s.value, L = document.createElement("canvas");
-    L.width = i, L.height = i;
-    const R = L.getContext("2d");
-    return R ? (R.drawImage(
-      o.value.image,
-      y.x,
-      y.y,
-      y.width,
-      y.height,
+  async function b() {
+    if (!a.value.image || !p.value) return null;
+    const { outputSize: o, format: c, quality: g } = M.value, x = p.value, L = document.createElement("canvas");
+    L.width = o, L.height = o;
+    const T = L.getContext("2d");
+    return T ? (T.drawImage(
+      a.value.image,
+      x.x,
+      x.y,
+      x.width,
+      x.height,
       0,
       0,
-      i,
-      i
-    ), new Promise((Y) => {
+      o,
+      o
+    ), new Promise((V) => {
       L.toBlob(
-        (V) => Y(V),
-        m,
-        h
+        (N) => V(N),
+        c,
+        g
       );
     })) : null;
   }
-  async function g(i) {
-    const m = await w();
-    if (!m) return null;
-    const { format: h } = S.value, y = h.split("/")[1], L = i || `avatar-cropped.${y}`;
-    return new File([m], L, { type: h });
+  async function k(o) {
+    const c = await b();
+    if (!c) return null;
+    const { format: g } = M.value, x = g.split("/")[1], L = o || `avatar-cropped.${x}`;
+    return new File([c], L, { type: g });
   }
-  function k() {
-    n.value && x.value && URL.revokeObjectURL(n.value), o.value = {
+  function h() {
+    n.value && y.value && URL.revokeObjectURL(n.value), a.value = {
       image: null,
       naturalWidth: 0,
       naturalHeight: 0,
@@ -684,43 +684,43 @@ function Ve(d) {
       panY: 0,
       zoom: 1,
       minZoom: 1,
-      maxZoom: ue.maxZoom
-    }, x.value = null, n.value = null, r.value = null;
+      maxZoom: de.maxZoom
+    }, y.value = null, n.value = null, d.value = null;
   }
-  function U() {
-    if (!o.value.image) return;
-    const { cropSize: i } = S.value, m = i / o.value.naturalWidth, h = i / o.value.naturalHeight, y = Math.max(m, h);
-    o.value.zoom = y, D();
+  function _() {
+    if (!a.value.image) return;
+    const { cropSize: o } = M.value, c = o / a.value.naturalWidth, g = o / a.value.naturalHeight, x = Math.max(c, g);
+    a.value.zoom = x, R();
   }
   return {
     // State
-    state: o,
-    loading: c,
-    error: r,
-    sourceFile: x,
+    state: a,
+    loading: u,
+    error: d,
+    sourceFile: y,
     sourceUrl: n,
-    cropRegion: s,
-    imageTransform: C,
-    config: S,
+    cropRegion: p,
+    imageTransform: z,
+    config: M,
     // Methods
-    loadFile: A,
-    loadUrl: H,
-    setZoom: $,
-    pan: M,
-    centerImage: D,
-    reset: U,
-    exportCrop: w,
-    exportCropAsFile: g,
-    cleanup: k
+    loadFile: E,
+    loadUrl: O,
+    setZoom: w,
+    pan: S,
+    centerImage: R,
+    reset: _,
+    exportCrop: b,
+    exportCropAsFile: k,
+    cleanup: h
   };
 }
-const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { class: "relative" }, We = { class: "text-sm" }, qe = ["src"], Je = {
+const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, qe = { class: "relative" }, Je = { class: "text-sm" }, Ge = ["src"], Ke = {
   key: 0,
   class: "absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity pointer-events-none"
-}, Ge = {
+}, Qe = {
   key: 0,
   class: "w-full max-w-xs space-y-2"
-}, Ke = { class: "flex items-center gap-3" }, Qe = ["disabled"], et = { class: "flex-1 relative" }, tt = ["value"], at = ["disabled"], ot = { class: "w-12 text-right text-sm text-dark-400 tabular-nums" }, nt = { class: "flex items-center gap-3" }, lt = ["disabled"], rt = /* @__PURE__ */ oe({
+}, et = { class: "flex items-center gap-3" }, tt = ["disabled"], at = { class: "flex-1 relative" }, ot = ["value"], nt = ["disabled"], lt = { class: "w-12 text-right text-sm text-dark-400 tabular-nums" }, rt = { class: "flex items-center gap-3" }, st = ["disabled"], it = /* @__PURE__ */ oe({
   __name: "AvatarCropper",
   props: {
     file: {},
@@ -735,46 +735,46 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
     config: {}
   },
   emits: ["confirm", "cancel", "crop-change"],
-  setup(d, { emit: S }) {
-    const o = d, c = S, {
-      state: r,
-      loading: x,
+  setup(f, { emit: M }) {
+    const a = f, u = M, {
+      state: d,
+      loading: y,
       error: n,
-      sourceUrl: P,
-      cropRegion: A,
-      imageTransform: H,
-      config: T,
-      loadFile: Z,
-      loadUrl: D,
-      setZoom: $,
-      pan: M,
-      reset: u,
-      exportCropAsFile: s,
-      cleanup: C
-    } = Ve({
-      shape: o.shape,
-      cropSize: o.cropSize,
-      outputSize: o.outputSize,
-      ...o.config
-    }), w = z(null), g = z(!1), k = z({ x: 0, y: 0 });
-    Q(() => o.file, async (l) => {
-      l && await Z(l);
-    }, { immediate: !0 }), Q(() => o.url, async (l) => {
-      l && !o.file && await D(l);
-    }, { immediate: !0 }), Q(A, (l) => {
-      l && c("crop-change", l);
+      sourceUrl: j,
+      cropRegion: E,
+      imageTransform: O,
+      config: D,
+      loadFile: H,
+      loadUrl: R,
+      setZoom: w,
+      pan: S,
+      reset: v,
+      exportCropAsFile: p,
+      cleanup: z
+    } = Xe({
+      shape: a.shape,
+      cropSize: a.cropSize,
+      outputSize: a.outputSize,
+      ...a.config
+    }), b = C(null), k = C(!1), h = C({ x: 0, y: 0 });
+    ee(() => a.file, async (r) => {
+      r && await H(r);
+    }, { immediate: !0 }), ee(() => a.url, async (r) => {
+      r && !a.file && await R(r);
+    }, { immediate: !0 }), ee(E, (r) => {
+      r && u("crop-change", r);
     });
-    const U = F(() => r.value.minZoom ? Math.round(r.value.zoom / r.value.minZoom * 100) : 100), i = F({
+    const _ = A(() => d.value.minZoom ? Math.round(d.value.zoom / d.value.minZoom * 100) : 100), o = A({
       get: () => {
-        const { zoom: l, minZoom: a, maxZoom: e } = r.value;
-        return e === a ? 0 : (l - a) / (e - a);
+        const { zoom: r, minZoom: l, maxZoom: t } = d.value;
+        return t === l ? 0 : (r - l) / (t - l);
       },
-      set: (l) => {
-        const { minZoom: a, maxZoom: e } = r.value, b = a + l * (e - a);
-        $(b);
+      set: (r) => {
+        const { minZoom: l, maxZoom: t } = d.value, $ = l + r * (t - l);
+        w($);
       }
-    }), m = F(() => {
-      switch (o.shape) {
+    }), c = A(() => {
+      switch (a.shape) {
         case "circle":
           return "rounded-full";
         case "rounded":
@@ -783,149 +783,149 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
           return "";
       }
     });
-    function h(l) {
-      if (x.value) return;
-      g.value = !0, k.value = { x: l.clientX, y: l.clientY }, l.target.setPointerCapture(l.pointerId);
+    function g(r) {
+      if (y.value) return;
+      k.value = !0, h.value = { x: r.clientX, y: r.clientY }, r.target.setPointerCapture(r.pointerId);
     }
-    function y(l) {
-      if (!g.value) return;
-      const a = l.clientX - k.value.x, e = l.clientY - k.value.y;
-      M(a, e), k.value = { x: l.clientX, y: l.clientY };
+    function x(r) {
+      if (!k.value) return;
+      const l = r.clientX - h.value.x, t = r.clientY - h.value.y;
+      S(l, t), h.value = { x: r.clientX, y: r.clientY };
     }
-    function L(l) {
-      g.value = !1, l.target.releasePointerCapture(l.pointerId);
+    function L(r) {
+      k.value = !1, r.target.releasePointerCapture(r.pointerId);
     }
-    function R(l) {
-      l.preventDefault();
-      const a = l.deltaY > 0 ? -0.1 : 0.1, { zoom: e, minZoom: b, maxZoom: N } = r.value, q = N - b, B = e + a * q * 0.3;
-      $(B);
+    function T(r) {
+      r.preventDefault();
+      const l = r.deltaY > 0 ? -0.1 : 0.1, { zoom: t, minZoom: $, maxZoom: W } = d.value, q = W - $, Z = t + l * q * 0.3;
+      w(Z);
     }
-    let Y = 0;
-    function V(l) {
-      l.touches.length === 2 && (Y = J(l.touches));
+    let V = 0;
+    function N(r) {
+      r.touches.length === 2 && (V = G(r.touches));
     }
-    function K(l) {
-      if (l.touches.length === 2) {
-        l.preventDefault();
-        const a = J(l.touches), e = a / Y;
-        $(r.value.zoom * e), Y = a;
+    function K(r) {
+      if (r.touches.length === 2) {
+        r.preventDefault();
+        const l = G(r.touches), t = l / V;
+        w(d.value.zoom * t), V = l;
       }
     }
-    function J(l) {
-      const a = l[0].clientX - l[1].clientX, e = l[0].clientY - l[1].clientY;
-      return Math.sqrt(a * a + e * e);
+    function G(r) {
+      const l = r[0].clientX - r[1].clientX, t = r[0].clientY - r[1].clientY;
+      return Math.sqrt(l * l + t * t);
     }
-    async function _() {
-      if (!A.value) return;
-      const l = await s();
-      l && c("confirm", { file: l, crop: A.value });
+    async function I() {
+      if (!E.value) return;
+      const r = await p();
+      r && u("confirm", { file: r, crop: E.value });
     }
-    function I() {
-      C(), c("cancel");
+    function F() {
+      z(), u("cancel");
     }
-    function O() {
-      u();
+    function B() {
+      v();
     }
-    function X(l) {
-      l.key === "Escape" ? I() : l.key === "Enter" && _();
+    function X(r) {
+      r.key === "Escape" ? F() : r.key === "Enter" && I();
     }
-    return fe(() => {
+    return se(() => {
       document.addEventListener("keydown", X);
     }), me(() => {
-      document.removeEventListener("keydown", X), C();
-    }), (l, a) => (v(), p("div", Xe, [
-      t("div", Ne, [
-        f(x) ? (v(), p("div", {
+      document.removeEventListener("keydown", X), z();
+    }), (r, l) => (s(), i("div", We, [
+      e("div", qe, [
+        m(y) ? (s(), i("div", {
           key: 0,
-          class: W(["flex items-center justify-center bg-dark-800", m.value]),
-          style: G({ width: `${d.cropSize}px`, height: `${d.cropSize}px` })
-        }, [...a[3] || (a[3] = [
-          t("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
-        ])], 6)) : f(n) ? (v(), p("div", {
+          class: Y(["flex items-center justify-center bg-dark-800", c.value]),
+          style: J({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
+        }, [...l[3] || (l[3] = [
+          e("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
+        ])], 6)) : m(n) ? (s(), i("div", {
           key: 1,
-          class: W(["flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400", m.value]),
-          style: G({ width: `${d.cropSize}px`, height: `${d.cropSize}px` })
+          class: Y(["flex flex-col items-center justify-center gap-2 bg-dark-800 text-red-400", c.value]),
+          style: J({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
         }, [
-          a[4] || (a[4] = t("svg", {
+          l[4] || (l[4] = e("svg", {
             class: "w-8 h-8",
             fill: "none",
             stroke: "currentColor",
             viewBox: "0 0 24 24"
           }, [
-            t("path", {
+            e("path", {
               "stroke-linecap": "round",
               "stroke-linejoin": "round",
               "stroke-width": "2",
               d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
             })
           ], -1)),
-          t("span", We, j(f(n)), 1)
-        ], 6)) : f(r).image ? (v(), p("div", {
+          e("span", Je, P(m(n)), 1)
+        ], 6)) : m(d).image ? (s(), i("div", {
           key: 2,
           ref_key: "cropAreaRef",
-          ref: w,
-          class: W(["relative overflow-hidden bg-dark-900 select-none touch-none", m.value]),
-          style: G({
-            width: `${d.cropSize}px`,
-            height: `${d.cropSize}px`,
-            cursor: g.value ? "grabbing" : "grab"
+          ref: b,
+          class: Y(["relative overflow-hidden bg-dark-900 select-none touch-none", c.value]),
+          style: J({
+            width: `${f.cropSize}px`,
+            height: `${f.cropSize}px`,
+            cursor: k.value ? "grabbing" : "grab"
           }),
-          onPointerdown: h,
-          onPointermove: y,
+          onPointerdown: g,
+          onPointermove: x,
           onPointerup: L,
           onPointercancel: L,
-          onWheel: R,
-          onTouchstart: V,
+          onWheel: T,
+          onTouchstart: N,
           onTouchmove: K
         }, [
-          t("img", {
-            src: f(P) || "",
+          e("img", {
+            src: m(j) || "",
             alt: "Crop preview",
             class: "pointer-events-none",
-            style: G({
+            style: J({
               position: "absolute",
               top: "0",
               left: "0",
-              width: `${f(r).naturalWidth}px`,
-              height: `${f(r).naturalHeight}px`,
+              width: `${m(d).naturalWidth}px`,
+              height: `${m(d).naturalHeight}px`,
               maxWidth: "none",
               maxHeight: "none",
               transformOrigin: "0 0",
-              transform: f(H)
+              transform: m(O)
             }),
             draggable: "false"
-          }, null, 12, qe),
-          a[6] || (a[6] = Me('<div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity" data-v-235e5b45><div class="absolute inset-0 border border-white/20" data-v-235e5b45></div><div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute top-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6" data-v-235e5b45><div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2" data-v-235e5b45></div><div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2" data-v-235e5b45></div></div></div>', 1)),
-          g.value ? E("", !0) : (v(), p("div", Je, [...a[5] || (a[5] = [
-            t("div", { class: "flex items-center gap-2 px-3 py-1.5 bg-black/60 rounded-full text-white text-sm" }, [
-              t("svg", {
+          }, null, 12, Ge),
+          l[6] || (l[6] = Me('<div class="absolute inset-0 pointer-events-none opacity-0 hover:opacity-100 transition-opacity" data-v-235e5b45><div class="absolute inset-0 border border-white/20" data-v-235e5b45></div><div class="absolute left-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute right-1/3 top-0 bottom-0 w-px bg-white/10" data-v-235e5b45></div><div class="absolute top-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute bottom-1/3 left-0 right-0 h-px bg-white/10" data-v-235e5b45></div><div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6" data-v-235e5b45><div class="absolute left-1/2 top-0 bottom-0 w-px bg-white/30 -translate-x-1/2" data-v-235e5b45></div><div class="absolute top-1/2 left-0 right-0 h-px bg-white/30 -translate-y-1/2" data-v-235e5b45></div></div></div>', 1)),
+          k.value ? U("", !0) : (s(), i("div", Ke, [...l[5] || (l[5] = [
+            e("div", { class: "flex items-center gap-2 px-3 py-1.5 bg-black/60 rounded-full text-white text-sm" }, [
+              e("svg", {
                 class: "w-4 h-4",
                 fill: "none",
                 stroke: "currentColor",
                 viewBox: "0 0 24 24"
               }, [
-                t("path", {
+                e("path", {
                   "stroke-linecap": "round",
                   "stroke-linejoin": "round",
                   "stroke-width": "2",
                   d: "M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
                 })
               ]),
-              de(" Drag to reposition ")
+              ve(" Drag to reposition ")
             ], -1)
           ])]))
-        ], 38)) : (v(), p("div", {
+        ], 38)) : (s(), i("div", {
           key: 3,
-          class: W(["flex items-center justify-center bg-dark-800 text-dark-500", m.value]),
-          style: G({ width: `${d.cropSize}px`, height: `${d.cropSize}px` })
-        }, [...a[7] || (a[7] = [
-          t("svg", {
+          class: Y(["flex items-center justify-center bg-dark-800 text-dark-500", c.value]),
+          style: J({ width: `${f.cropSize}px`, height: `${f.cropSize}px` })
+        }, [...l[7] || (l[7] = [
+          e("svg", {
             class: "w-12 h-12",
             fill: "none",
             stroke: "currentColor",
             viewBox: "0 0 24 24"
           }, [
-            t("path", {
+            e("path", {
               "stroke-linecap": "round",
               "stroke-linejoin": "round",
               "stroke-width": "1.5",
@@ -933,110 +933,110 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
             })
           ], -1)
         ])], 6)),
-        o.shape !== "circle" && f(r).image ? (v(), p("div", {
+        a.shape !== "circle" && m(d).image ? (s(), i("div", {
           key: 4,
-          class: W(["absolute inset-0 pointer-events-none border-2 border-white/20", m.value])
-        }, null, 2)) : E("", !0)
+          class: Y(["absolute inset-0 pointer-events-none border-2 border-white/20", c.value])
+        }, null, 2)) : U("", !0)
       ]),
-      d.showZoomSlider && f(r).image ? (v(), p("div", Ge, [
-        t("div", Ke, [
-          t("button", {
+      f.showZoomSlider && m(d).image ? (s(), i("div", Qe, [
+        e("div", et, [
+          e("button", {
             type: "button",
             class: "p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-            onClick: a[0] || (a[0] = (e) => f($)(f(r).zoom - (f(r).maxZoom - f(r).minZoom) * 0.1)),
-            disabled: f(r).zoom <= f(r).minZoom
-          }, [...a[8] || (a[8] = [
-            t("svg", {
+            onClick: l[0] || (l[0] = (t) => m(w)(m(d).zoom - (m(d).maxZoom - m(d).minZoom) * 0.1)),
+            disabled: m(d).zoom <= m(d).minZoom
+          }, [...l[8] || (l[8] = [
+            e("svg", {
               class: "w-4 h-4",
               fill: "none",
               stroke: "currentColor",
               viewBox: "0 0 24 24"
             }, [
-              t("path", {
+              e("path", {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 "stroke-width": "2",
                 d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7"
               })
             ], -1)
-          ])], 8, Qe),
-          t("div", et, [
-            t("input", {
+          ])], 8, tt),
+          e("div", at, [
+            e("input", {
               type: "range",
-              value: i.value,
+              value: o.value,
               min: "0",
               max: "1",
               step: "0.01",
               class: "zoom-slider w-full h-2 bg-dark-700 rounded-full appearance-none cursor-pointer",
-              onInput: a[1] || (a[1] = (e) => i.value = parseFloat(e.target.value))
-            }, null, 40, tt)
+              onInput: l[1] || (l[1] = (t) => o.value = parseFloat(t.target.value))
+            }, null, 40, ot)
           ]),
-          t("button", {
+          e("button", {
             type: "button",
             class: "p-1.5 text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-            onClick: a[2] || (a[2] = (e) => f($)(f(r).zoom + (f(r).maxZoom - f(r).minZoom) * 0.1)),
-            disabled: f(r).zoom >= f(r).maxZoom
-          }, [...a[9] || (a[9] = [
-            t("svg", {
+            onClick: l[2] || (l[2] = (t) => m(w)(m(d).zoom + (m(d).maxZoom - m(d).minZoom) * 0.1)),
+            disabled: m(d).zoom >= m(d).maxZoom
+          }, [...l[9] || (l[9] = [
+            e("svg", {
               class: "w-4 h-4",
               fill: "none",
               stroke: "currentColor",
               viewBox: "0 0 24 24"
             }, [
-              t("path", {
+              e("path", {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 "stroke-width": "2",
                 d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
               })
             ], -1)
-          ])], 8, at),
-          t("span", ot, j(U.value) + "% ", 1)
+          ])], 8, nt),
+          e("span", lt, P(_.value) + "% ", 1)
         ])
-      ])) : E("", !0),
-      t("div", nt, [
-        d.showReset && f(r).image ? (v(), p("button", {
+      ])) : U("", !0),
+      e("div", rt, [
+        f.showReset && m(d).image ? (s(), i("button", {
           key: 0,
           type: "button",
           class: "px-4 py-2 text-sm text-dark-400 hover:text-white rounded-lg hover:bg-dark-700 transition-colors",
-          onClick: O
-        }, " Reset ")) : E("", !0),
-        t("button", {
+          onClick: B
+        }, " Reset ")) : U("", !0),
+        e("button", {
           type: "button",
           class: "px-4 py-2 text-sm text-dark-300 bg-dark-700 hover:bg-dark-600 rounded-lg transition-colors",
-          onClick: I
-        }, j(d.cancelLabel), 1),
-        t("button", {
+          onClick: F
+        }, P(f.cancelLabel), 1),
+        e("button", {
           type: "button",
           class: "px-6 py-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-500 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
-          disabled: !f(r).image || f(x),
-          onClick: _
-        }, j(d.confirmLabel), 9, lt)
+          disabled: !m(d).image || m(y),
+          onClick: I
+        }, P(f.confirmLabel), 9, st)
       ])
     ]));
   }
-}), _e = /* @__PURE__ */ re(rt, [["__scopeId", "data-v-235e5b45"]]), st = {
+}), Ce = /* @__PURE__ */ le(it, [["__scopeId", "data-v-235e5b45"]]), ut = {
   key: 0,
   class: "fixed inset-0 z-50 flex items-center justify-center p-4"
-}, it = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, ut = ["src"], ct = {
+}, ct = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, dt = ["src"], vt = {
   key: 1,
   class: "w-full h-full bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center"
-}, dt = ["width", "height"], vt = {
+}, pt = ["width", "height"], ft = {
   key: 2,
   class: "absolute inset-0 bg-black/50 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center"
-}, pt = {
+}, mt = {
   key: 3,
   class: "absolute inset-0 bg-black/60 flex items-center justify-center"
-}, ft = {
+}, ht = {
   key: 0,
   class: "transform -rotate-90",
   width: "60",
   height: "60",
   viewBox: "0 0 100 100"
-}, mt = ["stroke-dasharray", "stroke-dashoffset"], ht = { class: "absolute text-white font-medium text-sm" }, gt = {
+}, gt = ["stroke-dasharray", "stroke-dashoffset"], yt = { class: "absolute text-white font-medium text-sm" }, kt = {
   key: 0,
   class: "absolute -bottom-6 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-xs text-red-400"
-}, yt = /* @__PURE__ */ oe({
+}, xt = /* @__PURE__ */ oe({
   __name: "AvatarUpload",
   props: {
     modelValue: {},
@@ -1052,19 +1052,19 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
     cropOutputSize: { default: 512 }
   },
   emits: ["update:modelValue", "upload-start", "upload-progress", "upload-success", "upload-error", "file-selected", "crop-applied"],
-  setup(d, { emit: S }) {
-    const o = d, c = S, {
-      uploading: r,
-      progress: x,
+  setup(f, { emit: M }) {
+    const a = f, u = M, {
+      uploading: d,
+      progress: y,
       error: n,
-      previewUrl: P,
-      selectedFile: A,
-      selectFile: H,
-      clearSelection: T,
-      upload: Z,
-      uploadWithCrop: D
-    } = Ye(o.config), $ = z(null), M = z(!1), u = z(!1), s = z(null), C = z(null), w = F(() => P.value || o.modelValue || null), g = F(() => {
-      switch (o.shape) {
+      previewUrl: j,
+      selectedFile: E,
+      selectFile: O,
+      clearSelection: D,
+      upload: H,
+      uploadWithCrop: R
+    } = Ne(a.config), w = C(null), S = C(!1), v = C(!1), p = C(null), z = C(null), b = A(() => j.value || a.modelValue || null), k = A(() => {
+      switch (a.shape) {
         case "rounded":
           return "rounded-2xl";
         case "square":
@@ -1072,154 +1072,154 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
         default:
           return "rounded-full";
       }
-    }), k = F(() => 2 * Math.PI * 45), U = F(() => k.value - x.value / 100 * k.value);
-    Q(x, (_) => {
-      c("upload-progress", _);
-    }), Q(n, (_) => {
-      _ && c("upload-error", _);
+    }), h = A(() => 2 * Math.PI * 45), _ = A(() => h.value - y.value / 100 * h.value);
+    ee(y, (I) => {
+      u("upload-progress", I);
+    }), ee(n, (I) => {
+      I && u("upload-error", I);
     });
-    function i() {
-      var _;
-      !o.editable || r.value || (_ = $.value) == null || _.click();
+    function o() {
+      var I;
+      !a.editable || d.value || (I = w.value) == null || I.click();
     }
-    function m(_) {
+    function c(I) {
       var X;
-      const I = _.target, O = (X = I.files) == null ? void 0 : X[0];
-      O && h(O), I.value = "";
+      const F = I.target, B = (X = F.files) == null ? void 0 : X[0];
+      B && g(B), F.value = "";
     }
-    function h(_) {
-      if (!["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"].some((O) => _.type === O)) {
-        c("upload-error", {
+    function g(I) {
+      if (!["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"].some((B) => I.type === B)) {
+        u("upload-error", {
           message: "Invalid file type. Please select a JPEG, PNG, WebP, or HEIC image.",
           code: "INVALID_TYPE"
         });
         return;
       }
-      if (c("file-selected", _), o.enableCrop)
-        s.value = _, u.value = !0;
+      if (u("file-selected", I), a.enableCrop)
+        p.value = I, v.value = !0;
       else {
-        if (H(_))
+        if (O(I))
           return;
-        y();
+        x();
       }
     }
-    async function y() {
-      var I, O, X, l;
-      if (!A.value) return;
-      c("upload-start", A.value);
-      const _ = await Z();
-      if (_) {
-        c("upload-success", _);
-        const a = ((O = (I = _.variants) == null ? void 0 : I.lg) == null ? void 0 : O.url) || ((l = (X = _.variants) == null ? void 0 : X.md) == null ? void 0 : l.url) || _.url;
-        c("update:modelValue", a), T();
+    async function x() {
+      var F, B, X, r;
+      if (!E.value) return;
+      u("upload-start", E.value);
+      const I = await H();
+      if (I) {
+        u("upload-success", I);
+        const l = ((B = (F = I.variants) == null ? void 0 : F.lg) == null ? void 0 : B.url) || ((r = (X = I.variants) == null ? void 0 : X.md) == null ? void 0 : r.url) || I.url;
+        u("update:modelValue", l), D();
       }
     }
-    async function L(_) {
-      var X, l, a, e;
-      if (u.value = !1, s.value = null, C.value = _.crop, c("crop-applied", _), H(_.file))
+    async function L(I) {
+      var X, r, l, t;
+      if (v.value = !1, p.value = null, z.value = I.crop, u("crop-applied", I), O(I.file))
         return;
-      c("upload-start", _.file);
-      const O = await D(_.crop);
-      if (O) {
-        c("upload-success", { ...O, crop: _.crop });
-        const b = ((l = (X = O.variants) == null ? void 0 : X.lg) == null ? void 0 : l.url) || ((e = (a = O.variants) == null ? void 0 : a.md) == null ? void 0 : e.url) || O.url;
-        c("update:modelValue", b), T();
+      u("upload-start", I.file);
+      const B = await R(I.crop);
+      if (B) {
+        u("upload-success", { ...B, crop: I.crop });
+        const $ = ((r = (X = B.variants) == null ? void 0 : X.lg) == null ? void 0 : r.url) || ((t = (l = B.variants) == null ? void 0 : l.md) == null ? void 0 : t.url) || B.url;
+        u("update:modelValue", $), D();
       }
     }
-    function R() {
-      u.value = !1, s.value = null;
+    function T() {
+      v.value = !1, p.value = null;
     }
-    function Y(_) {
-      _.preventDefault(), o.editable && !r.value && (M.value = !0);
+    function V(I) {
+      I.preventDefault(), a.editable && !d.value && (S.value = !0);
     }
-    function V(_) {
-      _.preventDefault(), M.value = !1;
+    function N(I) {
+      I.preventDefault(), S.value = !1;
     }
-    function K(_) {
-      _.preventDefault();
+    function K(I) {
+      I.preventDefault();
     }
-    function J(_) {
-      var O;
-      if (_.preventDefault(), M.value = !1, !o.editable || r.value) return;
-      const I = (O = _.dataTransfer) == null ? void 0 : O.files[0];
-      I && I.type.startsWith("image/") && h(I);
+    function G(I) {
+      var B;
+      if (I.preventDefault(), S.value = !1, !a.editable || d.value) return;
+      const F = (B = I.dataTransfer) == null ? void 0 : B.files[0];
+      F && F.type.startsWith("image/") && g(F);
     }
     return me(() => {
-      T();
-    }), (_, I) => (v(), p("div", null, [
-      (v(), le(he, { to: "body" }, [
-        ae(ge, { name: "fade" }, {
+      D();
+    }), (I, F) => (s(), i("div", null, [
+      (s(), ie(he, { to: "body" }, [
+        ne(ge, { name: "fade" }, {
           default: ye(() => [
-            u.value && s.value ? (v(), p("div", st, [
-              t("div", {
+            v.value && p.value ? (s(), i("div", ut, [
+              e("div", {
                 class: "absolute inset-0 bg-black/80 backdrop-blur-sm",
-                onClick: R
+                onClick: T
               }),
-              t("div", it, [
-                I[0] || (I[0] = t("h3", { class: "text-lg font-semibold text-white mb-4 text-center" }, " Adjust your photo ", -1)),
-                ae(_e, {
-                  file: s.value,
-                  shape: d.shape,
-                  "crop-size": d.cropSize,
-                  "output-size": d.cropOutputSize,
+              e("div", ct, [
+                F[0] || (F[0] = e("h3", { class: "text-lg font-semibold text-white mb-4 text-center" }, " Adjust your photo ", -1)),
+                ne(Ce, {
+                  file: p.value,
+                  shape: f.shape,
+                  "crop-size": f.cropSize,
+                  "output-size": f.cropOutputSize,
                   "confirm-label": "Save",
                   onConfirm: L,
-                  onCancel: R
+                  onCancel: T
                 }, null, 8, ["file", "shape", "crop-size", "output-size"])
               ])
-            ])) : E("", !0)
+            ])) : U("", !0)
           ]),
           _: 1
         })
       ])),
-      t("div", {
-        class: W(["avatar-upload-container relative inline-block", d.containerClass]),
-        style: G({ width: `${d.size}px`, height: `${d.size}px` })
+      e("div", {
+        class: Y(["avatar-upload-container relative inline-block", f.containerClass]),
+        style: J({ width: `${f.size}px`, height: `${f.size}px` })
       }, [
-        t("input", {
+        e("input", {
           ref_key: "fileInput",
-          ref: $,
+          ref: w,
           type: "file",
           accept: "image/jpeg,image/png,image/webp,image/heic,image/heif",
           class: "hidden",
-          onChange: m
+          onChange: c
         }, null, 544),
-        t("div", {
-          class: W(["avatar-upload relative w-full h-full overflow-hidden transition-all duration-200", [
-            g.value,
-            d.editable && !f(r) ? "cursor-pointer hover:ring-4 hover:ring-primary-500/30" : "",
-            M.value ? "ring-4 ring-primary-500 scale-105" : "",
-            f(n) ? "ring-2 ring-red-500" : ""
+        e("div", {
+          class: Y(["avatar-upload relative w-full h-full overflow-hidden transition-all duration-200", [
+            k.value,
+            f.editable && !m(d) ? "cursor-pointer hover:ring-4 hover:ring-primary-500/30" : "",
+            S.value ? "ring-4 ring-primary-500 scale-105" : "",
+            m(n) ? "ring-2 ring-red-500" : ""
           ]]),
-          onClick: i,
-          onDragenter: Y,
-          onDragleave: V,
+          onClick: o,
+          onDragenter: V,
+          onDragleave: N,
           onDragover: K,
-          onDrop: J
+          onDrop: G
         }, [
-          w.value ? (v(), p("img", {
+          b.value ? (s(), i("img", {
             key: 0,
-            src: w.value,
+            src: b.value,
             alt: "Avatar",
             class: "w-full h-full object-cover"
-          }, null, 8, ut)) : (v(), p("div", ct, [
-            d.placeholder ? (v(), p("span", {
+          }, null, 8, dt)) : (s(), i("div", vt, [
+            f.placeholder ? (s(), i("span", {
               key: 0,
               class: "text-white font-semibold",
-              style: G({ fontSize: `${d.size / 3}px` })
-            }, j(d.placeholder), 5)) : (v(), p("svg", {
+              style: J({ fontSize: `${f.size / 3}px` })
+            }, P(f.placeholder), 5)) : (s(), i("svg", {
               key: 1,
               class: "text-slate-400",
-              width: d.size / 2.5,
-              height: d.size / 2.5,
+              width: f.size / 2.5,
+              height: f.size / 2.5,
               fill: "currentColor",
               viewBox: "0 0 24 24"
-            }, [...I[1] || (I[1] = [
-              t("path", { d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" }, null, -1)
-            ])], 8, dt))
+            }, [...F[1] || (F[1] = [
+              e("path", { d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" }, null, -1)
+            ])], 8, pt))
           ])),
-          d.editable && !f(r) ? (v(), p("div", vt, [...I[2] || (I[2] = [
-            t("svg", {
+          f.editable && !m(d) ? (s(), i("div", ft, [...F[2] || (F[2] = [
+            e("svg", {
               class: "text-white",
               width: "24",
               height: "24",
@@ -1227,23 +1227,23 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
               stroke: "currentColor",
               viewBox: "0 0 24 24"
             }, [
-              t("path", {
+              e("path", {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 "stroke-width": "2",
                 d: "M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
               }),
-              t("path", {
+              e("path", {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 "stroke-width": "2",
                 d: "M15 13a3 3 0 11-6 0 3 3 0 016 0z"
               })
             ], -1)
-          ])])) : E("", !0),
-          f(r) ? (v(), p("div", pt, [
-            d.showProgress ? (v(), p("svg", ft, [
-              I[3] || (I[3] = t("circle", {
+          ])])) : U("", !0),
+          m(d) ? (s(), i("div", mt, [
+            f.showProgress ? (s(), i("svg", ht, [
+              F[3] || (F[3] = e("circle", {
                 cx: "50",
                 cy: "50",
                 r: "45",
@@ -1252,7 +1252,7 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
                 "stroke-width": "6",
                 class: "text-white/20"
               }, null, -1)),
-              t("circle", {
+              e("circle", {
                 cx: "50",
                 cy: "50",
                 r: "45",
@@ -1261,251 +1261,251 @@ const Xe = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ne = { 
                 "stroke-width": "6",
                 "stroke-linecap": "round",
                 class: "text-primary-500 transition-all duration-200",
-                "stroke-dasharray": k.value,
-                "stroke-dashoffset": U.value
-              }, null, 8, mt)
-            ])) : E("", !0),
-            t("span", ht, j(f(x)) + "%", 1)
-          ])) : E("", !0)
+                "stroke-dasharray": h.value,
+                "stroke-dashoffset": _.value
+              }, null, 8, gt)
+            ])) : U("", !0),
+            e("span", yt, P(m(y)) + "%", 1)
+          ])) : U("", !0)
         ], 34),
-        f(n) && !f(r) ? (v(), p("div", gt, j(f(n).message), 1)) : E("", !0)
+        m(n) && !m(d) ? (s(), i("div", kt, P(m(n).message), 1)) : U("", !0)
       ], 6)
     ]));
   }
-}), ma = /* @__PURE__ */ re(yt, [["__scopeId", "data-v-36262731"]]), pe = z({});
-function ha(d) {
-  pe.value = { ...pe.value, ...d };
+}), Da = /* @__PURE__ */ le(xt, [["__scopeId", "data-v-36262731"]]), fe = C({});
+function Ba(f) {
+  fe.value = { ...fe.value, ...f };
 }
-function xt(d) {
-  const S = z([]), o = z(!1), c = z(null), r = z(!1), x = z(0), n = F(() => ({
+function bt(f) {
+  const M = C([]), a = C(!1), u = C(null), d = C(!1), y = C(0), n = A(() => ({
     apiBaseUrl: "/api",
     getHeaders: () => ({}),
-    ...pe.value,
-    ...d
-  })), P = F(() => S.value.find((u) => u.is_primary));
-  async function A() {
-    o.value = !0, c.value = null;
+    ...fe.value,
+    ...f
+  })), j = A(() => M.value.find((v) => v.is_primary));
+  async function E() {
+    a.value = !0, u.value = null;
     try {
-      let u = `${n.value.apiBaseUrl}/avatars`;
-      const s = new URLSearchParams();
-      n.value.projectId && s.set("project_id", n.value.projectId), n.value.entityType && s.set("entity_type", n.value.entityType), n.value.entityId && s.set("entity_id", n.value.entityId), s.toString() && (u += `?${s.toString()}`);
-      const C = await fetch(u, {
+      let v = `${n.value.apiBaseUrl}/avatars`;
+      const p = new URLSearchParams();
+      n.value.projectId && p.set("project_id", n.value.projectId), n.value.entityType && p.set("entity_type", n.value.entityType), n.value.entityId && p.set("entity_id", n.value.entityId), p.toString() && (v += `?${p.toString()}`);
+      const z = await fetch(v, {
         headers: n.value.getHeaders()
       });
-      if (!C.ok)
-        throw new Error(await C.text());
-      const w = await C.json();
-      S.value = w.avatars || [];
-    } catch (u) {
-      c.value = u.message || "Failed to fetch avatars";
+      if (!z.ok)
+        throw new Error(await z.text());
+      const b = await z.json();
+      M.value = b.avatars || [];
+    } catch (v) {
+      u.value = v.message || "Failed to fetch avatars";
     } finally {
-      o.value = !1;
+      a.value = !1;
     }
   }
-  async function H(u) {
-    c.value = null;
+  async function O(v) {
+    u.value = null;
     try {
-      const s = await fetch(`${n.value.apiBaseUrl}/avatars`, {
+      const p = await fetch(`${n.value.apiBaseUrl}/avatars`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           ...n.value.getHeaders()
         },
         body: JSON.stringify({
-          original_url: u.original_url,
-          file_id: u.file_id,
-          name: u.name,
-          is_primary: u.is_primary ?? !1,
+          original_url: v.original_url,
+          file_id: v.file_id,
+          name: v.name,
+          is_primary: v.is_primary ?? !1,
           source: "upload",
           format: "static",
-          variants: u.variants,
-          blurhash: u.blurhash,
-          dominant_color: u.dominant_color,
-          alt_text: u.alt_text,
-          fallback_type: u.fallback_initials ? "initials" : "default",
-          fallback_data: u.fallback_initials ? { initials: u.fallback_initials } : void 0
+          variants: v.variants,
+          blurhash: v.blurhash,
+          dominant_color: v.dominant_color,
+          alt_text: v.alt_text,
+          fallback_type: v.fallback_initials ? "initials" : "default",
+          fallback_data: v.fallback_initials ? { initials: v.fallback_initials } : void 0
         })
       });
-      if (!s.ok)
-        throw new Error(await s.text());
-      const C = await s.json();
-      return await A(), C;
-    } catch (s) {
-      return c.value = s.message || "Failed to create avatar", null;
+      if (!p.ok)
+        throw new Error(await p.text());
+      const z = await p.json();
+      return await E(), z;
+    } catch (p) {
+      return u.value = p.message || "Failed to create avatar", null;
     }
   }
-  async function T(u) {
-    c.value = null;
+  async function D(v) {
+    u.value = null;
     try {
-      const s = await fetch(`${n.value.apiBaseUrl}/avatars/${u}/primary`, {
+      const p = await fetch(`${n.value.apiBaseUrl}/avatars/${v}/primary`, {
         method: "POST",
         headers: n.value.getHeaders()
       });
-      if (!s.ok)
-        throw new Error(await s.text());
-      return S.value = S.value.map((C) => ({
-        ...C,
-        is_primary: C.id === u
+      if (!p.ok)
+        throw new Error(await p.text());
+      return M.value = M.value.map((z) => ({
+        ...z,
+        is_primary: z.id === v
       })), !0;
-    } catch (s) {
-      return c.value = s.message || "Failed to set primary avatar", !1;
+    } catch (p) {
+      return u.value = p.message || "Failed to set primary avatar", !1;
     }
   }
-  async function Z(u) {
-    c.value = null;
+  async function H(v) {
+    u.value = null;
     try {
-      const s = await fetch(`${n.value.apiBaseUrl}/avatars/${u}`, {
+      const p = await fetch(`${n.value.apiBaseUrl}/avatars/${v}`, {
         method: "DELETE",
         headers: n.value.getHeaders()
       });
-      if (!s.ok)
-        throw new Error(await s.text());
-      return S.value = S.value.filter((C) => C.id !== u), !0;
-    } catch (s) {
-      return c.value = s.message || "Failed to delete avatar", !1;
+      if (!p.ok)
+        throw new Error(await p.text());
+      return M.value = M.value.filter((z) => z.id !== v), !0;
+    } catch (p) {
+      return u.value = p.message || "Failed to delete avatar", !1;
     }
   }
-  async function D(u, s) {
-    c.value = null;
+  async function R(v, p) {
+    u.value = null;
     try {
-      const C = await fetch(`${n.value.apiBaseUrl}/avatars/${u}`, {
+      const z = await fetch(`${n.value.apiBaseUrl}/avatars/${v}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           ...n.value.getHeaders()
         },
-        body: JSON.stringify(s)
+        body: JSON.stringify(p)
       });
-      if (!C.ok)
-        throw new Error(await C.text());
-      const w = await C.json();
-      return S.value = S.value.map(
-        (g) => g.id === u ? w : g
-      ), w;
-    } catch (C) {
-      return c.value = C.message || "Failed to update avatar", null;
+      if (!z.ok)
+        throw new Error(await z.text());
+      const b = await z.json();
+      return M.value = M.value.map(
+        (k) => k.id === v ? b : k
+      ), b;
+    } catch (z) {
+      return u.value = z.message || "Failed to update avatar", null;
     }
   }
-  async function $(u, s) {
+  async function w(v, p) {
     if (!n.value.uploadUrl)
-      return c.value = "Upload URL not configured", null;
-    r.value = !0, x.value = 0, c.value = null;
+      return u.value = "Upload URL not configured", null;
+    d.value = !0, y.value = 0, u.value = null;
     try {
-      const C = new FormData();
-      C.append("file", u), C.append("profile", "avatar");
-      const w = await new Promise((k, U) => {
-        const i = new XMLHttpRequest();
-        i.upload.addEventListener("progress", (h) => {
-          h.lengthComputable && (x.value = Math.round(h.loaded / h.total * 100));
-        }), i.addEventListener("load", () => {
-          if (i.status >= 200 && i.status < 300)
+      const z = new FormData();
+      z.append("file", v), z.append("profile", "avatar");
+      const b = await new Promise((h, _) => {
+        const o = new XMLHttpRequest();
+        o.upload.addEventListener("progress", (g) => {
+          g.lengthComputable && (y.value = Math.round(g.loaded / g.total * 100));
+        }), o.addEventListener("load", () => {
+          if (o.status >= 200 && o.status < 300)
             try {
-              const h = JSON.parse(i.responseText);
-              k(h.data || h);
+              const g = JSON.parse(o.responseText);
+              h(g.data || g);
             } catch {
-              U(new Error("Invalid response from server"));
+              _(new Error("Invalid response from server"));
             }
           else {
-            let h = "Upload failed";
+            let g = "Upload failed";
             try {
-              const y = JSON.parse(i.responseText);
-              h = y.error || y.message || h;
+              const x = JSON.parse(o.responseText);
+              g = x.error || x.message || g;
             } catch {
             }
-            U(new Error(h));
+            _(new Error(g));
           }
-        }), i.addEventListener("error", () => U(new Error("Network error"))), i.addEventListener("abort", () => U(new Error("Upload cancelled"))), i.open("POST", n.value.uploadUrl);
-        const m = n.value.getHeaders();
-        for (const [h, y] of Object.entries(m))
-          i.setRequestHeader(h, y);
-        i.send(C);
+        }), o.addEventListener("error", () => _(new Error("Network error"))), o.addEventListener("abort", () => _(new Error("Upload cancelled"))), o.open("POST", n.value.uploadUrl);
+        const c = n.value.getHeaders();
+        for (const [g, x] of Object.entries(c))
+          o.setRequestHeader(g, x);
+        o.send(z);
       });
-      return x.value = 100, await H({
-        original_url: w.url || w.signed_url,
-        file_id: w.id,
-        name: s == null ? void 0 : s.name,
-        is_primary: s == null ? void 0 : s.is_primary,
-        variants: w.variants,
-        fallback_initials: s == null ? void 0 : s.fallback_initials
+      return y.value = 100, await O({
+        original_url: b.url || b.signed_url,
+        file_id: b.id,
+        name: p == null ? void 0 : p.name,
+        is_primary: p == null ? void 0 : p.is_primary,
+        variants: b.variants,
+        fallback_initials: p == null ? void 0 : p.fallback_initials
       });
-    } catch (C) {
-      return c.value = C.message || "Failed to upload avatar", null;
+    } catch (z) {
+      return u.value = z.message || "Failed to upload avatar", null;
     } finally {
-      r.value = !1;
+      d.value = !1;
     }
   }
-  function M(u, s = "md") {
-    var w, g, k, U, i, m, h;
-    if (s === "original")
-      return u.original_url;
-    if (s === "source")
-      return ((w = u.variants.source) == null ? void 0 : w.url) || u.original_url;
-    const C = u.variants[s];
-    return C ? C.url : s === "sm" ? ((g = u.variants.md) == null ? void 0 : g.url) || ((k = u.variants.lg) == null ? void 0 : k.url) || u.original_url : s === "md" ? ((U = u.variants.lg) == null ? void 0 : U.url) || ((i = u.variants.sm) == null ? void 0 : i.url) || u.original_url : s === "lg" && (((m = u.variants.md) == null ? void 0 : m.url) || ((h = u.variants.sm) == null ? void 0 : h.url)) || u.original_url;
+  function S(v, p = "md") {
+    var b, k, h, _, o, c, g;
+    if (p === "original")
+      return v.original_url;
+    if (p === "source")
+      return ((b = v.variants.source) == null ? void 0 : b.url) || v.original_url;
+    const z = v.variants[p];
+    return z ? z.url : p === "sm" ? ((k = v.variants.md) == null ? void 0 : k.url) || ((h = v.variants.lg) == null ? void 0 : h.url) || v.original_url : p === "md" ? ((_ = v.variants.lg) == null ? void 0 : _.url) || ((o = v.variants.sm) == null ? void 0 : o.url) || v.original_url : p === "lg" && (((c = v.variants.md) == null ? void 0 : c.url) || ((g = v.variants.sm) == null ? void 0 : g.url)) || v.original_url;
   }
   return {
     // State
-    avatars: S,
-    loading: o,
-    error: c,
-    uploading: r,
-    uploadProgress: x,
-    primaryAvatar: P,
+    avatars: M,
+    loading: a,
+    error: u,
+    uploading: d,
+    uploadProgress: y,
+    primaryAvatar: j,
     config: n,
     // Methods
-    fetchAvatars: A,
-    createAvatar: H,
-    setPrimary: T,
-    deleteAvatar: Z,
-    updateAvatar: D,
-    uploadAndCreateAvatar: $,
-    getAvatarUrl: M
+    fetchAvatars: E,
+    createAvatar: O,
+    setPrimary: D,
+    deleteAvatar: H,
+    updateAvatar: R,
+    uploadAndCreateAvatar: w,
+    getAvatarUrl: S
   };
 }
-const bt = { class: "avatar-manager" }, wt = {
+const wt = { class: "avatar-manager" }, _t = {
   key: 0,
   class: "fixed inset-0 z-50 flex items-center justify-center p-4"
-}, kt = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, Ct = { class: "text-lg font-semibold text-white mb-4 text-center" }, _t = {
+}, Ct = { class: "relative bg-dark-900 rounded-2xl p-6 shadow-2xl border border-dark-700 max-w-md w-full" }, $t = { class: "text-lg font-semibold text-white mb-4 text-center" }, zt = {
   key: 0,
   class: "flex items-center justify-center py-8"
-}, zt = {
+}, Mt = {
   key: 1,
   class: "text-center py-8"
-}, $t = { class: "text-red-400 mb-2" }, Mt = {
+}, St = { class: "text-red-400 mb-2" }, It = {
   key: 2,
   class: "space-y-3"
-}, St = { class: "flex flex-wrap gap-3" }, Ut = ["onClick"], Lt = ["src", "alt"], Et = {
+}, Et = { class: "flex flex-wrap gap-3" }, Ut = ["onClick"], Lt = ["src", "alt"], jt = {
   key: 0,
   class: "absolute -top-1 -right-1 w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg",
   title: "Pending moderation"
-}, It = ["onClick"], At = ["onClick"], Pt = ["onClick", "title"], Rt = ["disabled"], Ft = {
+}, At = ["onClick"], Ft = ["onClick"], Pt = ["onClick", "title"], Rt = ["disabled"], Ot = {
   key: 0,
   class: "relative w-full h-full flex items-center justify-center"
-}, Ot = {
+}, Tt = {
   class: "absolute inset-2 w-auto h-auto",
   viewBox: "0 0 36 36"
-}, jt = ["stroke-dasharray"], Dt = { class: "text-xs font-medium text-dark-300" }, Bt = {
+}, Dt = ["stroke-dasharray"], Bt = { class: "text-xs font-medium text-dark-300" }, Ht = {
   key: 1,
   class: "text-dark-500 hover:text-primary-400 transition-colors"
-}, Tt = { class: "text-xs text-dark-500" }, Ht = { key: 0 }, Zt = { key: 1 }, Yt = {
+}, Zt = { class: "text-xs text-dark-500" }, Yt = { key: 0 }, Vt = { key: 1 }, Nt = {
   key: 0,
   class: "text-sm text-red-400"
-}, Vt = {
+}, Xt = {
   key: 3,
   class: "space-y-3"
-}, Xt = { class: "space-y-2" }, Nt = ["onClick"], Wt = ["src", "alt"], qt = { class: "flex-1 min-w-0" }, Jt = { class: "flex items-center gap-2" }, Gt = { class: "font-medium text-white truncate" }, Kt = {
+}, Wt = { class: "space-y-2" }, qt = ["onClick"], Jt = ["src", "alt"], Gt = { class: "flex-1 min-w-0" }, Kt = { class: "flex items-center gap-2" }, Qt = { class: "font-medium text-white truncate" }, ea = {
   key: 0,
   class: "px-2 py-0.5 text-xs font-medium bg-emerald-500/20 text-emerald-400 rounded-full"
-}, Qt = {
+}, ta = {
   key: 1,
   class: "px-2 py-0.5 text-xs font-medium bg-yellow-500/20 text-yellow-400 rounded-full"
-}, ea = { class: "flex items-center gap-3 mt-1 text-xs text-dark-400" }, ta = { key: 0 }, aa = {
+}, aa = { class: "flex items-center gap-3 mt-1 text-xs text-dark-400" }, oa = { key: 0 }, na = {
   key: 1,
   class: "text-purple-400"
-}, oa = { class: "flex items-center gap-2" }, na = ["onClick"], la = ["onClick"], ra = ["onClick", "title"], sa = ["disabled"], ia = { class: "text-dark-400" }, ua = { class: "flex items-center justify-between text-xs text-dark-500" }, ca = {
+}, la = { class: "flex items-center gap-2" }, ra = ["onClick"], sa = ["onClick"], ia = ["onClick", "title"], ua = ["disabled"], ca = { class: "text-dark-400" }, da = { class: "flex items-center justify-between text-xs text-dark-500" }, va = {
   key: 0,
   class: "text-red-400"
-}, da = /* @__PURE__ */ oe({
+}, pa = /* @__PURE__ */ oe({
   __name: "AvatarManager",
   props: {
     initials: { default: "" },
@@ -1521,21 +1521,21 @@ const bt = { class: "avatar-manager" }, wt = {
     config: {}
   },
   emits: ["select", "primary-changed", "upload-success", "upload-error", "delete", "crop-updated"],
-  setup(d, { emit: S }) {
-    const o = d, c = S, {
-      avatars: r,
-      loading: x,
+  setup(f, { emit: M }) {
+    const a = f, u = M, {
+      avatars: d,
+      loading: y,
       error: n,
-      uploading: P,
-      uploadProgress: A,
-      config: H,
-      fetchAvatars: T,
-      setPrimary: Z,
-      deleteAvatar: D,
-      uploadAndCreateAvatar: $,
-      getAvatarUrl: M
-    } = xt(o.config), u = z(null), s = z(null), C = z(null), w = z(!1), g = z("upload"), k = z(null), U = z(null), i = F(() => o.allowUpload && r.value.length < o.maxAvatars), m = F(() => {
-      switch (o.shape) {
+      uploading: j,
+      uploadProgress: E,
+      config: O,
+      fetchAvatars: D,
+      setPrimary: H,
+      deleteAvatar: R,
+      uploadAndCreateAvatar: w,
+      getAvatarUrl: S
+    } = bt(a.config), v = C(null), p = C(null), z = C(null), b = C(!1), k = C("upload"), h = C(null), _ = C(null), o = A(() => a.allowUpload && d.value.length < a.maxAvatars), c = A(() => {
+      switch (a.shape) {
         case "circle":
           return "rounded-full";
         case "square":
@@ -1545,274 +1545,274 @@ const bt = { class: "avatar-manager" }, wt = {
         default:
           return "rounded-full";
       }
-    }), h = F(() => U.value ? U.value.original_url : null);
-    fe(() => {
-      T();
+    }), g = A(() => _.value ? _.value.original_url : null);
+    se(() => {
+      D();
     });
-    function y() {
-      var l;
-      (l = u.value) == null || l.click();
+    function x() {
+      var r;
+      (r = v.value) == null || r.click();
     }
-    async function L(l) {
-      var b;
-      const a = l.target, e = (b = a.files) == null ? void 0 : b[0];
-      if (e)
-        if (a.value = "", o.enableCropOnUpload)
-          k.value = e, g.value = "upload", w.value = !0;
+    async function L(r) {
+      var $;
+      const l = r.target, t = ($ = l.files) == null ? void 0 : $[0];
+      if (t)
+        if (l.value = "", a.enableCropOnUpload)
+          h.value = t, k.value = "upload", b.value = !0;
         else {
-          const N = await $(e, {
-            name: `Avatar ${r.value.length + 1}`,
-            is_primary: r.value.length === 0,
-            fallback_initials: o.initials
+          const W = await w(t, {
+            name: `Avatar ${d.value.length + 1}`,
+            is_primary: d.value.length === 0,
+            fallback_initials: a.initials
           });
-          N ? c("upload-success", N) : n.value && c("upload-error", n.value);
+          W ? u("upload-success", W) : n.value && u("upload-error", n.value);
         }
     }
-    function R(l) {
-      U.value = l, g.value = "edit", w.value = !0;
+    function T(r) {
+      _.value = r, k.value = "edit", b.value = !0;
     }
-    async function Y(l) {
-      if (w.value = !1, g.value === "upload" && k.value) {
-        const a = await $(l.file, {
-          name: `Avatar ${r.value.length + 1}`,
-          is_primary: r.value.length === 0,
-          fallback_initials: o.initials,
-          crop: l.crop
+    async function V(r) {
+      if (b.value = !1, k.value === "upload" && h.value) {
+        const l = await w(r.file, {
+          name: `Avatar ${d.value.length + 1}`,
+          is_primary: d.value.length === 0,
+          fallback_initials: a.initials,
+          crop: r.crop
         });
-        a ? c("upload-success", a) : n.value && c("upload-error", n.value);
-      } else if (g.value === "edit" && U.value) {
-        const a = await $(l.file, {
-          name: U.value.name,
-          is_primary: U.value.is_primary,
-          fallback_initials: o.initials,
-          crop: l.crop
+        l ? u("upload-success", l) : n.value && u("upload-error", n.value);
+      } else if (k.value === "edit" && _.value) {
+        const l = await w(r.file, {
+          name: _.value.name,
+          is_primary: _.value.is_primary,
+          fallback_initials: a.initials,
+          crop: r.crop
         });
-        a ? (await D(U.value.id), c("crop-updated", a, l.crop)) : n.value && c("upload-error", n.value);
+        l ? (await R(_.value.id), u("crop-updated", l, r.crop)) : n.value && u("upload-error", n.value);
       }
-      k.value = null, U.value = null;
+      h.value = null, _.value = null;
     }
-    function V() {
-      w.value = !1, k.value = null, U.value = null;
+    function N() {
+      b.value = !1, h.value = null, _.value = null;
     }
-    async function K(l) {
-      if (l.is_primary) return;
-      await Z(l.id) && c("primary-changed", l);
+    async function K(r) {
+      if (r.is_primary) return;
+      await H(r.id) && u("primary-changed", r);
     }
-    async function J(l) {
-      if (s.value !== l.id) {
-        s.value = l.id;
+    async function G(r) {
+      if (p.value !== r.id) {
+        p.value = r.id;
         return;
       }
-      await D(l.id) && (c("delete", l), s.value = null);
+      await R(r.id) && (u("delete", r), p.value = null);
     }
-    function _() {
-      s.value = null;
+    function I() {
+      p.value = null;
     }
-    function I(l) {
-      C.value = l.id, c("select", l);
+    function F(r) {
+      z.value = r.id, u("select", r);
     }
-    function O(l) {
-      const a = new Date(l);
-      return a.toLocaleDateString(void 0, {
+    function B(r) {
+      const l = new Date(r);
+      return l.toLocaleDateString(void 0, {
         month: "short",
         day: "numeric",
-        year: a.getFullYear() !== (/* @__PURE__ */ new Date()).getFullYear() ? "numeric" : void 0
+        year: l.getFullYear() !== (/* @__PURE__ */ new Date()).getFullYear() ? "numeric" : void 0
       });
     }
-    function X(l) {
+    function X(r) {
       return {
         upload: "Uploaded",
         gravatar: "Gravatar",
         oauth: "OAuth",
         generated: "Generated",
         ai: "AI Generated"
-      }[l] || l;
+      }[r] || r;
     }
-    return (l, a) => (v(), p("div", bt, [
-      t("input", {
+    return (r, l) => (s(), i("div", wt, [
+      e("input", {
         ref_key: "fileInputRef",
-        ref: u,
+        ref: v,
         type: "file",
         accept: "image/*",
         class: "hidden",
         onChange: L
       }, null, 544),
-      (v(), le(he, { to: "body" }, [
-        ae(ge, { name: "fade" }, {
+      (s(), ie(he, { to: "body" }, [
+        ne(ge, { name: "fade" }, {
           default: ye(() => [
-            w.value && (k.value || U.value) ? (v(), p("div", wt, [
-              t("div", {
+            b.value && (h.value || _.value) ? (s(), i("div", _t, [
+              e("div", {
                 class: "absolute inset-0 bg-black/80 backdrop-blur-sm",
-                onClick: V
+                onClick: N
               }),
-              t("div", kt, [
-                t("h3", Ct, j(g.value === "edit" ? "Adjust your photo" : "Position your photo"), 1),
-                ae(_e, {
-                  file: k.value,
-                  url: h.value,
-                  shape: d.shape,
-                  "crop-size": d.cropSize,
-                  config: { mediaProxyUrl: f(H).mediaProxyUrl },
-                  "confirm-label": g.value === "edit" ? "Save changes" : "Upload",
-                  onConfirm: Y,
-                  onCancel: V
+              e("div", Ct, [
+                e("h3", $t, P(k.value === "edit" ? "Adjust your photo" : "Position your photo"), 1),
+                ne(Ce, {
+                  file: h.value,
+                  url: g.value,
+                  shape: f.shape,
+                  "crop-size": f.cropSize,
+                  config: { mediaProxyUrl: m(O).mediaProxyUrl },
+                  "confirm-label": k.value === "edit" ? "Save changes" : "Upload",
+                  onConfirm: V,
+                  onCancel: N
                 }, null, 8, ["file", "url", "shape", "crop-size", "config", "confirm-label"])
               ])
-            ])) : E("", !0)
+            ])) : U("", !0)
           ]),
           _: 1
         })
       ])),
-      f(x) && f(r).length === 0 ? (v(), p("div", _t, [...a[1] || (a[1] = [
-        t("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
-      ])])) : f(n) && f(r).length === 0 ? (v(), p("div", zt, [
-        t("div", $t, j(f(n)), 1),
-        t("button", {
-          onClick: a[0] || (a[0] = //@ts-ignore
-          (...e) => f(T) && f(T)(...e)),
+      m(y) && m(d).length === 0 ? (s(), i("div", zt, [...l[1] || (l[1] = [
+        e("div", { class: "w-8 h-8 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)
+      ])])) : m(n) && m(d).length === 0 ? (s(), i("div", Mt, [
+        e("div", St, P(m(n)), 1),
+        e("button", {
+          onClick: l[0] || (l[0] = //@ts-ignore
+          (...t) => m(D) && m(D)(...t)),
           class: "text-sm text-primary-400 hover:text-primary-300 underline"
         }, " Try again ")
-      ])) : d.mode === "compact" ? (v(), p("div", Mt, [
-        t("div", St, [
-          (v(!0), p(te, null, ce(f(r), (e) => (v(), p("div", {
-            key: e.id,
+      ])) : f.mode === "compact" ? (s(), i("div", It, [
+        e("div", Et, [
+          (s(!0), i(Q, null, ae(m(d), (t) => (s(), i("div", {
+            key: t.id,
             class: "relative group",
-            style: G({ width: `${d.avatarSize}px`, height: `${d.avatarSize}px` })
+            style: J({ width: `${f.avatarSize}px`, height: `${f.avatarSize}px` })
           }, [
-            t("button", {
-              onClick: (b) => I(e),
-              class: W(["w-full h-full overflow-hidden transition-all duration-200", [
-                m.value,
-                e.is_primary ? "ring-[3px] ring-emerald-500 ring-offset-2 ring-offset-dark-900" : C.value === e.id ? "ring-2 ring-dark-400 ring-offset-2 ring-offset-dark-900" : "ring-2 ring-transparent hover:ring-dark-500 ring-offset-2 ring-offset-dark-900"
+            e("button", {
+              onClick: ($) => F(t),
+              class: Y(["w-full h-full overflow-hidden transition-all duration-200", [
+                c.value,
+                t.is_primary ? "ring-[3px] ring-emerald-500 ring-offset-2 ring-offset-dark-900" : z.value === t.id ? "ring-2 ring-dark-400 ring-offset-2 ring-offset-dark-900" : "ring-2 ring-transparent hover:ring-dark-500 ring-offset-2 ring-offset-dark-900"
               ]])
             }, [
-              t("img", {
-                src: f(M)(e, "md"),
-                alt: e.alt_text || e.name || "Avatar",
+              e("img", {
+                src: m(S)(t, "md"),
+                alt: t.alt_text || t.name || "Avatar",
                 class: "w-full h-full object-cover",
-                style: G(e.dominant_color ? { backgroundColor: e.dominant_color } : {})
+                style: J(t.dominant_color ? { backgroundColor: t.dominant_color } : {})
               }, null, 12, Lt)
             ], 10, Ut),
-            e.moderation_status === "pending" ? (v(), p("div", Et, [...a[2] || (a[2] = [
-              t("svg", {
+            t.moderation_status === "pending" ? (s(), i("div", jt, [...l[2] || (l[2] = [
+              e("svg", {
                 class: "w-3 h-3 text-white",
                 fill: "currentColor",
                 viewBox: "0 0 20 20"
               }, [
-                t("path", {
+                e("path", {
                   "fill-rule": "evenodd",
                   d: "M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z",
                   "clip-rule": "evenodd"
                 })
               ], -1)
-            ])])) : E("", !0),
-            t("div", {
-              class: W(["absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1", [
-                m.value,
-                s.value === e.id ? "z-50 opacity-100" : "z-10"
+            ])])) : U("", !0),
+            e("div", {
+              class: Y(["absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1", [
+                c.value,
+                p.value === t.id ? "z-50 opacity-100" : "z-10"
               ]])
             }, [
-              d.allowEdit ? (v(), p("button", {
+              f.allowEdit ? (s(), i("button", {
                 key: 0,
                 type: "button",
-                onClick: ee((b) => R(e), ["stop"]),
+                onClick: te(($) => T(t), ["stop"]),
                 class: "p-1.5 bg-dark-700 hover:bg-primary-600 rounded-lg transition-colors",
                 title: "Edit crop"
-              }, [...a[3] || (a[3] = [
-                t("svg", {
+              }, [...l[3] || (l[3] = [
+                e("svg", {
                   class: "w-4 h-4 text-white",
                   fill: "none",
                   stroke: "currentColor",
                   viewBox: "0 0 24 24"
                 }, [
-                  t("path", {
+                  e("path", {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
                     d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   })
                 ], -1)
-              ])], 8, It)) : E("", !0),
-              e.is_primary ? E("", !0) : (v(), p("button", {
+              ])], 8, At)) : U("", !0),
+              t.is_primary ? U("", !0) : (s(), i("button", {
                 key: 1,
                 type: "button",
-                onClick: ee((b) => K(e), ["stop"]),
+                onClick: te(($) => K(t), ["stop"]),
                 class: "p-1.5 bg-dark-700 hover:bg-emerald-600 rounded-lg transition-colors",
                 title: "Set as primary"
-              }, [...a[4] || (a[4] = [
-                t("svg", {
+              }, [...l[4] || (l[4] = [
+                e("svg", {
                   class: "w-4 h-4 text-white",
                   fill: "none",
                   stroke: "currentColor",
                   viewBox: "0 0 24 24"
                 }, [
-                  t("path", {
+                  e("path", {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
                     d: "M5 13l4 4L19 7"
                   })
                 ], -1)
-              ])], 8, At)),
-              d.allowDelete ? (v(), p("button", {
+              ])], 8, Ft)),
+              f.allowDelete ? (s(), i("button", {
                 key: 2,
                 type: "button",
-                onClick: ee((b) => J(e), ["stop"]),
-                class: W(["p-1.5 rounded-lg transition-colors", s.value === e.id ? "bg-red-600 hover:bg-red-700" : "bg-dark-700 hover:bg-red-600"]),
-                title: s.value === e.id ? "Click again to confirm" : "Delete"
-              }, [...a[5] || (a[5] = [
-                t("svg", {
+                onClick: te(($) => G(t), ["stop"]),
+                class: Y(["p-1.5 rounded-lg transition-colors", p.value === t.id ? "bg-red-600 hover:bg-red-700" : "bg-dark-700 hover:bg-red-600"]),
+                title: p.value === t.id ? "Click again to confirm" : "Delete"
+              }, [...l[5] || (l[5] = [
+                e("svg", {
                   class: "w-4 h-4 text-white",
                   fill: "none",
                   stroke: "currentColor",
                   viewBox: "0 0 24 24"
                 }, [
-                  t("path", {
+                  e("path", {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
                     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                   })
                 ], -1)
-              ])], 10, Pt)) : E("", !0)
+              ])], 10, Pt)) : U("", !0)
             ], 2)
           ], 4))), 128)),
-          i.value ? (v(), p("button", {
+          o.value ? (s(), i("button", {
             key: 0,
             type: "button",
-            onClick: y,
-            disabled: f(P),
-            class: W(["flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors", m.value]),
-            style: G({ width: `${d.avatarSize}px`, height: `${d.avatarSize}px` })
+            onClick: x,
+            disabled: m(j),
+            class: Y(["flex items-center justify-center border-2 border-dashed border-dark-600 hover:border-primary-500 transition-colors", c.value]),
+            style: J({ width: `${f.avatarSize}px`, height: `${f.avatarSize}px` })
           }, [
-            f(P) ? (v(), p("div", Ft, [
-              (v(), p("svg", Ot, [
-                a[6] || (a[6] = t("path", {
+            m(j) ? (s(), i("div", Ot, [
+              (s(), i("svg", Tt, [
+                l[6] || (l[6] = e("path", {
                   class: "text-dark-700",
                   stroke: "currentColor",
                   "stroke-width": "3",
                   fill: "none",
                   d: "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                 }, null, -1)),
-                t("path", {
+                e("path", {
                   class: "text-primary-500",
                   stroke: "currentColor",
                   "stroke-width": "3",
                   fill: "none",
                   "stroke-linecap": "round",
-                  "stroke-dasharray": `${f(A)}, 100`,
+                  "stroke-dasharray": `${m(E)}, 100`,
                   d: "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                }, null, 8, jt)
+                }, null, 8, Dt)
               ])),
-              t("span", Dt, j(f(A)) + "%", 1)
-            ])) : (v(), p("div", Bt, [...a[7] || (a[7] = [
-              t("svg", {
+              e("span", Bt, P(m(E)) + "%", 1)
+            ])) : (s(), i("div", Ht, [...l[7] || (l[7] = [
+              e("svg", {
                 class: "w-6 h-6",
                 fill: "none",
                 stroke: "currentColor",
                 viewBox: "0 0 24 24"
               }, [
-                t("path", {
+                e("path", {
                   "stroke-linecap": "round",
                   "stroke-linejoin": "round",
                   "stroke-width": "2",
@@ -1820,166 +1820,1677 @@ const bt = { class: "avatar-manager" }, wt = {
                 })
               ], -1)
             ])]))
-          ], 14, Rt)) : E("", !0)
+          ], 14, Rt)) : U("", !0)
         ]),
-        t("p", Tt, [
-          f(r).length === 0 ? (v(), p("span", Ht, "Upload your first avatar")) : (v(), p("span", Zt, [
-            de(j(f(r).length) + "/" + j(d.maxAvatars) + " · ", 1),
-            a[8] || (a[8] = t("span", { class: "text-emerald-500" }, "Green ring", -1)),
-            a[9] || (a[9] = de(" = primary · Hover for options ", -1))
+        e("p", Zt, [
+          m(d).length === 0 ? (s(), i("span", Yt, "Upload your first avatar")) : (s(), i("span", Vt, [
+            ve(P(m(d).length) + "/" + P(f.maxAvatars) + " · ", 1),
+            l[8] || (l[8] = e("span", { class: "text-emerald-500" }, "Green ring", -1)),
+            l[9] || (l[9] = ve(" = primary · Hover for options ", -1))
           ]))
         ]),
-        f(n) ? (v(), p("div", Yt, j(f(n)), 1)) : E("", !0)
-      ])) : (v(), p("div", Vt, [
-        t("div", Xt, [
-          (v(!0), p(te, null, ce(f(r), (e) => (v(), p("div", {
-            key: e.id,
-            class: W(["flex items-center gap-4 p-3 rounded-xl transition-colors", [
-              e.is_primary ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-dark-800 border border-dark-700 hover:border-dark-600"
+        m(n) ? (s(), i("div", Nt, P(m(n)), 1)) : U("", !0)
+      ])) : (s(), i("div", Xt, [
+        e("div", Wt, [
+          (s(!0), i(Q, null, ae(m(d), (t) => (s(), i("div", {
+            key: t.id,
+            class: Y(["flex items-center gap-4 p-3 rounded-xl transition-colors", [
+              t.is_primary ? "bg-emerald-500/10 border border-emerald-500/30" : "bg-dark-800 border border-dark-700 hover:border-dark-600"
             ]])
           }, [
-            t("button", {
-              onClick: (b) => I(e),
-              class: W(["flex-shrink-0 w-14 h-14 overflow-hidden transition-transform hover:scale-105", m.value])
+            e("button", {
+              onClick: ($) => F(t),
+              class: Y(["flex-shrink-0 w-14 h-14 overflow-hidden transition-transform hover:scale-105", c.value])
             }, [
-              t("img", {
-                src: f(M)(e, "sm"),
-                alt: e.alt_text || e.name || "Avatar",
+              e("img", {
+                src: m(S)(t, "sm"),
+                alt: t.alt_text || t.name || "Avatar",
                 class: "w-full h-full object-cover"
-              }, null, 8, Wt)
-            ], 10, Nt),
-            t("div", qt, [
-              t("div", Jt, [
-                t("span", Gt, j(e.name || "Unnamed avatar"), 1),
-                e.is_primary ? (v(), p("span", Kt, " Primary ")) : E("", !0),
-                e.moderation_status === "pending" ? (v(), p("span", Qt, " Pending ")) : E("", !0)
+              }, null, 8, Jt)
+            ], 10, qt),
+            e("div", Gt, [
+              e("div", Kt, [
+                e("span", Qt, P(t.name || "Unnamed avatar"), 1),
+                t.is_primary ? (s(), i("span", ea, " Primary ")) : U("", !0),
+                t.moderation_status === "pending" ? (s(), i("span", ta, " Pending ")) : U("", !0)
               ]),
-              t("div", ea, [
-                t("span", null, j(X(e.source)), 1),
-                a[10] || (a[10] = t("span", null, "·", -1)),
-                t("span", null, j(O(e.created_at)), 1),
-                e.format === "animated" ? (v(), p("span", ta, "·")) : E("", !0),
-                e.format === "animated" ? (v(), p("span", aa, "Animated")) : E("", !0)
+              e("div", aa, [
+                e("span", null, P(X(t.source)), 1),
+                l[10] || (l[10] = e("span", null, "·", -1)),
+                e("span", null, P(B(t.created_at)), 1),
+                t.format === "animated" ? (s(), i("span", oa, "·")) : U("", !0),
+                t.format === "animated" ? (s(), i("span", na, "Animated")) : U("", !0)
               ])
             ]),
-            t("div", oa, [
-              d.allowEdit ? (v(), p("button", {
+            e("div", la, [
+              f.allowEdit ? (s(), i("button", {
                 key: 0,
                 type: "button",
-                onClick: (b) => R(e),
+                onClick: ($) => T(t),
                 class: "p-2 text-dark-400 hover:text-primary-400 hover:bg-dark-700 rounded-lg transition-colors",
                 title: "Edit crop"
-              }, [...a[11] || (a[11] = [
-                t("svg", {
+              }, [...l[11] || (l[11] = [
+                e("svg", {
                   class: "w-5 h-5",
                   fill: "none",
                   stroke: "currentColor",
                   viewBox: "0 0 24 24"
                 }, [
-                  t("path", {
+                  e("path", {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
                     d: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                   })
                 ], -1)
-              ])], 8, na)) : E("", !0),
-              e.is_primary ? E("", !0) : (v(), p("button", {
+              ])], 8, ra)) : U("", !0),
+              t.is_primary ? U("", !0) : (s(), i("button", {
                 key: 1,
                 type: "button",
-                onClick: (b) => K(e),
+                onClick: ($) => K(t),
                 class: "p-2 text-dark-400 hover:text-emerald-400 hover:bg-dark-700 rounded-lg transition-colors",
                 title: "Set as primary"
-              }, [...a[12] || (a[12] = [
-                t("svg", {
+              }, [...l[12] || (l[12] = [
+                e("svg", {
                   class: "w-5 h-5",
                   fill: "none",
                   stroke: "currentColor",
                   viewBox: "0 0 24 24"
                 }, [
-                  t("path", {
+                  e("path", {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
                     d: "M5 13l4 4L19 7"
                   })
                 ], -1)
-              ])], 8, la)),
-              d.allowDelete ? (v(), p("button", {
+              ])], 8, sa)),
+              f.allowDelete ? (s(), i("button", {
                 key: 2,
                 type: "button",
-                onClick: (b) => J(e),
-                class: W(["p-2 rounded-lg transition-colors", s.value === e.id ? "text-white bg-red-600 hover:bg-red-700" : "text-dark-400 hover:text-red-400 hover:bg-dark-700"]),
-                title: s.value === e.id ? "Click again to confirm" : "Delete"
-              }, [...a[13] || (a[13] = [
-                t("svg", {
+                onClick: ($) => G(t),
+                class: Y(["p-2 rounded-lg transition-colors", p.value === t.id ? "text-white bg-red-600 hover:bg-red-700" : "text-dark-400 hover:text-red-400 hover:bg-dark-700"]),
+                title: p.value === t.id ? "Click again to confirm" : "Delete"
+              }, [...l[13] || (l[13] = [
+                e("svg", {
                   class: "w-5 h-5",
                   fill: "none",
                   stroke: "currentColor",
                   viewBox: "0 0 24 24"
                 }, [
-                  t("path", {
+                  e("path", {
                     "stroke-linecap": "round",
                     "stroke-linejoin": "round",
                     "stroke-width": "2",
                     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                   })
                 ], -1)
-              ])], 10, ra)) : E("", !0)
+              ])], 10, ia)) : U("", !0)
             ])
           ], 2))), 128))
         ]),
-        i.value ? (v(), p("button", {
+        o.value ? (s(), i("button", {
           key: 0,
           type: "button",
-          onClick: y,
-          disabled: f(P),
+          onClick: x,
+          disabled: m(j),
           class: "w-full flex items-center justify-center gap-3 p-4 border-2 border-dashed border-dark-600 hover:border-primary-500 rounded-xl transition-colors group"
         }, [
-          f(P) ? (v(), p(te, { key: 0 }, [
-            a[14] || (a[14] = t("div", { class: "w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)),
-            t("span", ia, "Uploading... " + j(f(A)) + "%", 1)
-          ], 64)) : (v(), p(te, { key: 1 }, [
-            a[15] || (a[15] = t("svg", {
+          m(j) ? (s(), i(Q, { key: 0 }, [
+            l[14] || (l[14] = e("div", { class: "w-5 h-5 border-2 border-primary-500 border-t-transparent rounded-full animate-spin" }, null, -1)),
+            e("span", ca, "Uploading... " + P(m(E)) + "%", 1)
+          ], 64)) : (s(), i(Q, { key: 1 }, [
+            l[15] || (l[15] = e("svg", {
               class: "w-5 h-5 text-dark-500 group-hover:text-primary-400 transition-colors",
               fill: "none",
               stroke: "currentColor",
               viewBox: "0 0 24 24"
             }, [
-              t("path", {
+              e("path", {
                 "stroke-linecap": "round",
                 "stroke-linejoin": "round",
                 "stroke-width": "2",
                 d: "M12 4v16m8-8H4"
               })
             ], -1)),
-            a[16] || (a[16] = t("span", { class: "text-dark-500 group-hover:text-primary-400 transition-colors" }, " Add new avatar ", -1))
+            l[16] || (l[16] = e("span", { class: "text-dark-500 group-hover:text-primary-400 transition-colors" }, " Add new avatar ", -1))
           ], 64))
-        ], 8, sa)) : E("", !0),
-        t("div", ua, [
-          t("span", null, j(f(r).length) + " of " + j(d.maxAvatars) + " avatars", 1),
-          f(n) ? (v(), p("span", ca, j(f(n)), 1)) : E("", !0)
+        ], 8, ua)) : U("", !0),
+        e("div", da, [
+          e("span", null, P(m(d).length) + " of " + P(f.maxAvatars) + " avatars", 1),
+          m(n) ? (s(), i("span", va, P(m(n)), 1)) : U("", !0)
         ])
       ])),
-      s.value ? (v(), p("div", {
+      p.value ? (s(), i("div", {
         key: 4,
         class: "fixed inset-0 z-40",
-        onClick: _
-      })) : E("", !0)
+        onClick: I
+      })) : U("", !0)
     ]));
   }
-}), ga = /* @__PURE__ */ re(da, [["__scopeId", "data-v-52a5c188"]]);
+}), Ha = /* @__PURE__ */ le(pa, [["__scopeId", "data-v-52a5c188"]]), fa = [
+  { id: "favorites", name: "Favorites", icon: "⭐" },
+  { id: "smileys", name: "Smileys", icon: "😀" },
+  { id: "people", name: "People", icon: "👋" },
+  { id: "animals", name: "Animals", icon: "🐶" },
+  { id: "food", name: "Food", icon: "🍔" },
+  { id: "travel", name: "Travel", icon: "✈️" },
+  { id: "activities", name: "Activities", icon: "⚽" },
+  { id: "objects", name: "Objects", icon: "💡" },
+  { id: "symbols", name: "Symbols", icon: "❤️" },
+  { id: "flags", name: "Flags", icon: "🏳️" }
+], ma = {
+  smileys: [
+    "😀",
+    "😃",
+    "😄",
+    "😁",
+    "😅",
+    "😂",
+    "🤣",
+    "😊",
+    "😇",
+    "🙂",
+    "🙃",
+    "😉",
+    "😌",
+    "😍",
+    "🥰",
+    "😘",
+    "😗",
+    "😙",
+    "😚",
+    "😋",
+    "😛",
+    "😜",
+    "🤪",
+    "😝",
+    "🤑",
+    "🤗",
+    "🤭",
+    "🤫",
+    "🤔",
+    "🤐",
+    "🤨",
+    "😐",
+    "😑",
+    "😶",
+    "😏",
+    "😒",
+    "🙄",
+    "😬",
+    "🤥",
+    "😌",
+    "😔",
+    "😪",
+    "🤤",
+    "😴",
+    "😷",
+    "🤒",
+    "🤕",
+    "🤢",
+    "🤮",
+    "🤧",
+    "🥵",
+    "🥶",
+    "🥴",
+    "😵",
+    "🤯",
+    "🤠",
+    "🥳",
+    "🥸",
+    "😎",
+    "🤓",
+    "🧐",
+    "😕",
+    "😟",
+    "🙁",
+    "☹️",
+    "😮",
+    "😯",
+    "😲",
+    "😳",
+    "🥺",
+    "😦",
+    "😧",
+    "😨",
+    "😰",
+    "😥",
+    "😢",
+    "😭",
+    "😱",
+    "😖",
+    "😣",
+    "😞",
+    "😓",
+    "😩",
+    "😫",
+    "🥱",
+    "😤",
+    "😡",
+    "😠",
+    "🤬",
+    "😈",
+    "👿",
+    "💀",
+    "☠️",
+    "💩",
+    "🤡",
+    "👹",
+    "👺",
+    "👻",
+    "👽",
+    "👾",
+    "🤖"
+  ],
+  people: [
+    "👋",
+    "🤚",
+    "🖐️",
+    "✋",
+    "🖖",
+    "👌",
+    "🤌",
+    "🤏",
+    "✌️",
+    "🤞",
+    "🤟",
+    "🤘",
+    "🤙",
+    "👈",
+    "👉",
+    "👆",
+    "🖕",
+    "👇",
+    "☝️",
+    "👍",
+    "👎",
+    "✊",
+    "👊",
+    "🤛",
+    "🤜",
+    "👏",
+    "🙌",
+    "👐",
+    "🤲",
+    "🤝",
+    "🙏",
+    "✍️",
+    "💅",
+    "🤳",
+    "💪",
+    "🦾",
+    "🦿",
+    "🦵",
+    "🦶",
+    "👂",
+    "🦻",
+    "👃",
+    "🧠",
+    "🫀",
+    "🫁",
+    "🦷",
+    "🦴",
+    "👀",
+    "👁️",
+    "👅",
+    "👄",
+    "💋",
+    "👶",
+    "🧒",
+    "👦",
+    "👧",
+    "🧑",
+    "👱",
+    "👨",
+    "🧔",
+    "👩",
+    "🧓",
+    "👴",
+    "👵"
+  ],
+  animals: [
+    "🐶",
+    "🐱",
+    "🐭",
+    "🐹",
+    "🐰",
+    "🦊",
+    "🐻",
+    "🐼",
+    "🐨",
+    "🐯",
+    "🦁",
+    "🐮",
+    "🐷",
+    "🐸",
+    "🐵",
+    "🙈",
+    "🙉",
+    "🙊",
+    "🐒",
+    "🐔",
+    "🐧",
+    "🐦",
+    "🐤",
+    "🐣",
+    "🐥",
+    "🦆",
+    "🦅",
+    "🦉",
+    "🦇",
+    "🐺",
+    "🐗",
+    "🐴",
+    "🦄",
+    "🐝",
+    "🪱",
+    "🐛",
+    "🦋",
+    "🐌",
+    "🐞",
+    "🐜",
+    "🪰",
+    "🪲",
+    "🪳",
+    "🦟",
+    "🦗",
+    "🕷️",
+    "🦂",
+    "🐢",
+    "🐍",
+    "🦎",
+    "🦖",
+    "🦕",
+    "🐙",
+    "🦑",
+    "🦐",
+    "🦞",
+    "🦀",
+    "🐡",
+    "🐠",
+    "🐟",
+    "🐬",
+    "🐳",
+    "🐋",
+    "🦈",
+    "🐊"
+  ],
+  food: [
+    "🍏",
+    "🍎",
+    "🍐",
+    "🍊",
+    "🍋",
+    "🍌",
+    "🍉",
+    "🍇",
+    "🍓",
+    "🫐",
+    "🍈",
+    "🍒",
+    "🍑",
+    "🥭",
+    "🍍",
+    "🥥",
+    "🥝",
+    "🍅",
+    "🍆",
+    "🥑",
+    "🥦",
+    "🥬",
+    "🥒",
+    "🌶️",
+    "🫑",
+    "🌽",
+    "🥕",
+    "🫒",
+    "🧄",
+    "🧅",
+    "🥔",
+    "🍠",
+    "🥐",
+    "🥯",
+    "🍞",
+    "🥖",
+    "🥨",
+    "🧀",
+    "🥚",
+    "🍳",
+    "🧈",
+    "🥞",
+    "🧇",
+    "🥓",
+    "🥩",
+    "🍗",
+    "🍖",
+    "🦴",
+    "🌭",
+    "🍔",
+    "🍟",
+    "🍕",
+    "🫓",
+    "🥪",
+    "🥙",
+    "🧆",
+    "🌮",
+    "🌯",
+    "🫔",
+    "🥗",
+    "🥘",
+    "🫕",
+    "🍝",
+    "🍜",
+    "🍲",
+    "🍛",
+    "🍣",
+    "🍱",
+    "🥟",
+    "🦪",
+    "🍤",
+    "🍙",
+    "🍚",
+    "🍘",
+    "🍥",
+    "🥠",
+    "🥮",
+    "🍢",
+    "🍡",
+    "🍧",
+    "🍨",
+    "🍦",
+    "🥧",
+    "🧁",
+    "🍰",
+    "🎂",
+    "🍮",
+    "🍭",
+    "🍬",
+    "🍫",
+    "🍿",
+    "🍩",
+    "🍪",
+    "🌰",
+    "🥜",
+    "🍯",
+    "🥛",
+    "🍼",
+    "☕",
+    "🍵",
+    "🧃",
+    "🥤",
+    "🧋",
+    "🍶",
+    "🍺",
+    "🍻",
+    "🥂",
+    "🍷",
+    "🥃",
+    "🍸",
+    "🍹",
+    "🧉",
+    "🍾",
+    "🧊"
+  ],
+  travel: [
+    "🚗",
+    "🚕",
+    "🚙",
+    "🚌",
+    "🚎",
+    "🏎️",
+    "🚓",
+    "🚑",
+    "🚒",
+    "🚐",
+    "🛻",
+    "🚚",
+    "🚛",
+    "🚜",
+    "🏍️",
+    "🛵",
+    "🚲",
+    "🛴",
+    "🛹",
+    "🛼",
+    "🚁",
+    "🛸",
+    "✈️",
+    "🛩️",
+    "🛫",
+    "🛬",
+    "🚀",
+    "🛰️",
+    "🚢",
+    "⛵",
+    "🛥️",
+    "🚤",
+    "⛴️",
+    "🛳️",
+    "🚂",
+    "🚃",
+    "🚄",
+    "🚅",
+    "🚆",
+    "🚇",
+    "🚈",
+    "🚉",
+    "🚊",
+    "🚝",
+    "🚞",
+    "🏠",
+    "🏡",
+    "🏢",
+    "🏣",
+    "🏤",
+    "🏥",
+    "🏦",
+    "🏨",
+    "🏩",
+    "🏪",
+    "🏫",
+    "🏬",
+    "🏭",
+    "🏯",
+    "🏰",
+    "💒",
+    "🗼",
+    "🗽",
+    "⛪",
+    "🕌",
+    "🛕",
+    "🕍",
+    "⛩️",
+    "🕋",
+    "⛲",
+    "⛺",
+    "🌁",
+    "🌃",
+    "🏙️",
+    "🌄",
+    "🌅",
+    "🌆",
+    "🌇",
+    "🌉",
+    "🎠",
+    "🎡",
+    "🎢",
+    "🚣",
+    "🗾",
+    "🏔️",
+    "⛰️",
+    "🌋",
+    "🗻",
+    "🏕️",
+    "🏖️",
+    "🏜️",
+    "🏝️",
+    "🏞️"
+  ],
+  activities: [
+    "⚽",
+    "🏀",
+    "🏈",
+    "⚾",
+    "🥎",
+    "🎾",
+    "🏐",
+    "🏉",
+    "🥏",
+    "🎱",
+    "🪀",
+    "🏓",
+    "🏸",
+    "🏒",
+    "🏑",
+    "🥍",
+    "🏏",
+    "🪃",
+    "🥅",
+    "⛳",
+    "🪁",
+    "🏹",
+    "🎣",
+    "🤿",
+    "🥊",
+    "🥋",
+    "🎽",
+    "🛹",
+    "🛼",
+    "🛷",
+    "⛸️",
+    "🥌",
+    "🎿",
+    "⛷️",
+    "🏂",
+    "🪂",
+    "🏋️",
+    "🤼",
+    "🤸",
+    "🤺",
+    "⛹️",
+    "🤾",
+    "🏌️",
+    "🏇",
+    "🧘",
+    "🏄",
+    "🏊",
+    "🤽",
+    "🚣",
+    "🧗",
+    "🚴",
+    "🚵",
+    "🎪",
+    "🎭",
+    "🎨",
+    "🎬",
+    "🎤",
+    "🎧",
+    "🎼",
+    "🎹",
+    "🥁",
+    "🪘",
+    "🎷",
+    "🎺",
+    "🪗",
+    "🎸",
+    "🪕",
+    "🎻",
+    "🎲",
+    "♟️",
+    "🎯",
+    "🎳",
+    "🎮",
+    "🎰",
+    "🧩"
+  ],
+  objects: [
+    "💡",
+    "🔦",
+    "🏮",
+    "🪔",
+    "📱",
+    "📲",
+    "💻",
+    "🖥️",
+    "🖨️",
+    "⌨️",
+    "🖱️",
+    "🖲️",
+    "💽",
+    "💾",
+    "💿",
+    "📀",
+    "🧮",
+    "🎥",
+    "🎞️",
+    "📽️",
+    "📺",
+    "📷",
+    "📸",
+    "📹",
+    "📼",
+    "🔍",
+    "🔎",
+    "🕯️",
+    "💰",
+    "💴",
+    "💵",
+    "💶",
+    "💷",
+    "💸",
+    "💳",
+    "🧾",
+    "💎",
+    "⚖️",
+    "🪜",
+    "🧰",
+    "🪛",
+    "🔧",
+    "🔨",
+    "⚒️",
+    "🛠️",
+    "⛏️",
+    "🪚",
+    "🔩",
+    "⚙️",
+    "🪤",
+    "🧱",
+    "⛓️",
+    "🧲",
+    "🔫",
+    "💣",
+    "🧨",
+    "🪓",
+    "🔪",
+    "🗡️",
+    "⚔️",
+    "🛡️",
+    "🚬",
+    "⚰️",
+    "🪦",
+    "⚱️",
+    "🏺",
+    "🔮",
+    "📿",
+    "🧿",
+    "💈",
+    "⚗️",
+    "🔭",
+    "🔬",
+    "🕳️",
+    "🩹",
+    "🩺",
+    "💊",
+    "💉",
+    "🩸",
+    "🧬",
+    "🦠",
+    "🧫",
+    "🧪",
+    "🌡️",
+    "🧹",
+    "🪠",
+    "🧺",
+    "🧻",
+    "🚽",
+    "🚿",
+    "🛁",
+    "🛀",
+    "🧼",
+    "🪥",
+    "🪒",
+    "🧽",
+    "🪣",
+    "🧴",
+    "🛎️",
+    "🔑",
+    "🗝️",
+    "🚪",
+    "🪑",
+    "🛋️",
+    "🛏️",
+    "🛌",
+    "🧸",
+    "🪆",
+    "🖼️",
+    "🪞",
+    "🪟",
+    "🛍️",
+    "🛒",
+    "🎁",
+    "🎈",
+    "🎏",
+    "🎀",
+    "🪄",
+    "🪅",
+    "🎊",
+    "🎉",
+    "🎎",
+    "🏮",
+    "🎐",
+    "🧧",
+    "✉️",
+    "📩",
+    "📨",
+    "📧",
+    "💌",
+    "📥",
+    "📤",
+    "📦",
+    "🏷️",
+    "📪",
+    "📫",
+    "📬",
+    "📭",
+    "📮",
+    "📯",
+    "📜",
+    "📃",
+    "📄",
+    "📑",
+    "🧾",
+    "📊",
+    "📈",
+    "📉",
+    "🗒️",
+    "🗓️",
+    "📆",
+    "📅",
+    "🗑️",
+    "📇",
+    "🗃️",
+    "🗳️",
+    "🗄️",
+    "📋",
+    "📁",
+    "📂",
+    "🗂️",
+    "🗞️",
+    "📰",
+    "📓",
+    "📔",
+    "📒",
+    "📕",
+    "📗",
+    "📘",
+    "📙",
+    "📚",
+    "📖",
+    "🔖",
+    "🧷",
+    "🔗",
+    "📎",
+    "🖇️",
+    "📐",
+    "📏",
+    "🧮",
+    "📌",
+    "📍",
+    "✂️",
+    "🖊️",
+    "🖋️",
+    "✒️",
+    "🖌️",
+    "🖍️",
+    "📝",
+    "✏️",
+    "🔍",
+    "🔎",
+    "🔏",
+    "🔐",
+    "🔒",
+    "🔓"
+  ],
+  symbols: [
+    "❤️",
+    "🧡",
+    "💛",
+    "💚",
+    "💙",
+    "💜",
+    "🖤",
+    "🤍",
+    "🤎",
+    "💔",
+    "❣️",
+    "💕",
+    "💞",
+    "💓",
+    "💗",
+    "💖",
+    "💘",
+    "💝",
+    "💟",
+    "☮️",
+    "✝️",
+    "☪️",
+    "🕉️",
+    "☸️",
+    "✡️",
+    "🔯",
+    "🕎",
+    "☯️",
+    "☦️",
+    "🛐",
+    "⛎",
+    "♈",
+    "♉",
+    "♊",
+    "♋",
+    "♌",
+    "♍",
+    "♎",
+    "♏",
+    "♐",
+    "♑",
+    "♒",
+    "♓",
+    "🆔",
+    "⚛️",
+    "🉑",
+    "☢️",
+    "☣️",
+    "📴",
+    "📳",
+    "🈶",
+    "🈚",
+    "🈸",
+    "🈺",
+    "🈷️",
+    "✴️",
+    "🆚",
+    "💮",
+    "🉐",
+    "㊙️",
+    "㊗️",
+    "🈴",
+    "🈵",
+    "🈹",
+    "🈲",
+    "🅰️",
+    "🅱️",
+    "🆎",
+    "🆑",
+    "🅾️",
+    "🆘",
+    "❌",
+    "⭕",
+    "🛑",
+    "⛔",
+    "📛",
+    "🚫",
+    "💯",
+    "💢",
+    "♨️",
+    "🚷",
+    "🚯",
+    "🚳",
+    "🚱",
+    "🔞",
+    "📵",
+    "🚭",
+    "❗",
+    "❕",
+    "❓",
+    "❔",
+    "‼️",
+    "⁉️",
+    "🔅",
+    "🔆",
+    "〽️",
+    "⚠️",
+    "🚸",
+    "🔱",
+    "⚜️",
+    "🔰",
+    "♻️",
+    "✅",
+    "🈯",
+    "💹",
+    "❇️",
+    "✳️",
+    "❎",
+    "🌐",
+    "💠",
+    "Ⓜ️",
+    "🌀",
+    "💤",
+    "🏧",
+    "🚾",
+    "♿",
+    "🅿️",
+    "🛗",
+    "🈳",
+    "🈂️",
+    "🛂",
+    "🛃",
+    "🛄",
+    "🛅",
+    "🚹",
+    "🚺",
+    "🚼",
+    "⚧️",
+    "🚻",
+    "🚮",
+    "🎦",
+    "📶",
+    "🈁",
+    "🔣",
+    "ℹ️",
+    "🔤",
+    "🔡",
+    "🔠",
+    "🆖",
+    "🆗",
+    "🆙",
+    "🆒",
+    "🆕",
+    "🆓",
+    "0️⃣",
+    "1️⃣",
+    "2️⃣",
+    "3️⃣",
+    "4️⃣",
+    "5️⃣",
+    "6️⃣",
+    "7️⃣",
+    "8️⃣",
+    "9️⃣",
+    "🔟",
+    "🔢",
+    "#️⃣",
+    "*️⃣",
+    "⏏️",
+    "▶️",
+    "⏸️",
+    "⏯️",
+    "⏹️",
+    "⏺️",
+    "⏭️",
+    "⏮️",
+    "⏩",
+    "⏪",
+    "⏫",
+    "⏬",
+    "◀️",
+    "🔼",
+    "🔽",
+    "➡️",
+    "⬅️",
+    "⬆️",
+    "⬇️",
+    "↗️",
+    "↘️",
+    "↙️",
+    "↖️",
+    "↕️",
+    "↔️",
+    "↪️",
+    "↩️",
+    "⤴️",
+    "⤵️",
+    "🔀",
+    "🔁",
+    "🔂",
+    "🔄",
+    "🔃",
+    "🎵",
+    "🎶",
+    "➕",
+    "➖",
+    "➗",
+    "✖️",
+    "♾️",
+    "💲",
+    "💱",
+    "™️",
+    "©️",
+    "®️",
+    "〰️",
+    "➰",
+    "➿",
+    "🔚",
+    "🔙",
+    "🔛",
+    "🔝",
+    "🔜",
+    "✔️",
+    "☑️",
+    "🔘",
+    "🔴",
+    "🟠",
+    "🟡",
+    "🟢",
+    "🔵",
+    "🟣",
+    "⚫",
+    "⚪",
+    "🟤",
+    "🔺",
+    "🔻",
+    "🔸",
+    "🔹",
+    "🔶",
+    "🔷",
+    "🔳",
+    "🔲",
+    "▪️",
+    "▫️",
+    "◾",
+    "◽",
+    "◼️",
+    "◻️",
+    "🟥",
+    "🟧",
+    "🟨",
+    "🟩",
+    "🟦",
+    "🟪",
+    "⬛",
+    "⬜",
+    "🟫",
+    "🔈",
+    "🔇",
+    "🔉",
+    "🔊",
+    "🔔",
+    "🔕",
+    "📣",
+    "📢",
+    "👁️‍🗨️",
+    "💬",
+    "💭",
+    "🗯️",
+    "♠️",
+    "♣️",
+    "♥️",
+    "♦️",
+    "🃏",
+    "🎴",
+    "🀄",
+    "🕐",
+    "🕑",
+    "🕒",
+    "🕓",
+    "🕔",
+    "🕕",
+    "🕖",
+    "🕗",
+    "🕘",
+    "🕙",
+    "🕚",
+    "🕛",
+    "🕜",
+    "🕝",
+    "🕞",
+    "🕟",
+    "🕠",
+    "🕡",
+    "🕢",
+    "🕣",
+    "🕤",
+    "🕥",
+    "🕦",
+    "🕧"
+  ],
+  flags: [
+    "🏳️",
+    "🏴",
+    "🏁",
+    "🚩",
+    "🏳️‍🌈",
+    "🏳️‍⚧️",
+    "🏴‍☠️",
+    "🇦🇫",
+    "🇦🇱",
+    "🇩🇿",
+    "🇦🇸",
+    "🇦🇩",
+    "🇦🇴",
+    "🇦🇮",
+    "🇦🇶",
+    "🇦🇬",
+    "🇦🇷",
+    "🇦🇲",
+    "🇦🇼",
+    "🇦🇺",
+    "🇦🇹",
+    "🇦🇿",
+    "🇧🇸",
+    "🇧🇭",
+    "🇧🇩",
+    "🇧🇧",
+    "🇧🇾",
+    "🇧🇪",
+    "🇧🇿",
+    "🇧🇯",
+    "🇧🇲",
+    "🇧🇹",
+    "🇧🇴",
+    "🇧🇦",
+    "🇧🇼",
+    "🇧🇷",
+    "🇮🇴",
+    "🇻🇬",
+    "🇧🇳",
+    "🇧🇬",
+    "🇧🇫",
+    "🇧🇮",
+    "🇰🇭",
+    "🇨🇲",
+    "🇨🇦",
+    "🇮🇨",
+    "🇨🇻",
+    "🇧🇶",
+    "🇰🇾",
+    "🇨🇫",
+    "🇹🇩",
+    "🇨🇱",
+    "🇨🇳",
+    "🇨🇽",
+    "🇨🇨",
+    "🇨🇴",
+    "🇰🇲",
+    "🇨🇬",
+    "🇨🇩",
+    "🇨🇰",
+    "🇨🇷",
+    "🇨🇮",
+    "🇭🇷",
+    "🇨🇺",
+    "🇨🇼",
+    "🇨🇾",
+    "🇨🇿",
+    "🇩🇰",
+    "🇩🇯",
+    "🇩🇲",
+    "🇩🇴",
+    "🇪🇨",
+    "🇪🇬",
+    "🇸🇻",
+    "🇬🇶",
+    "🇪🇷",
+    "🇪🇪",
+    "🇸🇿",
+    "🇪🇹",
+    "🇪🇺",
+    "🇫🇰",
+    "🇫🇴",
+    "🇫🇯",
+    "🇫🇮",
+    "🇫🇷",
+    "🇬🇫",
+    "🇵🇫",
+    "🇹🇫",
+    "🇬🇦",
+    "🇬🇲",
+    "🇬🇪",
+    "🇩🇪",
+    "🇬🇭",
+    "🇬🇮",
+    "🇬🇷",
+    "🇬🇱",
+    "🇬🇩",
+    "🇬🇵",
+    "🇬🇺",
+    "🇬🇹",
+    "🇬🇬",
+    "🇬🇳",
+    "🇬🇼",
+    "🇬🇾",
+    "🇭🇹",
+    "🇭🇳",
+    "🇭🇰",
+    "🇭🇺",
+    "🇮🇸",
+    "🇮🇳",
+    "🇮🇩",
+    "🇮🇷",
+    "🇮🇶",
+    "🇮🇪",
+    "🇮🇲",
+    "🇮🇱",
+    "🇮🇹",
+    "🇯🇲",
+    "🇯🇵",
+    "🎌",
+    "🇯🇪",
+    "🇯🇴",
+    "🇰🇿",
+    "🇰🇪",
+    "🇰🇮",
+    "🇽🇰",
+    "🇰🇼",
+    "🇰🇬",
+    "🇱🇦",
+    "🇱🇻",
+    "🇱🇧",
+    "🇱🇸",
+    "🇱🇷",
+    "🇱🇾",
+    "🇱🇮",
+    "🇱🇹",
+    "🇱🇺",
+    "🇲🇴",
+    "🇲🇬",
+    "🇲🇼",
+    "🇲🇾",
+    "🇲🇻",
+    "🇲🇱",
+    "🇲🇹",
+    "🇲🇭",
+    "🇲🇶",
+    "🇲🇷",
+    "🇲🇺",
+    "🇾🇹",
+    "🇲🇽",
+    "🇫🇲",
+    "🇲🇩",
+    "🇲🇨",
+    "🇲🇳",
+    "🇲🇪",
+    "🇲🇸",
+    "🇲🇦",
+    "🇲🇿",
+    "🇲🇲",
+    "🇳🇦",
+    "🇳🇷",
+    "🇳🇵",
+    "🇳🇱",
+    "🇳🇨",
+    "🇳🇿",
+    "🇳🇮",
+    "🇳🇪",
+    "🇳🇬",
+    "🇳🇺",
+    "🇳🇫",
+    "🇰🇵",
+    "🇲🇰",
+    "🇲🇵",
+    "🇳🇴",
+    "🇴🇲",
+    "🇵🇰",
+    "🇵🇼",
+    "🇵🇸",
+    "🇵🇦",
+    "🇵🇬",
+    "🇵🇾",
+    "🇵🇪",
+    "🇵🇭",
+    "🇵🇳",
+    "🇵🇱",
+    "🇵🇹",
+    "🇵🇷",
+    "🇶🇦",
+    "🇷🇪",
+    "🇷🇴",
+    "🇷🇺",
+    "🇷🇼",
+    "🇼🇸",
+    "🇸🇲",
+    "🇸🇹",
+    "🇸🇦",
+    "🇸🇳",
+    "🇷🇸",
+    "🇸🇨",
+    "🇸🇱",
+    "🇸🇬",
+    "🇸🇽",
+    "🇸🇰",
+    "🇸🇮",
+    "🇬🇸",
+    "🇸🇧",
+    "🇸🇴",
+    "🇿🇦",
+    "🇰🇷",
+    "🇸🇸",
+    "🇪🇸",
+    "🇱🇰",
+    "🇧🇱",
+    "🇸🇭",
+    "🇰🇳",
+    "🇱🇨",
+    "🇵🇲",
+    "🇻🇨",
+    "🇸🇩",
+    "🇸🇷",
+    "🇸🇪",
+    "🇨🇭",
+    "🇸🇾",
+    "🇹🇼",
+    "🇹🇯",
+    "🇹🇿",
+    "🇹🇭",
+    "🇹🇱",
+    "🇹🇬",
+    "🇹🇰",
+    "🇹🇴",
+    "🇹🇹",
+    "🇹🇳",
+    "🇹🇷",
+    "🇹🇲",
+    "🇹🇨",
+    "🇹🇻",
+    "🇻🇮",
+    "🇺🇬",
+    "🇺🇦",
+    "🇦🇪",
+    "🇬🇧",
+    "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+    "🇺🇸",
+    "🇺🇾",
+    "🇺🇿",
+    "🇻🇺",
+    "🇻🇦",
+    "🇻🇪",
+    "🇻🇳",
+    "🇼🇫",
+    "🇪🇭",
+    "🇾🇪",
+    "🇿🇲",
+    "🇿🇼"
+  ]
+};
+function ha() {
+  const f = [];
+  for (const [M, a] of Object.entries(ma))
+    for (const u of a)
+      f.push({
+        id: u,
+        value: u,
+        type: "emoji",
+        keywords: [u],
+        // Basic - could be enhanced with actual keyword data
+        category: M
+      });
+  return f;
+}
+function ga(f = {}) {
+  var o;
+  const {
+    categories: M = fa,
+    customItems: a = [],
+    getFavorites: u = () => [],
+    saveFavorite: d,
+    maxFavorites: y = 16,
+    columns: n = 8
+  } = f, j = C(!1), E = C(""), O = C(((o = M[0]) == null ? void 0 : o.id) || "smileys"), D = C(0), H = Se(ha()), R = A(() => [...H.value, ...a]), w = A(() => {
+    const c = u();
+    return R.value.filter((g) => c.includes(g.id)).slice(0, y);
+  }), S = A(() => {
+    const c = E.value.toLowerCase().trim();
+    return c ? R.value.filter((g) => g.value.includes(c) ? !0 : g.keywords.some((x) => x.toLowerCase().includes(c))) : [];
+  }), v = A(() => O.value === "favorites" ? w.value : R.value.filter((c) => c.category === O.value)), p = A(() => E.value.trim() ? S.value : v.value);
+  function z() {
+    j.value = !0, E.value = "";
+  }
+  function b() {
+    j.value = !1;
+  }
+  function k(c) {
+    return d && d(c.id), c;
+  }
+  function h(c) {
+    O.value = c, E.value = "";
+  }
+  function _(c) {
+    E.value = c;
+  }
+  return {
+    // State
+    isOpen: j,
+    searchQuery: E,
+    activeCategory: O,
+    selectedSkinTone: D,
+    // Data
+    categories: M,
+    allItems: R,
+    favorites: w,
+    displayItems: p,
+    searchResults: S,
+    columns: n,
+    // Actions
+    open: z,
+    close: b,
+    selectItem: k,
+    setCategory: h,
+    setSearch: _
+  };
+}
+const ya = { class: "nui-picker-search" }, ka = ["value", "placeholder"], xa = { class: "nui-picker-categories" }, ba = ["title", "onClick"], wa = { class: "nui-category-icon" }, _a = {
+  key: 0,
+  class: "nui-picker-empty"
+}, Ca = { key: 0 }, $a = { key: 1 }, za = { key: 2 }, Ma = ["title", "onClick"], Sa = {
+  key: 0,
+  class: "nui-item-emoji"
+}, Ia = ["src", "alt"], Ea = {
+  key: 2,
+  class: "nui-item-fallback"
+}, Ua = {
+  key: 0,
+  class: "nui-picker-favorites"
+}, La = { class: "nui-favorites-grid" }, ja = ["title", "onClick"], Aa = {
+  key: 0,
+  class: "nui-item-emoji"
+}, Fa = ["src", "alt"], Pa = /* @__PURE__ */ oe({
+  __name: "EmojiPicker",
+  props: {
+    favorites: { default: () => [] },
+    customItems: { default: () => [] },
+    categories: {},
+    columns: { default: 8 },
+    maxFavorites: { default: 16 },
+    searchPlaceholder: { default: "Search emoji..." }
+  },
+  emits: ["select", "favorite"],
+  setup(f, { emit: M }) {
+    const a = f, u = M, d = {
+      categories: a.categories,
+      customItems: a.customItems,
+      getFavorites: () => a.favorites,
+      saveFavorite: (h) => u("favorite", h),
+      maxFavorites: a.maxFavorites,
+      columns: a.columns
+    }, {
+      searchQuery: y,
+      activeCategory: n,
+      categories: j,
+      displayItems: E,
+      favorites: O,
+      setCategory: D,
+      setSearch: H,
+      selectItem: R
+    } = ga(d), w = C(null), S = C(null);
+    se(() => {
+      Ie(() => {
+        var h;
+        (h = w.value) == null || h.focus();
+      });
+    });
+    function v(h) {
+      const _ = R(h);
+      u("select", _);
+    }
+    function p(h) {
+      const _ = h.target.value;
+      H(_);
+    }
+    function z(h) {
+      D(h);
+    }
+    function b(h) {
+      var _;
+      h.key === "Escape" && ((_ = w.value) == null || _.blur());
+    }
+    const k = A(() => ({
+      gridTemplateColumns: `repeat(${a.columns}, 1fr)`
+    }));
+    return (h, _) => (s(), i("div", {
+      class: "nui-emoji-picker",
+      onKeydown: b
+    }, [
+      e("div", ya, [
+        e("input", {
+          ref_key: "searchInputRef",
+          ref: w,
+          type: "text",
+          value: m(y),
+          placeholder: f.searchPlaceholder,
+          class: "nui-picker-search-input",
+          onInput: p
+        }, null, 40, ka),
+        _[0] || (_[0] = e("svg", {
+          class: "nui-picker-search-icon",
+          viewBox: "0 0 24 24",
+          fill: "none",
+          stroke: "currentColor",
+          "stroke-width": "2"
+        }, [
+          e("circle", {
+            cx: "11",
+            cy: "11",
+            r: "8"
+          }),
+          e("path", { d: "M21 21l-4.35-4.35" })
+        ], -1))
+      ]),
+      e("div", xa, [
+        (s(!0), i(Q, null, ae(m(j), (o) => (s(), i("button", {
+          key: o.id,
+          class: Y(["nui-picker-category-tab", { active: m(n) === o.id }]),
+          title: o.name,
+          onClick: (c) => z(o.id)
+        }, [
+          e("span", wa, P(o.icon), 1)
+        ], 10, ba))), 128))
+      ]),
+      e("div", {
+        ref_key: "gridRef",
+        ref: S,
+        class: "nui-picker-grid-container"
+      }, [
+        m(E).length === 0 ? (s(), i("div", _a, [
+          m(y) ? (s(), i("span", Ca, 'No results for "' + P(m(y)) + '"', 1)) : m(n) === "favorites" ? (s(), i("span", $a, "No favorites yet")) : (s(), i("span", za, "No items"))
+        ])) : (s(), i("div", {
+          key: 1,
+          class: "nui-picker-grid",
+          style: J(k.value)
+        }, [
+          (s(!0), i(Q, null, ae(m(E), (o) => {
+            var c;
+            return s(), i("button", {
+              key: o.id,
+              class: Y(["nui-picker-item", { "is-custom": o.type !== "emoji" }]),
+              title: ((c = o.keywords) == null ? void 0 : c[0]) || o.value,
+              onClick: (g) => v(o)
+            }, [
+              o.type === "emoji" ? (s(), i("span", Sa, P(o.value), 1)) : o.url ? (s(), i("img", {
+                key: 1,
+                src: o.url,
+                alt: o.value,
+                class: "nui-item-image"
+              }, null, 8, Ia)) : (s(), i("span", Ea, P(o.value), 1))
+            ], 10, Ma);
+          }), 128))
+        ], 4))
+      ], 512),
+      m(O).length > 0 ? (s(), i("div", Ua, [
+        _[1] || (_[1] = e("div", { class: "nui-favorites-label" }, "⭐ Favorites", -1)),
+        e("div", La, [
+          (s(!0), i(Q, null, ae(m(O), (o) => (s(), i("button", {
+            key: "fav-" + o.id,
+            class: "nui-picker-item nui-favorite-item",
+            title: o.value,
+            onClick: (c) => v(o)
+          }, [
+            o.type === "emoji" ? (s(), i("span", Aa, P(o.value), 1)) : o.url ? (s(), i("img", {
+              key: 1,
+              src: o.url,
+              alt: o.value,
+              class: "nui-item-image"
+            }, null, 8, Fa)) : U("", !0)
+          ], 8, ja))), 128))
+        ])
+      ])) : U("", !0)
+    ], 32));
+  }
+}), Za = /* @__PURE__ */ le(Pa, [["__scopeId", "data-v-4ed80c96"]]);
 export {
-  _e as AvatarCropper,
-  ga as AvatarManager,
-  ma as AvatarUpload,
-  Ze as ImageViewer,
-  pa as ImageViewerProvider,
-  ha as configureAvatarManager,
-  fa as configureAvatarUpload,
-  Ve as useAvatarCropper,
-  xt as useAvatarManager,
-  Ye as useAvatarUpload,
-  Ce as useImageViewer
+  Ce as AvatarCropper,
+  Ha as AvatarManager,
+  Da as AvatarUpload,
+  Za as EmojiPicker,
+  Ve as ImageViewer,
+  Oa as ImageViewerProvider,
+  Ba as configureAvatarManager,
+  Ta as configureAvatarUpload,
+  Xe as useAvatarCropper,
+  bt as useAvatarManager,
+  Ne as useAvatarUpload,
+  ga as useEmojiPicker,
+  _e as useImageViewer
 };
 //# sourceMappingURL=index.js.map
