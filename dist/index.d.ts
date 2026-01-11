@@ -1,3 +1,4 @@
+import './style.css';
 /**
  * nonspace-ui - Shared Vue 3 UI components
  *
