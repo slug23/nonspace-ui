@@ -33,22 +33,28 @@ export interface CropperConfig {
   format?: 'image/jpeg' | 'image/png' | 'image/webp'
   /** Output quality (0-1) for jpeg/webp */
   quality?: number
+  /** Media proxy URL for loading external images (to bypass CORS) */
+  mediaProxyUrl?: string
 }
 
-const defaultConfig: Required<CropperConfig> = {
+// Required config with defaults (mediaProxyUrl is optional)
+type RequiredCropperConfig = Required<Omit<CropperConfig, 'mediaProxyUrl'>> & Pick<CropperConfig, 'mediaProxyUrl'>
+
+const defaultConfig: RequiredCropperConfig = {
   shape: 'circle',
   cropSize: 280,
   outputSize: 512,
   maxZoom: 5,
   format: 'image/jpeg',
   quality: 0.92,
+  mediaProxyUrl: undefined,
 }
 
 /**
  * Composable for handling avatar image cropping
  */
 export function useAvatarCropper(config?: CropperConfig) {
-  const mergedConfig = computed(() => ({ ...defaultConfig, ...config }))
+  const mergedConfig = computed<RequiredCropperConfig>(() => ({ ...defaultConfig, ...config }))
   
   const state = ref<CropperState>({
     image: null,
@@ -135,21 +141,44 @@ export function useAvatarCropper(config?: CropperConfig) {
   
   /**
    * Load an image from a URL
+   * If the URL is external and a mediaProxyUrl is configured, uses the proxy
    */
   async function loadUrl(url: string): Promise<boolean> {
     loading.value = true
     error.value = null
     sourceFile.value = null
-    sourceUrl.value = url
     
     try {
-      const img = await loadImage(url)
+      // Check if this is an external URL that needs proxying
+      let loadUrl = url
+      const { mediaProxyUrl } = mergedConfig.value
+      
+      if (mediaProxyUrl && isExternalUrl(url)) {
+        loadUrl = `${mediaProxyUrl}?url=${encodeURIComponent(url)}`
+        console.log('[Cropper] Using proxy for external URL:', loadUrl)
+      }
+      
+      sourceUrl.value = loadUrl
+      const img = await loadImage(loadUrl)
       initializeImageState(img)
       loading.value = false
       return true
     } catch (e) {
+      console.error('[Cropper] Failed to load image:', e)
       error.value = 'Failed to load image'
       loading.value = false
+      return false
+    }
+  }
+  
+  /**
+   * Check if a URL is external (different origin)
+   */
+  function isExternalUrl(url: string): boolean {
+    try {
+      const parsed = new URL(url)
+      return parsed.origin !== window.location.origin
+    } catch {
       return false
     }
   }

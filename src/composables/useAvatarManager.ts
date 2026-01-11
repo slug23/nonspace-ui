@@ -55,6 +55,8 @@ export interface AvatarManagerConfig {
   getHeaders: () => Record<string, string>
   /** Upload endpoint for new avatars */
   uploadUrl?: string
+  /** Media proxy URL for loading external images (to bypass CORS) */
+  mediaProxyUrl?: string
   /** Project ID for project-managed avatars */
   projectId?: string
   /** Entity type for project-managed avatars */

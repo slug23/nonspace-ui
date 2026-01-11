@@ -54,6 +54,7 @@ const {
   error,
   uploading,
   uploadProgress,
+  config,
   fetchAvatars,
   setPrimary,
   deleteAvatar,
@@ -266,6 +267,7 @@ function getSourceLabel(source: string): string {
               :url="cropperUrl"
               :shape="shape"
               :crop-size="cropSize"
+              :config="{ mediaProxyUrl: config.mediaProxyUrl }"
               :confirm-label="cropperMode === 'edit' ? 'Save changes' : 'Upload'"
               @confirm="handleCropConfirm"
               @cancel="handleCropCancel"

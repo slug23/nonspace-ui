@@ -31,7 +31,10 @@ export interface CropperConfig {
     format?: 'image/jpeg' | 'image/png' | 'image/webp';
     /** Output quality (0-1) for jpeg/webp */
     quality?: number;
+    /** Media proxy URL for loading external images (to bypass CORS) */
+    mediaProxyUrl?: string;
 }
+type RequiredCropperConfig = Required<Omit<CropperConfig, 'mediaProxyUrl'>> & Pick<CropperConfig, 'mediaProxyUrl'>;
 /**
  * Composable for handling avatar image cropping
  */
@@ -83,14 +86,7 @@ export declare function useAvatarCropper(config?: CropperConfig): {
     sourceUrl: Ref<string | null, string | null>;
     cropRegion: import("vue").ComputedRef<AvatarCrop | null>;
     imageTransform: import("vue").ComputedRef<string>;
-    config: import("vue").ComputedRef<{
-        shape: "circle" | "square" | "rounded";
-        cropSize: number;
-        outputSize: number;
-        maxZoom: number;
-        format: "image/jpeg" | "image/png" | "image/webp";
-        quality: number;
-    }>;
+    config: import("vue").ComputedRef<RequiredCropperConfig>;
     loadFile: (file: File) => Promise<boolean>;
     loadUrl: (url: string) => Promise<boolean>;
     setZoom: (newZoom: number) => void;
