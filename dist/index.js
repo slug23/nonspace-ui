@@ -373,7 +373,7 @@ const Ie = { class: "viewer-toolbar top" }, Le = {
   for (const [c, v] of E)
     a[c] = v;
   return a;
-}, Ve = /* @__PURE__ */ le(Ye, [["__scopeId", "data-v-1fa5ee85"]]), Ta = /* @__PURE__ */ oe({
+}, Ve = /* @__PURE__ */ le(Ye, [["__scopeId", "data-v-a29bab64"]]), Ta = /* @__PURE__ */ oe({
   __name: "ImageViewerProvider",
   setup(f) {
     const { isOpen: E, images: a, initialIndex: c, _setOpen: v } = Ce(), k = D(() => [...a.value]);
@@ -1272,7 +1272,7 @@ const We = { class: "avatar-cropper flex flex-col items-center gap-6" }, Ke = { 
       ], 6)
     ]));
   }
-}), Ba = /* @__PURE__ */ le(wt, [["__scopeId", "data-v-36262731"]]), me = C({});
+}), Ba = /* @__PURE__ */ le(wt, [["__scopeId", "data-v-9d8f9209"]]), me = C({});
 function Ha(f) {
   me.value = { ...me.value, ...f };
 }
